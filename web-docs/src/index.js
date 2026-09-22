@@ -192,8 +192,16 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
-    // 0. Allow App Landing, Proposal, Simulator & Conductor to be completely PUBLIC without password
+    // 0. Allow App Landing, Proposal, Simulator, Conductor & Image Assets to be completely PUBLIC
+    const isAsset =
+      url.pathname.endsWith(".webp") ||
+      url.pathname.endsWith(".png") ||
+      url.pathname.endsWith(".jpg") ||
+      url.pathname.endsWith(".svg") ||
+      url.pathname.endsWith(".ico");
+
     const isPublicRoute =
+      isAsset ||
       url.pathname === "/app" ||
       url.pathname === "/app.html" ||
       url.pathname === "/proposal-rene-quiroz" ||
