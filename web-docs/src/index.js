@@ -192,8 +192,10 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
-    // 0. Allow Proposal, Simulator & Conductor Landing to be completely PUBLIC without password
+    // 0. Allow App Landing, Proposal, Simulator & Conductor to be completely PUBLIC without password
     const isPublicRoute =
+      url.pathname === "/app" ||
+      url.pathname === "/app.html" ||
       url.pathname === "/proposal-rene-quiroz" ||
       url.pathname === "/proposal-rene-quiroz.html" ||
       url.pathname === "/proposal" ||

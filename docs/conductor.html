@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Únete como Conductor / Transportista — MulaCargo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0A0A0C;
+      --surface: #12141A;
+      --card: #181C26;
+      --border: rgba(255, 255, 255, 0.08);
+      --orange: #FF5500;
+      --orange-glow: rgba(255, 85, 0, 0.15);
+      --mint: #00E599;
+      --gold: #D4AF37;
+      --text: #F8FAFC;
+      --muted: #8C929D;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 85, 0, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--orange); }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--orange-glow);
+      border: 1px solid rgba(255, 85, 0, 0.35);
+      color: var(--orange);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    h1 span { color: var(--orange); }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.15rem;
+      line-height: 1.6;
+      max-width: 680px;
+      margin-bottom: 2.5rem;
+    }
+
+    .grid-benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .benefit-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: border-color 0.2s;
+    }
+    .benefit-card:hover {
+      border-color: var(--orange);
+    }
+
+    .benefit-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .benefit-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+    }
+
+    .benefit-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Calculator Section */
+    .calculator-box {
+      background: var(--surface);
+      border: 1px solid rgba(0, 229, 153, 0.3);
+      border-radius: 16px;
+      padding: 2.25rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
+
+    .calc-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+    }
+
+    .calc-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .vehicle-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .v-pill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .v-pill.active {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #FFFFFF;
+    }
+
+    .calc-result-box {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .earnings-number {
+      font-family: 'Geist Mono', monospace;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--mint);
+    }
+
+    .earnings-label {
+      font-size: 0.8rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    /* Form Card */
+    .cta-card {
+      background: linear-gradient(135deg, rgba(255, 85, 0, 0.12) 0%, rgba(18, 20, 26, 1) 100%);
+      border: 1px solid rgba(255, 85, 0, 0.4);
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .cta-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 580px;
+      margin: 0 auto 1.75rem;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #25D366;
+      color: #0A0A0C;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="./" class="nav-back">← Volver al Hub MulaCargo</a>
+
+    <div class="hero-badge">🚜 Registro de Transportistas & Flotas</div>
+    <h1>Multiplica tus ingresos y <span>nunca más viajes vacío</span></h1>
+    <p class="lead">MulaCargo te conecta con empresas y productores en toda Bolivia. Aprovecha nuestro <strong>Radar de Retorno</strong> para cobrar fletes en tus viajes de regreso con solo <strong>3.5% de comisión</strong>.</p>
+
+    <div class="grid-benefits">
+      <div class="benefit-card">
+        <div class="benefit-icon">⚡</div>
+        <div class="benefit-title">Radar de Retorno (Pre-Trip)</div>
+        <div class="benefit-desc">Programa tu ruta de vuelta antes de salir de tu garaje. Llega a tu destino sabiendo que ya tienes carga pagada para volver.</div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">🔒</div>
+        <div class="benefit-title">Cobro Garantizado con Escrow</div>
+        <div class="benefit-desc">El cliente deposita los fondos por QR antes de cargar. Al entregar y validar el código OTP, el dinero se libera de inmediato a tu cuenta.</div>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-icon">📉</div>
+        <div class="benefit-title">Solo 3.5% de Comisión</div>
+        <div class="benefit-desc">La tarifa más justa del mercado logístico en Bolivia. Sin costos ocultos, sin mensualidades obligatorias ni intermediarios abusivos.</div>
+      </div>
+    </div>
+
+    <!-- Simulator Box -->
+    <div class="calculator-box">
+      <div class="calc-title">Calcula tu Potencial de Ganancia</div>
+      <p class="calc-sub">Selecciona tu tipo de vehículo para estimar tus ingresos mensuales estimados aprovechando 4 fletes de retorno:</p>
+
+      <div class="vehicle-pills">
+        <button class="v-pill active" onclick="selectVehicle('pickup', this)">🛻 Utilitario / Pickup</button>
+        <button class="v-pill" onclick="selectVehicle('van', this)">🚐 Furgón / VUC</button>
+        <button class="v-pill" onclick="selectVehicle('truck', this)">🚛 Camión 3/4 & Toco</button>
+        <button class="v-pill" onclick="selectVehicle('heavy', this)">🚚 Heavy Hauler / Carreta</button>
+      </div>
+
+      <div class="calc-result-box">
+        <div>
+          <div class="earnings-label">Ingreso Adicional Estimado por Retorno</div>
+          <div class="earnings-number" id="calcEarnings">Bs. 4,800 / mes</div>
+          <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">Basado en 4 fletes de retorno Santa Cruz ↔ Montero / Warnes / Cochabamba</div>
+        </div>
+        <div>
+          <div class="earnings-label">Comisión MulaCargo (3.5%)</div>
+          <div style="font-family: 'Geist Mono', monospace; font-size: 1.2rem; color: var(--orange); font-weight: 700;" id="calcFee">-Bs. 168.00</div>
+          <div style="font-size: 0.75rem; color: var(--mint); margin-top: 2px;">96.5% directo a tu bolsillo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action Card -->
+    <div class="cta-card">
+      <div class="cta-title">¿Listo para comenzar a rodar?</div>
+      <p class="cta-desc">Completa tu pre-registro en menos de 2 minutos vía WhatsApp con nuestro equipo de operaciones en Santa Cruz.</p>
+      
+      <a href="https://wa.me/59170000000?text=Hola%20MulaCargo,%20quiero%20registrar%20mi%20veh%C3%ADculo%20de%20carga%20y%20activar%20el%20Radar%20de%20Retorno." target="_blank" class="btn-whatsapp">
+        <span>💬 Pre-Registrarme por WhatsApp</span>
+      </a>
+    </div>
+
+    <footer>
+      <p>© 2026 MulaCargo • ClubeMkt Platform Engineering • Santa Cruz de la Sierra, Bolivia</p>
+    </footer>
+  </div>
+
+  <script>
+    const data = {
+      pickup: { earnings: 'Bs. 4,800 / mes', fee: '-Bs. 168.00' },
+      van: { earnings: 'Bs. 8,200 / mes', fee: '-Bs. 287.00' },
+      truck: { earnings: 'Bs. 16,500 / mes', fee: '-Bs. 577.50' },
+      heavy: { earnings: 'Bs. 32,000+ / mes', fee: '-Bs. 1,120.00' },
+    };
+
+    function selectVehicle(type, el) {
+      document.querySelectorAll('.v-pill').forEach(btn => btn.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('calcEarnings').innerText = data[type].earnings;
+      document.getElementById('calcFee').innerText = data[type].fee;
+    }
+  </script>
+</body>
+</html>
