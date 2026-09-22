@@ -4,6 +4,9 @@
   "account_id": "cb27e1a67198789eb42d11ab90737652",
   "compatibility_date": "2026-09-22",
   "workers_dev": true,
+  "routes": [
+    { "pattern": "mulacargo.clubemkt.online", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./public",
     "html_handling": "auto-trailing-slash",
