@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Únete como Conductor / Transportista — MulaCargo</title>
+  <title>Únete como Transportista — MulaCargo</title>
+  <meta name="description" content="Regístrate como conductor o transportista en MulaCargo. Duplica tus ingresos con el Radar de Retorno, cobra directo por QR y paga solo 3.5% de comisión.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0A0A0C;
@@ -58,10 +59,16 @@
       color: var(--muted);
       text-decoration: none;
       font-size: 0.85rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       transition: color 0.2s;
     }
     .nav-back:hover { color: var(--orange); }
+
+    .brand-logo-img {
+      height: 60px;
+      width: auto;
+      margin-bottom: 0.75rem;
+    }
 
     .hero-badge {
       display: inline-flex;
@@ -93,7 +100,7 @@
       color: var(--muted);
       font-size: 1.15rem;
       line-height: 1.6;
-      max-width: 680px;
+      max-width: 700px;
       margin-bottom: 2.5rem;
     }
 
@@ -261,36 +268,40 @@
 <body>
 
   <div class="container">
-    <a href="./" class="nav-back">← Volver al Hub MulaCargo</a>
+    <a href="./app.html" class="nav-back">← Volver a MulaCargo</a>
+
+    <div style="margin-bottom: 0.5rem;">
+      <img src="./mulacargo.webp" alt="MulaCargo" class="brand-logo-img">
+    </div>
 
     <div class="hero-badge">🚜 Registro de Transportistas & Flotas</div>
-    <h1>Multiplica tus ingresos y <span>nunca más viajes vacío</span></h1>
-    <p class="lead">MulaCargo te conecta con empresas y productores en toda Bolivia. Aprovecha nuestro <strong>Radar de Retorno</strong> para cobrar fletes en tus viajes de regreso con solo <strong>3.5% de comisión</strong>.</p>
+    <h1>Duplica tus ingresos y <span>nunca más viajes en vacío</span></h1>
+    <p class="lead">MulaCargo te conecta con empresas y productores en toda Bolivia. Aprovecha nuestro <strong>Radar de Retorno</strong> para asegurar flete remunerado tanto de ida como de vuelta con solo <strong>3.5% de comisión</strong>.</p>
 
     <div class="grid-benefits">
       <div class="benefit-card">
         <div class="benefit-icon">⚡</div>
-        <div class="benefit-title">Radar de Retorno (Pre-Trip)</div>
-        <div class="benefit-desc">Programa tu ruta de vuelta antes de salir de tu garaje. Llega a tu destino sabiendo que ya tienes carga pagada para volver.</div>
+        <div class="benefit-title">Radar de Retorno Pre-Viaje</div>
+        <div class="benefit-desc">Programa tu viaje de vuelta antes de salir de tu base. Llega a tu destino sabiendo que ya tienes flete completo y acordado para regresar.</div>
       </div>
 
       <div class="benefit-card">
-        <div class="benefit-icon">🔒</div>
-        <div class="benefit-title">Cobro Garantizado con Escrow</div>
-        <div class="benefit-desc">El cliente deposita los fondos por QR antes de cargar. Al entregar y validar el código OTP, el dinero se libera de inmediato a tu cuenta.</div>
+        <div class="benefit-icon">📲</div>
+        <div class="benefit-title">Cobro Directo por Simple QR</div>
+        <div class="benefit-desc">Transferencias interbancarias directas a tu cuenta nacional (BNB, BCP, Banco Unión, BMSC, Bisa, Ganadero) sin intermediarios lentos.</div>
       </div>
 
       <div class="benefit-card">
         <div class="benefit-icon">📉</div>
-        <div class="benefit-title">Solo 3.5% de Comisión</div>
-        <div class="benefit-desc">La tarifa más justa del mercado logístico en Bolivia. Sin costos ocultos, sin mensualidades obligatorias ni intermediarios abusivos.</div>
+        <div class="benefit-title">Solo 3.5% de Comisión Fija</div>
+        <div class="benefit-desc">La tarifa más baja y justa del mercado logístico en Bolivia. Conservas el 96.5% neto de cada flete que realizas.</div>
       </div>
     </div>
 
     <!-- Simulator Box -->
     <div class="calculator-box">
-      <div class="calc-title">Calcula tu Potencial de Ganancia</div>
-      <p class="calc-sub">Selecciona tu tipo de vehículo para estimar tus ingresos mensuales estimados aprovechando 4 fletes de retorno:</p>
+      <div class="calc-title">Calcula tu Potencial de Ganancia Mensual</div>
+      <p class="calc-sub">Selecciona tu tipo de vehículo para estimar tus ingresos mensuales aprovechando fletes de ida y vuelta:</p>
 
       <div class="vehicle-pills">
         <button class="v-pill active" onclick="selectVehicle('pickup', this)">🛻 Utilitario / Pickup</button>
@@ -301,21 +312,21 @@
 
       <div class="calc-result-box">
         <div>
-          <div class="earnings-label">Ingreso Adicional Estimado por Retorno</div>
-          <div class="earnings-number" id="calcEarnings">Bs. 4,800 / mes</div>
-          <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">Basado en 4 fletes de retorno Santa Cruz ↔ Montero / Warnes / Cochabamba</div>
+          <div class="earnings-label">Ingreso Neto Mensual Estimado (Ida y Vuelta)</div>
+          <div class="earnings-number" id="calcEarnings">Bs. 9,650 / mes</div>
+          <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">Basado en 4 viajes redondos completos en corredores troncales</div>
         </div>
         <div>
           <div class="earnings-label">Comisión MulaCargo (3.5%)</div>
-          <div style="font-family: 'Geist Mono', monospace; font-size: 1.2rem; color: var(--orange); font-weight: 700;" id="calcFee">-Bs. 168.00</div>
-          <div style="font-size: 0.75rem; color: var(--mint); margin-top: 2px;">96.5% directo a tu bolsillo</div>
+          <div style="font-family: 'Geist Mono', monospace; font-size: 1.2rem; color: var(--orange); font-weight: 700;" id="calcFee">-Bs. 350.00</div>
+          <div style="font-size: 0.75rem; color: var(--mint); margin-top: 2px;">96.5% neto directo a tu cuenta</div>
         </div>
       </div>
     </div>
 
     <!-- Call to Action Card -->
     <div class="cta-card">
-      <div class="cta-title">¿Listo para comenzar a rodar?</div>
+      <div class="cta-title">¿Listo para comenzar a rodar con MulaCargo?</div>
       <p class="cta-desc">Completa tu pre-registro en menos de 2 minutos vía WhatsApp con nuestro equipo de operaciones en Santa Cruz.</p>
       
       <a href="https://wa.me/59170000000?text=Hola%20MulaCargo,%20quiero%20registrar%20mi%20veh%C3%ADculo%20de%20carga%20y%20activar%20el%20Radar%20de%20Retorno." target="_blank" class="btn-whatsapp">
@@ -330,10 +341,10 @@
 
   <script>
     const data = {
-      pickup: { earnings: 'Bs. 4,800 / mes', fee: '-Bs. 168.00' },
-      van: { earnings: 'Bs. 8,200 / mes', fee: '-Bs. 287.00' },
-      truck: { earnings: 'Bs. 16,500 / mes', fee: '-Bs. 577.50' },
-      heavy: { earnings: 'Bs. 32,000+ / mes', fee: '-Bs. 1,120.00' },
+      pickup: { earnings: 'Bs. 9,650 / mes', fee: '-Bs. 350.00' },
+      van: { earnings: 'Bs. 16,400 / mes', fee: '-Bs. 595.00' },
+      truck: { earnings: 'Bs. 33,000 / mes', fee: '-Bs. 1,197.00' },
+      heavy: { earnings: 'Bs. 64,000+ / mes', fee: '-Bs. 2,320.00' },
     };
 
     function selectVehicle(type, el) {

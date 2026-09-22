@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulador de Fletes & Radar de Retorno — MulaCargo</title>
+  <title>Simulador de Ganancia & Retorno — MulaCargo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0A0A0C;
@@ -85,6 +85,12 @@
       margin-bottom: 1rem;
     }
 
+    .brand-logo-img {
+      height: 60px;
+      width: auto;
+      margin-bottom: 0.75rem;
+    }
+
     h1 {
       font-family: 'Syne', sans-serif;
       font-size: clamp(2rem, 4vw, 3.2rem);
@@ -98,7 +104,7 @@
     .subtitle {
       color: var(--muted);
       font-size: 1.05rem;
-      max-width: 620px;
+      max-width: 650px;
       margin: 0 auto;
     }
 
@@ -205,7 +211,7 @@
 
     .results-hero {
       background: linear-gradient(135deg, rgba(255, 85, 0, 0.08) 0%, rgba(0, 229, 153, 0.05) 100%);
-      border: 1px solid rgba(255, 85, 0, 0.25);
+      border: 1px solid rgba(0, 229, 153, 0.35);
       border-radius: 12px;
       padding: 1.5rem;
       margin-bottom: 1.5rem;
@@ -301,10 +307,13 @@
 
   <div class="container">
     <header>
-      <a href="./" class="nav-back">← Volver al Hub MulaCargo</a>
-      <div class="tag-badge">⚡ Algoritmo de Retorno en Vacío</div>
-      <h1>Simulador de <span>Fletes & Retorno</span></h1>
-      <p class="subtitle">Calcule costos de transporte, tarifas preferenciales de retorno (-35%) y la ganancia neta del transportista en tiempo real.</p>
+      <a href="./app.html" class="nav-back">← Volver a MulaCargo</a>
+      <div style="margin-bottom: 0.5rem;">
+        <img src="./mulacargo.webp" alt="MulaCargo" class="brand-logo-img">
+      </div>
+      <div class="tag-badge">⚡ Calculadora de Rentabilidad & Retorno</div>
+      <h1>Simulador de <span>Ganancia por Viaje Redondo</span></h1>
+      <p class="subtitle">Descubre cómo el Radar de Retorno duplica tus ingresos eliminando los viajes en vacío con solo 3.5% de comisión.</p>
     </header>
 
     <div class="simulator-grid">
@@ -315,10 +324,10 @@
         <div class="field-group">
           <label>Corredor de Ruta</label>
           <select id="routeSelect" onchange="calculateFreight()">
-            <option value="scz_montero" data-km="55" data-base="350">Santa Cruz ↔ Montero / Warnes (55 km)</option>
-            <option value="scz_cbba" data-km="480" data-base="2200" selected>Santa Cruz ↔ Cochabamba (480 km)</option>
-            <option value="scz_lpz" data-km="850" data-base="3800">Santa Cruz ↔ La Paz / El Alto (850 km)</option>
-            <option value="scz_yacuiba" data-km="540" data-base="2600">Santa Cruz ↔ Yacuiba / Frontera (540 km)</option>
+            <option value="scz_montero" data-km="55" data-base="450">Santa Cruz ↔ Montero / Warnes (55 km)</option>
+            <option value="scz_cbba" data-km="480" data-base="2400" selected>Santa Cruz ↔ Cochabamba (480 km)</option>
+            <option value="scz_lpz" data-km="850" data-base="4200">Santa Cruz ↔ La Paz / El Alto (850 km)</option>
+            <option value="scz_yacuiba" data-km="540" data-base="2800">Santa Cruz ↔ Yacuiba / Frontera (540 km)</option>
           </select>
         </div>
 
@@ -332,23 +341,18 @@
           </select>
         </div>
 
-        <div class="field-group">
-          <label>Peso Estimado de Carga (kg)</label>
-          <input type="number" id="weightInput" value="3200" min="100" max="30000" oninput="calculateFreight()">
-        </div>
-
         <!-- Radar de Retorno Toggle -->
         <div class="toggle-card active" id="backhaulToggle" onclick="toggleBackhaul()">
           <div class="toggle-info">
-            <h4>⚡ Radar de Retorno (Pre-Trip)</h4>
-            <p>Aprovecha un viaje de retorno en vacío hacia la base</p>
+            <h4>⚡ Carga de Retorno en Corredor</h4>
+            <p>Ida y vuelta completa con carga remunerada</p>
           </div>
-          <span class="switch-pill" id="backhaulPill">ACTIVADO (-35%)</span>
+          <span class="switch-pill" id="backhaulPill">ACTIVADO (2X GANANCIA)</span>
         </div>
 
         <div class="efficiency-card">
-          <div class="efficiency-title">💡 Planificación Previa</div>
-          <p class="efficiency-desc">Al programar el retorno antes de salir de origen, el transportista garantiza carga en ambos sentidos y el dador de carga obtiene tarifa preferencial sin esperas.</p>
+          <div class="efficiency-title">💡 Máxima Rentabilidad</div>
+          <p class="efficiency-desc">Al asegurar el flete de retorno antes de salir de origen, cada kilómetro recorrido genera ingresos. Tu viaje de vuelta cubre el combustible y maximiza tu margen neto.</p>
         </div>
       </div>
 
@@ -357,40 +361,44 @@
         <h3 class="panel-title">📊 Liquidación Financiera en Vivo</h3>
 
         <div class="results-hero">
-          <div class="label" id="priceLabel">Precio Final al Dador de Carga</div>
-          <div class="price" id="finalPriceDisplay">Bs. 1,430</div>
-          <div class="savings" id="savingsDisplay">🎉 Ahorro de Bs. 770 aplicado por Retorno</div>
+          <div class="label" id="priceLabel">Ganancia Neta para el Transportista</div>
+          <div class="price" id="finalPriceDisplay">Bs. 4,632</div>
+          <div class="savings" id="savingsDisplay">⚡ 100% de la ruta ida y vuelta monetizada</div>
         </div>
 
         <table class="breakdown-table">
           <tr>
-            <td>Flete Estándar Solo Ida:</td>
-            <td id="basePriceRow">Bs. 2,200.00</td>
+            <td>Flete de Ida Acordado:</td>
+            <td id="outboundPriceRow">Bs. 2,400.00</td>
           </tr>
-          <tr id="discountRow">
-            <td>Descuento Retorno Radar (-35%):</td>
-            <td class="val-fee" id="discountValueRow">-Bs. 770.00</td>
+          <tr id="returnRow">
+            <td>Flete de Retorno (Radar):</td>
+            <td class="val-highlight" id="returnPriceRow">+Bs. 2,400.00</td>
+          </tr>
+          <tr>
+            <td>Total Facturación Bruta:</td>
+            <td style="font-weight: 700; color: #FFFFFF;" id="grossTotalRow">Bs. 4,800.00</td>
           </tr>
           <tr>
             <td>Comisión MulaCargo (3.5%):</td>
-            <td class="val-fee" id="platformFeeRow">-Bs. 50.05</td>
+            <td class="val-fee" id="platformFeeRow">-Bs. 168.00</td>
           </tr>
           <tr style="border-top: 2px solid rgba(255, 255, 255, 0.15);">
-            <td style="font-weight: 700; color: #FFFFFF;">Ganancia Neta Conductor:</td>
-            <td class="val-highlight" id="netDriverEarnings">Bs. 1,379.95</td>
+            <td style="font-weight: 700; color: #FFFFFF;">Ganancia Neta Directa:</td>
+            <td class="val-highlight" id="netDriverEarnings">Bs. 4,632.00</td>
           </tr>
         </table>
 
         <div class="efficiency-card" style="border-color: rgba(0, 229, 153, 0.3);">
-          <div class="efficiency-title" style="color: var(--mint);">🌱 Impacto Logístico</div>
+          <div class="efficiency-title" style="color: var(--mint);">🌱 Impacto en Tu Negocio</div>
           <p class="efficiency-desc" id="impactDesc">
-            Eliminación de <strong>480 km</strong> de viaje en vacío (Deadhead). Recuperación completa de combustible de retorno con <strong>Bs. 1,379.95</strong> netos directo al bolsillo del transportista.
+            Viaje redondo de <strong>960 km</strong> 100% aprovechado. Generas <strong>Bs. 4,632.00</strong> netos en lugar de solo <strong>Bs. 2,316.00</strong> si volvieras con la carrocería vacía.
           </p>
         </div>
 
-        <button class="action-btn" onclick="alert('Simulación completada. En las apps móviles este cálculo se despacha automáticamente vía WebSocket en tiempo real.')">
-          🚀 Probar en App Móvil
-        </button>
+        <a href="./conductor.html" class="action-btn">
+          🚛 Registrarme para Activar el Radar
+        </a>
       </div>
     </div>
   </div>
@@ -404,10 +412,10 @@
       const pill = document.getElementById('backhaulPill');
       if (isBackhaul) {
         card.classList.add('active');
-        pill.innerText = 'ACTIVADO (-35%)';
+        pill.innerText = 'ACTIVADO (2X GANANCIA)';
       } else {
         card.classList.remove('active');
-        pill.innerText = 'DESACTIVADO';
+        pill.innerText = 'SOLO IDA (RETORNO VACÍO)';
       }
       calculateFreight();
     }
@@ -422,35 +430,35 @@
       const selectedVehicle = vehicleSelect.options[vehicleSelect.selectedIndex];
       const vehicleMultiplier = parseFloat(selectedVehicle.getAttribute('data-multiplier'));
 
-      const grossPrice = basePrice * vehicleMultiplier;
-      const discount = isBackhaul ? grossPrice * 0.35 : 0;
-      const finalPrice = grossPrice - discount;
-      const platformFee = finalPrice * 0.035; // 3.5%
-      const netEarnings = finalPrice - platformFee;
+      const legPrice = basePrice * vehicleMultiplier;
+      const returnPrice = isBackhaul ? legPrice : 0;
+      const grossTotal = legPrice + returnPrice;
+      const platformFee = grossTotal * 0.035; // 3.5%
+      const netEarnings = grossTotal - platformFee;
 
       // Update DOM
-      document.getElementById('finalPriceDisplay').innerText = `Bs. ${Math.round(finalPrice).toLocaleString('es-BO')}`;
-      document.getElementById('basePriceRow').innerText = `Bs. ${grossPrice.toFixed(2)}`;
+      document.getElementById('finalPriceDisplay').innerText = `Bs. ${Math.round(netEarnings).toLocaleString('es-BO')}`;
+      document.getElementById('outboundPriceRow').innerText = `Bs. ${legPrice.toFixed(2)}`;
       
-      const discountRow = document.getElementById('discountRow');
+      const returnRow = document.getElementById('returnRow');
       const savingsDisplay = document.getElementById('savingsDisplay');
       
       if (isBackhaul) {
-        discountRow.style.display = 'table-row';
-        document.getElementById('discountValueRow').innerText = `-Bs. ${discount.toFixed(2)}`;
-        savingsDisplay.style.display = 'block';
-        savingsDisplay.innerText = `🎉 Ahorro de Bs. ${Math.round(discount).toLocaleString('es-BO')} aplicado por Retorno`;
+        returnRow.style.display = 'table-row';
+        document.getElementById('returnPriceRow').innerText = `+Bs. ${legPrice.toFixed(2)}`;
+        savingsDisplay.innerText = `⚡ 100% de la ruta ida y vuelta monetizada (${distanceKm * 2} km)`;
       } else {
-        discountRow.style.display = 'none';
-        savingsDisplay.style.display = 'none';
+        returnRow.style.display = 'none';
+        savingsDisplay.innerText = `⚠️ Retorno en vacío: Pierdes combustible en los ${distanceKm} km de vuelta`;
       }
 
+      document.getElementById('grossTotalRow').innerText = `Bs. ${grossTotal.toFixed(2)}`;
       document.getElementById('platformFeeRow').innerText = `-Bs. ${platformFee.toFixed(2)}`;
       document.getElementById('netDriverEarnings').innerText = `Bs. ${netEarnings.toFixed(2)}`;
 
       document.getElementById('impactDesc').innerHTML = isBackhaul
-        ? `Eliminación de <strong>${distanceKm} km</strong> de viaje en vacío (Deadhead). Recuperación completa de combustible de retorno con <strong>Bs. ${netEarnings.toFixed(2)}</strong> netos directo al transportista.`
-        : `Flete de ida exclusivo por <strong>${distanceKm} km</strong>. Ganancia neta de <strong>Bs. ${netEarnings.toFixed(2)}</strong> para el transportista.`;
+        ? `Viaje redondo de <strong>${distanceKm * 2} km</strong> 100% aprovechado. Generas <strong>Bs. ${netEarnings.toFixed(2)}</strong> netos en lugar de solo <strong>Bs. ${(legPrice * 0.965).toFixed(2)}</strong> si volvieras con la carrocería vacía.`
+        : `Flete de solo ida de <strong>${distanceKm} km</strong>. Generas <strong>Bs. ${netEarnings.toFixed(2)}</strong> netos pero asumes el costo de combustible de regreso sin carga.`;
     }
 
     calculateFreight();

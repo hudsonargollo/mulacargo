@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MulaCargo — Carga Pesada, Retorno Lleno | App de Fletes en Bolivia</title>
-  <meta name="description" content="MulaCargo es el marketplace de transporte de carga pesada y optimización de retornos en Bolivia. Subastas en tiempo real, 3.5% de comisión y pagos protegidos con QR Escrow.">
+  <meta name="description" content="MulaCargo es el marketplace de fletes y logística de carga pesada en Bolivia. Subastas en tiempo real, Radar de Retorno para duplicar ganancias y comisión fija de 3.5%.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
@@ -38,7 +38,6 @@
       line-height: 1.5;
     }
 
-    /* Background Ambient Gradients */
     .ambient-glow {
       position: absolute;
       top: 0;
@@ -67,7 +66,7 @@
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       z-index: 100;
-      padding: 1rem 0;
+      padding: 0.85rem 0;
     }
 
     .nav-inner {
@@ -79,13 +78,19 @@
     .brand-logo {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
       text-decoration: none;
       color: var(--text);
       font-family: var(--font-display);
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       font-weight: 800;
       letter-spacing: -0.02em;
+    }
+    .brand-logo img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 6px;
     }
     .brand-logo span { color: var(--orange); }
 
@@ -145,7 +150,7 @@
 
     /* 2. Hero Section */
     .hero {
-      padding: 5rem 0 4rem;
+      padding: 4.5rem 0 3.5rem;
       text-align: center;
     }
 
@@ -165,6 +170,16 @@
       margin-bottom: 1.5rem;
     }
 
+    .hero-brand-mark {
+      margin-bottom: 1.25rem;
+    }
+    .hero-brand-mark img {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 30px rgba(255, 85, 0, 0.35));
+    }
+
     h1.hero-title {
       font-family: var(--font-display);
       font-size: clamp(2.6rem, 5.5vw, 4.4rem);
@@ -178,7 +193,7 @@
     p.hero-lead {
       color: var(--text-muted);
       font-size: 1.2rem;
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto 2.5rem;
       line-height: 1.6;
     }
@@ -413,12 +428,12 @@
       font-weight: 600;
     }
 
-    /* 5. Escrow Section */
-    .section-escrow {
+    /* 5. Payments Section */
+    .section-payments {
       padding: 5rem 0;
     }
 
-    .escrow-board {
+    .payments-board {
       background: linear-gradient(135deg, rgba(255, 85, 0, 0.08) 0%, rgba(18, 20, 26, 1) 100%);
       border: 1px solid rgba(255, 85, 0, 0.3);
       border-radius: 20px;
@@ -429,7 +444,7 @@
       align-items: center;
     }
 
-    .escrow-step {
+    .step-item {
       display: flex;
       gap: 1.25rem;
       margin-bottom: 1.5rem;
@@ -462,7 +477,7 @@
       line-height: 1.5;
     }
 
-    .escrow-badge-pill {
+    .badge-pill-mint {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
@@ -553,7 +568,7 @@
     .footer-links a:hover { color: var(--orange); }
 
     @media (max-width: 860px) {
-      .tab-content-grid, .escrow-board { grid-template-columns: 1fr; }
+      .tab-content-grid, .payments-board { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       .hero-stats { gap: 1.5rem; }
     }
@@ -568,15 +583,16 @@
   <nav>
     <div class="container nav-inner">
       <a href="./app.html" class="brand-logo">
+        <img src="./mulacargo.webp" alt="MulaCargo Logo">
         Mula<span>Cargo</span>
       </a>
 
       <ul class="nav-links">
         <li><a href="#como-funciona">Cómo Funciona</a></li>
-        <li><a href="./simulator.html">Simulador de Fletes</a></li>
+        <li><a href="./simulator.html">Simulador de Ganancia</a></li>
         <li><a href="#vehiculos">Flota</a></li>
-        <li><a href="#escrow">Pagos QR</a></li>
-        <li><a href="./conductor.html">Soy Conductor</a></li>
+        <li><a href="#pagos">Pagos QR</a></li>
+        <li><a href="./conductor.html">Soy Transportista</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -589,15 +605,18 @@
   <!-- 2. Hero Section -->
   <header class="hero">
     <div class="container">
+      <div class="hero-brand-mark">
+        <img src="./mulacargo.webp" alt="MulaCargo">
+      </div>
       <div class="badge-hero">⚡ EL MARKETPLACE DE CARGA PESADA DE BOLIVIA</div>
-      <h1 class="hero-title">Carga Pesada, <span>Retorno Lleno.</span><br>Sin Viajes en Vacío.</h1>
+      <h1 class="hero-title">Carga Pesada, <span>Retorno Lleno.</span><br>El Flete que Nunca Vuelve Vacío.</h1>
       <p class="hero-lead">
-        Conectamos empresas, agropecuarias y dadores de carga con transportistas en tiempo real. Subastas transparentes, algoritmo de retorno con <strong>35% de descuento</strong> y solo <strong>3.5% de comisión</strong>.
+        Conectamos empresas, industrias y agropecuarias con transportistas verificados en toda Bolivia. Subastas transparentes en tiempo real, <strong>Radar de Retorno</strong> para duplicar la rentabilidad del viaje y <strong>comisión fija del 3.5%</strong>.
       </p>
 
       <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
         <a href="./simulator.html" class="btn-primary" style="padding: 0.9rem 2rem; font-size: 1rem;">
-          ⚡ Cotizar Flete con Retorno
+          ⚡ Simular Ganancia & Retorno
         </a>
         <a href="./conductor.html" class="btn-secondary" style="padding: 0.9rem 2rem; font-size: 1rem;">
           🚛 Registrar mi Camión / Flota
@@ -611,12 +630,12 @@
           <div class="stat-label">Comisión Fija de Plataforma</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number">-35%</div>
-          <div class="stat-label">Tarifa de Retorno (Radar)</div>
+          <div class="stat-number">2X</div>
+          <div class="stat-label">Rentabilidad (Ida + Retorno)</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">100%</div>
-          <div class="stat-label">Fondos Protegidos en Escrow</div>
+          <div class="stat-label">Pagos Directos por QR Simple</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">4 Tiers</div>
@@ -631,7 +650,7 @@
     <div class="container">
       <div class="section-header">
         <div class="section-tag">01 // DOS EXPERIENCIAS DISEÑADAS A MEDIDA</div>
-        <h2 class="section-title">Tecnología Inteligente para Ambas Vías</h2>
+        <h2 class="section-title">Logística Eficiente y Rentable en Ambos Sentidos</h2>
       </div>
 
       <div class="tabs-wrapper">
@@ -645,22 +664,22 @@
       <div class="tab-content-grid" id="shipperContent">
         <div class="feature-list">
           <div class="feature-card">
-            <h4>🤖 Estimador IA de Carga & Volumen</h4>
-            <p>Sube una foto o describe tu carga (pallets, cajas, maquinaria). Nuestro modelo recomienda el tipo exacto de vehículo y calcula el cubicaje.</p>
+            <h4>🤖 Estimador IA de Carga & Cubicaje</h4>
+            <p>Sube una foto o describe tu carga (pallets, cajas, maquinaria, granos). El sistema calcula el volumen útil y asigna la categoría de vehículo óptima.</p>
           </div>
           <div class="feature-card">
-            <h4>⚡ Sala de Subastas en Vivo</h4>
-            <p>Recibe ofertas en tiempo real de transportistas verificados en tu zona. Compara calificaciones, vehículos y haz contraofertas con 1 tap.</p>
+            <h4>⚡ Subastas en Vivo con Choferes Verificados</h4>
+            <p>Recibe ofertas competitivas en tiempo real de transportistas con vehículos calificados. Negocia directo y adjudica en minutos.</p>
           </div>
           <div class="feature-card">
-            <h4>🔒 Custodia Escrow con QR Simple</h4>
-            <p>Paga desde tu app bancaria (BNB, BCP, Unión, BMSC). El dinero no se transfiere al chofer hasta que tu receptor confirme la descarga con el código OTP.</p>
+            <h4>📲 Pagos Directos con QR Bolivia Simple</h4>
+            <p>Paga al instante mediante QR interbancario desde cualquier banco (BNB, BCP, Banco Unión, Mercantil Santa Cruz, Bisa, Ganadero).</p>
           </div>
         </div>
 
         <div class="app-preview-mockup">
           <div class="mockup-header">
-            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: #FFFFFF; font-weight: 700;">SALA DE SUBASTAS MULA</span>
+            <span style="font-family: var(--font-mono); font-size: 0.85rem; color: #FFFFFF; font-weight: 700;">SALA DE NEGOCIACIÓN EN VIVO</span>
             <div class="mockup-live"><div class="mockup-dot"></div> 3 OFERTAS ACTIVAS</div>
           </div>
 
@@ -671,8 +690,8 @@
                 <div style="font-size: 0.75rem; color: var(--gold); margin-top: 2px;">⭐ 4.9 (184 viajes completados)</div>
               </div>
               <div style="text-align: right;">
-                <div style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 800; color: var(--mint);">Bs. 1,100</div>
-                <span style="background: var(--mint-glow); color: var(--mint); font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⚡ RETORNO RADAR</span>
+                <div style="font-family: var(--font-mono); font-size: 1.25rem; font-weight: 800; color: var(--mint);">Bs. 1,250</div>
+                <span style="background: var(--mint-glow); color: var(--mint); font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⚡ CORREDOR DISPONIBLE</span>
               </div>
             </div>
             <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">🚛 Camión 3/4 (5T) • Placa 4821-EFT • Llega en 25 min</div>
@@ -684,7 +703,7 @@
                 <strong style="color: #FFFFFF; font-size: 0.95rem;">Transportes Quiroz & Hnos</strong>
                 <div style="font-size: 0.75rem; color: var(--gold); margin-top: 2px;">⭐ 5.0 (340 viajes)</div>
               </div>
-              <div style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 800; color: #FFFFFF;">Bs. 1,250</div>
+              <div style="font-family: var(--font-mono); font-size: 1.25rem; font-weight: 800; color: #FFFFFF;">Bs. 1,380</div>
             </div>
             <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">🚐 Furgón Sprinter • Placa 3190-KLX</div>
           </div>
@@ -696,22 +715,22 @@
         <div class="feature-list">
           <div class="feature-card">
             <h4>📍 Radar de Retorno (Pre-Trip Planning)</h4>
-            <p>Programa tu viaje de retorno antes de salir de tu base. Asegura carga en ambos sentidos y elimina completamente los kilómetros en vacío.</p>
+            <p>Programa tu ruta de regreso antes de salir del garaje. Asegura flete remunerado en ambos sentidos y transforma el viaje de vuelta en pura ganancia.</p>
           </div>
           <div class="feature-card">
-            <h4>💰 Liquidación Inmediata con 96.5% Neto</h4>
-            <p>Cobro garantizado al instante tras validar el código OTP de entrega. Sin intermediarios que retengan tus liquidaciones durante semanas.</p>
+            <h4>💰 96.5% de Ingreso Neto Directo</h4>
+            <p>Cobro instantáneo mediante QR directo a tu cuenta bancaria. Sin comisiones abusivas de intermediarios tradicionales.</p>
           </div>
           <div class="feature-card">
-            <h4>📉 3.5% Tarifa Transparente</h4>
-            <p>La comisión más baja de toda la región andina. Diseñado para que el transportista conserve el fruto de su trabajo.</p>
+            <h4>📉 Solo 3.5% de Tarifa de Plataforma</h4>
+            <p>La tarifa más baja y transparente de Bolivia, pensada para potenciar al transportista independiente y a las flotas locales.</p>
           </div>
         </div>
 
         <div class="app-preview-mockup">
           <div class="mockup-header">
             <span style="font-family: var(--font-mono); font-size: 0.85rem; color: #FFFFFF; font-weight: 700;">RADAR DE RETORNO ACTIVO</span>
-            <div class="mockup-live"><div class="mockup-dot"></div> CORREDOR SCZ ↔ MONTERO</div>
+            <div class="mockup-live"><div class="mockup-dot"></div> CORREDOR SCZ ↔ COCHABAMBA</div>
           </div>
 
           <div class="mockup-card-inner" style="border-color: rgba(0, 229, 153, 0.3);">
@@ -742,7 +761,7 @@
           <div class="fleet-sub">HILUX • STRADA • SAVEIRO</div>
           <div class="fleet-spec-row"><span>Capacidad Peso:</span> <span>Hasta 700 kg</span></div>
           <div class="fleet-spec-row"><span>Volumen Útil:</span> <span>2.5 m³</span></div>
-          <div class="fleet-spec-row"><span>Ideal para:</span> <span>Repuestos, cajas</span></div>
+          <div class="fleet-spec-row"><span>Ideal para:</span> <span>Repuestos, paquetería</span></div>
         </div>
 
         <div class="fleet-card">
@@ -775,17 +794,17 @@
     </div>
   </section>
 
-  <!-- 5. Escrow Section -->
-  <section class="section-escrow" id="escrow">
+  <!-- 5. Payments Section -->
+  <section class="section-payments" id="pagos">
     <div class="container">
-      <div class="escrow-board">
+      <div class="payments-board">
         <div>
-          <div class="escrow-badge-pill">🔒 CUSTODIA INTERBANCARIA SIMPLE QR</div>
+          <div class="badge-pill-mint">⚡ PAGOS DIRECTOS SIMPLE QR</div>
           <h2 style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem;">
-            Cobros y Pagos con Seguridad Total
+            Cobros Inmediatos, Transparentes y Sin Fricción
           </h2>
           <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem;">
-            MulaCargo opera bajo el estándar EMVCo interbancario de Bolivia. Cero riesgos de impagos para el transportista y cero riesgo de pérdida de carga para el cliente.
+            Paga y cobra al instante mediante el sistema Simple QR interbancario de Bolivia. Directo a tu cuenta de cualquier entidad financiera nacional.
           </p>
 
           <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
@@ -797,27 +816,27 @@
         </div>
 
         <div>
-          <div class="escrow-step">
+          <div class="step-item">
             <div class="step-num">1</div>
             <div class="step-info">
-              <h4>Depósito QR en Custodia</h4>
-              <p>El cliente escanea el QR Simple generado. Los fondos quedan bloqueados en custodia de la plataforma.</p>
+              <h4>Subasta y Acuerdo Directo</h4>
+              <p>El remitente y el transportista acuerdan el precio de forma transparente a través de la sala de negociación.</p>
             </div>
           </div>
 
-          <div class="escrow-step">
+          <div class="step-item">
             <div class="step-num">2</div>
             <div class="step-info">
-              <h4>Transporte con Rastreo Satelital</h4>
-              <p>El transportista recoge la carga sabiendo que el pago está 100% asegurado y viaja con telemetría en vivo.</p>
+              <h4>Pago Directo por Simple QR</h4>
+              <p>Generación de QR dinámico para pago interbancario instantáneo con registro automático en la plataforma.</p>
             </div>
           </div>
 
-          <div class="escrow-step">
+          <div class="step-item">
             <div class="step-num">3</div>
             <div class="step-info">
-              <h4>OTP de Entrega & Liquidación</h4>
-              <p>Al llegar al destino, el receptor entrega el código OTP al chofer. El sistema liquida al instante el 96.5% neto.</p>
+              <h4>Liquidación Inmediata con 3.5%</h4>
+              <p>El transportista recibe su dinero de forma inmediata. MulaCargo deduce únicamente el 3.5% de comisión.</p>
             </div>
           </div>
         </div>
@@ -829,11 +848,14 @@
   <section class="section-cta" id="descargar">
     <div class="container">
       <div class="cta-container-box">
+        <div style="margin-bottom: 1.5rem;">
+          <img src="./mulacargo.webp" alt="MulaCargo" style="height: 64px; width: auto; object-fit: contain; border-radius: 8px;">
+        </div>
         <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 0.75rem;">
-          Empieza a Mover Carga de Forma Inteligente
+          Empieza a Mover Carga con Máxima Rentabilidad
         </h2>
         <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
-          Disponible para Android e iOS. Únete a la red de logística más eficiente y confiable de Bolivia.
+          Disponible para Android e iOS. Únete a la red logística inteligente que nunca vuelve vacía.
         </p>
 
         <div class="cta-buttons">
@@ -851,13 +873,16 @@
   <!-- Footer -->
   <footer>
     <div class="container footer-inner">
-      <div>
-        <strong style="color: #FFFFFF; font-family: var(--font-display);">MulaCargo</strong> • Plataforma de Carga Pesada & Retorno
-        <div style="font-size: 0.75rem; color: #475569; margin-top: 4px;">Santa Cruz de la Sierra, Bolivia • © 2026 ClubeMkt Platform Engineering</div>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <img src="./mulacargo.webp" alt="MulaCargo" style="height: 28px; width: auto;">
+        <div>
+          <strong style="color: #FFFFFF; font-family: var(--font-display);">MulaCargo</strong> • Plataforma de Carga Pesada & Retorno
+          <div style="font-size: 0.75rem; color: #475569; margin-top: 2px;">Santa Cruz de la Sierra, Bolivia • © 2026 ClubeMkt Platform Engineering</div>
+        </div>
       </div>
 
       <div class="footer-links">
-        <a href="./simulator.html">Simulador</a>
+        <a href="./simulator.html">Simulador de Ganancia</a>
         <a href="./conductor.html">Conductores</a>
         <a href="./proposal-rene-quiroz.html">Propuesta Comercial</a>
         <a href="./branding-guide.html">Marca</a>
