@@ -81,5 +81,15 @@ Route::group(['middleware' => ['localization']], function () {
         Route::post('chat/clear', 'ChatController@clear')->name('chat.clear');
         Route::get('chat/unread-count', 'ChatController@unreadCount')->name('chat.unreadCount');
     });
+
+    // MulaCargo Freight, AI Vision & Pre-Trip Backhaul Radar
+    Route::group(['prefix' => 'mulacargo'], function () {
+        Route::post('cargo/ai-estimate', 'Api\MulaCargoAiVisionController@estimateCargo');
+        Route::post('backhaul/home-base', 'Api\MulaCargoBackhaulController@setHomeBase');
+        Route::post('backhaul/schedule-trip', 'Api\MulaCargoBackhaulController@schedulePreTrip');
+        Route::get('backhaul/radar-corridor', 'Api\MulaCargoBackhaulController@getReturnCargo');
+        Route::get('backhaul/my-trips', 'Api\MulaCargoBackhaulController@getDriverTrips');
+    });
 });
+
 

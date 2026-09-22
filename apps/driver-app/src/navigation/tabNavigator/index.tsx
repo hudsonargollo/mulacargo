@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Home } from '../../screen/home'
-import { MyRide, Settings } from '../../screen'
+import { MyRide, Settings, RadarRetornoScreen } from '../../screen'
 import { Text, TouchableOpacity, Vibration } from 'react-native'
 import appColors from '../../theme/appColors'
 import Icons from '../../utils/icons/icons'
@@ -56,6 +56,12 @@ export default function App() {
           component: Home,
           icon: Icons.Home,
           label: t.home,
+        },
+        {
+          name: 'RadarRetorno',
+          component: RadarRetornoScreen,
+          icon: Icons.Car,
+          label: 'Radar Retorno',
         },
         {
           name: 'DashBoard',

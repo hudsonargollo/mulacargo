@@ -180,6 +180,28 @@ export function Freight({ pickupLocation, stops, destination, service_ID, zoneVa
         service_name={service_name}
       />
 
+      {/* MulaCargo AI Cargo Estimator & Backhaul Match Banner */}
+      <View style={{
+        backgroundColor: isDark ? 'rgba(255, 85, 0, 0.12)' : '#FFF6F0',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(255, 85, 0, 0.3)',
+        padding: 12,
+        marginVertical: 12,
+      }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
+          <Text style={{ fontSize: 13, fontWeight: '700', color: appColors.primary || '#FF5500' }}>
+            ⚡ Radar de Retorno Disponible
+          </Text>
+          <View style={{ backgroundColor: '#00E599', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 4 }}>
+            <Text style={{ fontSize: 10, fontWeight: '800', color: '#0A0A0C' }}>-35% RETORNO</Text>
+          </View>
+        </View>
+        <Text style={{ fontSize: 12, color: isDark ? '#E0E6ED' : '#555', lineHeight: 17 }}>
+          Si su flete coincide con transportistas volviendo a su base, recibirá cotizaciones con tarifa preferencial de retorno.
+        </Text>
+      </View>
+
       <View style={[external.mv_15]}>
         <Button title={translateData.bookRide} onPress={gotoRide} loading={bookloading} />
       </View>
