@@ -192,14 +192,16 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
-    // 0. Allow Proposal & Simulator to be completely PUBLIC without password
+    // 0. Allow Proposal, Simulator & Conductor Landing to be completely PUBLIC without password
     const isPublicRoute =
       url.pathname === "/proposal-rene-quiroz" ||
       url.pathname === "/proposal-rene-quiroz.html" ||
       url.pathname === "/proposal" ||
       url.pathname === "/proposal.html" ||
       url.pathname === "/simulator" ||
-      url.pathname === "/simulator.html";
+      url.pathname === "/simulator.html" ||
+      url.pathname === "/conductor" ||
+      url.pathname === "/conductor.html";
 
     if (isPublicRoute) {
       return env.ASSETS.fetch(request);
