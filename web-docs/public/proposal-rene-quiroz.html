@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta de Desarrollo & Arquitectura Técnica — MulaCargo | Presentado a René Quiroz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-brand: #FF5500;
+      --color-brand-hover: #E04B00;
+      --color-brand-glow: rgba(255, 85, 0, 0.15);
+      --color-dark-bg: #0A0C10;
+      --color-dark-surface: #12151D;
+      --color-dark-card: #181C26;
+      --color-dark-border: #262D3D;
+      --color-emerald: #10B981;
+      --color-emerald-glow: rgba(16, 185, 129, 0.15);
+      --color-amber: #F59E0B;
+      --color-text-main: #F8FAFC;
+      --color-text-secondary: #94A3B8;
+      --color-text-muted: #64748B;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--color-dark-bg);
+      color: var(--color-text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Top Executive Header */
+    header {
+      background: linear-gradient(180deg, #161A24 0%, #0A0C10 100%);
+      border-bottom: 1px solid var(--color-dark-border);
+      padding: 4.5rem 0 3.5rem;
+      position: relative;
+    }
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--color-brand-glow);
+      border: 1px solid rgba(255, 85, 0, 0.35);
+      color: var(--color-brand);
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .recipient-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--color-dark-border);
+      color: var(--color-text-main);
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.5vw, 3.75rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 span {
+      color: var(--color-brand);
+    }
+
+    .header-lead {
+      font-size: 1.2rem;
+      color: var(--color-text-secondary);
+      max-width: 850px;
+    }
+
+    /* Navigation / Quick Jumps */
+    .proposal-nav {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 2.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--color-dark-border);
+    }
+
+    .proposal-nav a {
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      background: var(--color-dark-surface);
+      border: 1px solid var(--color-dark-border);
+      transition: all 0.2s ease;
+    }
+
+    .proposal-nav a:hover {
+      border-color: var(--color-brand);
+      color: var(--color-brand);
+    }
+
+    /* Content Layout */
+    main {
+      padding: 4rem 0 6rem;
+    }
+
+    section {
+      margin-bottom: 5rem;
+      scroll-margin-top: 2.5rem;
+    }
+
+    .sec-header {
+      margin-bottom: 2rem;
+    }
+
+    .sec-title {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sec-title::before {
+      content: "";
+      width: 6px;
+      height: 1.6rem;
+      background: var(--color-brand);
+      border-radius: 2px;
+    }
+
+    .sec-subtitle {
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+    }
+
+    /* Cards & Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--color-dark-surface);
+      border: 1px solid var(--color-dark-border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      position: relative;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--color-text-main);
+    }
+
+    .card p {
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Architecture Highlights */
+    .arch-stack {
+      background: var(--color-dark-card);
+      border: 1px solid var(--color-dark-border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .arch-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.9rem;
+    }
+
+    .arch-item:last-child {
+      border-bottom: none;
+    }
+
+    .arch-tech {
+      font-family: var(--font-mono);
+      color: #38BDF8;
+      font-size: 0.85rem;
+    }
+
+    /* Radar Highlight Box */
+    .radar-box {
+      background: linear-gradient(135deg, #131E24 0%, #10141D 100%);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 14px;
+      padding: 2.25rem;
+      margin-top: 2rem;
+    }
+
+    .radar-box h4 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--color-emerald);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Pricing & Commercial Terms */
+    .pricing-card {
+      background: linear-gradient(180deg, #171C26 0%, #12151D 100%);
+      border: 2px solid var(--color-brand);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .pricing-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--color-dark-border);
+    }
+
+    .pricing-total {
+      text-align: right;
+    }
+
+    @media (max-width: 640px) {
+      .pricing-total { text-align: left; }
+    }
+
+    .pricing-total .amount {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--color-brand);
+      line-height: 1;
+    }
+
+    .pricing-total .sub {
+      color: var(--color-text-secondary);
+      font-size: 0.85rem;
+      margin-top: 0.35rem;
+    }
+
+    .breakdown-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+
+    .breakdown-table th {
+      text-align: left;
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--color-dark-border);
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .breakdown-table td {
+      padding: 1rem 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.95rem;
+    }
+
+    .breakdown-table td.cost {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--color-text-main);
+    }
+
+    .included-badge {
+      display: inline-block;
+      background: var(--color-emerald-glow);
+      color: var(--color-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* Checklist */
+    .checklist {
+      list-style: none;
+      display: grid;
+      gap: 0.85rem;
+      margin-top: 1.5rem;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+    }
+
+    .checklist li strong {
+      color: var(--color-text-main);
+    }
+
+    .check-icon {
+      color: var(--color-brand);
+      font-weight: 800;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    /* Roadmap Timeline */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .phase-card {
+      background: var(--color-dark-surface);
+      border: 1px solid var(--color-dark-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .phase-tag {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--color-brand);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .phase-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .phase-card ul {
+      list-style: none;
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .phase-card li::before {
+      content: "→ ";
+      color: var(--color-brand);
+    }
+
+    /* Signoff box */
+    .signoff-box {
+      background: var(--color-dark-surface);
+      border: 1px solid var(--color-dark-border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .sig-block {
+      border-top: 1px dashed var(--color-dark-border);
+      padding-top: 1rem;
+      margin-top: 2rem;
+    }
+
+    .sig-name {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .sig-title {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--color-dark-border);
+      padding: 3rem 0;
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Print styling */
+    @media print {
+      body { background: #FFFFFF; color: #000000; }
+      header, .card, .pricing-card, .phase-card, .signoff-box { background: #FFFFFF !important; border: 1px solid #CCCCCC !important; color: #000000 !important; }
+      .amount, .sec-title, h1, h2, h3, h4 { color: #000000 !important; }
+      .proposal-nav { display: none; }
+      .stat-badge, .status-badge, .included-badge { border: 1px solid #999999; color: #000000; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="badge-row">
+        <div class="status-badge">Propuesta Técnica & Comercial</div>
+        <div class="recipient-badge">Presentado a: <strong>René Quiroz</strong></div>
+      </div>
+      <h1>Mula<span>Cargo</span>: Plataforma Integral de Fletes & Radar de Retorno</h1>
+      <p class="header-lead">Documento maestro de especificación técnica, modelo de negocio de subasta directa con 3.5% de comisión, soporte de Inteligencia Artificial y plan de desarrollo integral con 1 año de soporte garantizado.</p>
+
+      <nav class="proposal-nav">
+        <a href="#vision">1. Visión & Monetización</a>
+        <a href="#arquitectura">2. Arquitectura & Apps</a>
+        <a href="#ia">3. Soporte de IA</a>
+        <a href="#radar">4. Radar de Retorno</a>
+        <a href="#propuesta">5. Propuesta Económica</a>
+        <a href="#roadmap">6. Fases & Entregables</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 1. Visión & Modelo de Monetización -->
+    <section id="vision">
+      <div class="sec-header">
+        <h2 class="sec-title">1. Visión de Negocio & Motor de Monetización</h2>
+        <p class="sec-subtitle">MulaCargo no es un servicio de taxis particulares; es un marketplace B2B/B2C especializado en transporte de carga liviana, mediana y pesada.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Comisión Fija del 3.5%</h3>
+          <p>Por cada flete concretado a través de la plataforma, el sistema debita automáticamente el <strong>3.5% del valor total acordado</strong> en la subasta. Esta tarifa ultra-competitiva garantiza una rápida adopción masiva de conductores y empresas frente a los intermediarios tradicionales que cobran del 15% al 25%.</p>
+        </div>
+
+        <div class="card">
+          <h3>Subasta Dinámica (Bidding)</h3>
+          <p>El dador de carga publica fotos, dimensiones, peso y fecha requerida. Los transportistas con vehículos compatibles pujan en vivo con sus mejores tarifas. El cliente elige por precio, calificación o cercanía.</p>
+        </div>
+
+        <div class="card">
+          <h3>Suscripciones & Cuentas Pro</h3>
+          <p>Monetización secundaria para flotas comerciales y choferes independientes: membresías "MulaPro" para acceso prioritario a cargas de alto valor e integración directa de facturación.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Arquitectura de Software & Aplicaciones -->
+    <section id="arquitectura">
+      <div class="sec-header">
+        <h2 class="sec-title">2. Arquitectura Técnica del Ecosistema</h2>
+        <p class="sec-subtitle">Ecosistema modular de alto rendimiento compuesto por backend empresarial y dos aplicaciones nativas multiplataforma.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Backend & Panel Administrativo</h3>
+          <p>Control centralizado de usuarios, verificación de vehículos/documentos, pasarelas de pago, configuración de zonas y reportes financieros.</p>
+          <div class="arch-stack">
+            <div class="arch-item"><span>Framework</span> <span class="arch-tech">Laravel 11 / PHP 8.3</span></div>
+            <div class="arch-item"><span>Base de Datos</span> <span class="arch-tech">MySQL / PostgreSQL</span></div>
+            <div class="arch-item"><span>WebSockets / Real-time</span> <span class="arch-tech">Laravel Reverb / Pusher</span></div>
+            <div class="arch-item"><span>Notificaciones Push</span> <span class="arch-tech">Firebase Cloud Messaging</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>App del Cliente (Dador de Carga)</h3>
+          <p>Aplicación móvil para particulares, comercios, talleres y empresas industriales para cotizar y seguir sus despachos.</p>
+          <div class="arch-stack">
+            <div class="arch-item"><span>Tecnología</span> <span class="arch-tech">React Native (iOS & Android)</span></div>
+            <div class="arch-item"><span>Geolocalización</span> <span class="arch-tech">Google Maps / OpenStreetMap</span></div>
+            <div class="arch-item"><span>Pujas en Vivo</span> <span class="arch-tech">WebSocket Bidding Engine</span></div>
+            <div class="arch-item"><span>Prueba de Entrega</span> <span class="arch-tech">Foto + Firma Digital</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>App del Conductor / Transportista</h3>
+          <p>Diseñada para choferes de pickups (Strada, Hilux), furgones (Sprinter) y camiones (3/4, Toco, Carretas).</p>
+          <div class="arch-stack">
+            <div class="arch-item"><span>Tecnología</span> <span class="arch-tech">React Native (iOS & Android)</span></div>
+            <div class="arch-item"><span>Billetera Digital</span> <span class="arch-tech">Saldo prepago / Débito 3.5%</span></div>
+            <div class="arch-item"><span>Optimización</span> <span class="arch-tech">Radar de Cargas de Retorno</span></div>
+            <div class="arch-item"><span>Navegación</span> <span class="arch-tech">Waze / Google Maps SDK</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Integración de Inteligencia Artificial -->
+    <section id="ia">
+      <div class="sec-header">
+        <h2 class="sec-title">3. Soporte e Integración de Inteligencia Artificial</h2>
+        <p class="sec-subtitle">Capacidades inteligentes nativas para asistir a conductores y clientes en la toma de decisiones.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-top: 4px solid var(--color-brand);">
+          <h3>Asistente de Estimación de Carga por IA (Vision & Specs)</h3>
+          <p>El cliente sube una fotografía de los objetos o pallets a transportar. El modelo de IA asiste sugiriendo la categoría de vehículo adecuada (pickup, furgón o camión), cubicaje aproximado en $m^3$ y rango de peso recomendado para evitar cancelaciones por sobrecarga.</p>
+        </div>
+
+        <div class="card" style="border-top: 4px solid var(--color-emerald);">
+          <h3>Asistente de Despacho & Soporte Automatizado por IA</h3>
+          <p>Chatbot inteligente 24/7 integrado para resolver dudas frecuentes de transportistas (validación de documentos, cálculo de comisiones, guía de cobro) y soporte de incidentes para clientes con escalamiento inmediato a operadores humanos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Radar de Retorno -->
+    <section id="radar">
+      <div class="sec-header">
+        <h2 class="sec-title">4. Algoritmo "Radar de Retorno" (Backhaul Optimization)</h2>
+        <p class="sec-subtitle">El corazón del beneficio económico para el conductor de carga.</p>
+      </div>
+
+      <div class="radar-box">
+        <h4>⚡ Maximización de Ganancia por Kilómetro</h4>
+        <p style="color: var(--color-text-secondary); margin-bottom: 1.25rem;">En el transporte tradicional, el 40% del costo operativo se desperdicia cuando el transportista regresa a su ciudad de origen con la carrocería vacía. El <strong>Radar de Retorno de MulaCargo</strong> soluciona esto de manera automatizada:</p>
+        <div class="grid-3" style="gap: 1rem;">
+          <div style="background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 8px;">
+            <strong style="color: var(--color-text-main); font-size: 0.95rem;">1. Detección de Destino:</strong>
+            <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-top: 0.35rem;">El sistema reconoce cuándo un conductor está finalizando una entrega fuera de su base.</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 8px;">
+            <strong style="color: var(--color-text-main); font-size: 0.95rem;">2. Filtro de Corredor Inverso:</strong>
+            <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-top: 0.35rem;">Agrupa cargas disponibles cuyos puntos de recogida y entrega coincidan con la ruta de regreso.</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 8px;">
+            <strong style="color: var(--color-text-main); font-size: 0.95rem;">3. Alerta Prioritaria:</strong>
+            <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-top: 0.35rem;">Notifica al conductor con precios sugeridos para asegurar la carga antes de iniciar el retorno.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Propuesta Económica & Condiciones Comerciales -->
+    <section id="propuesta">
+      <div class="sec-header">
+        <h2 class="sec-title">5. Propuesta Económica & Términos de Inversión</h2>
+        <p class="sec-subtitle">Estructura de inversión transparente, sin costos ocultos, con soporte técnico extendido incluido.</p>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <div>
+            <div class="status-badge" style="margin-bottom: 0.5rem;">Presupuesto Todo Incluido</div>
+            <h3 style="font-size: 1.75rem;">Desarrollo, Personalización & Despliegue</h3>
+            <p style="color: var(--color-text-secondary); font-size: 0.95rem;">Apps para Conductor y Cliente + Panel Web + IA + 1 Año de Soporte</p>
+          </div>
+          <div class="pricing-total">
+            <div class="amount">$2,500 <span style="font-size: 1.25rem; font-weight: 500; color: var(--color-text-secondary);">USD</span></div>
+            <div class="sub">Inversión Total del Proyecto</div>
+          </div>
+        </div>
+
+        <table class="breakdown-table">
+          <thead>
+            <tr>
+              <th>Concepto / Etapa</th>
+              <th>Detalle & Alcance</th>
+              <th style="text-align: right;">Monto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Kickoff Fee (Inicio)</strong></td>
+              <td>Configuración de servidores, onboarding de repositorios, generación de assets de marca de alta resolución e infraestructura base.</td>
+              <td class="cost">$500 USD</td>
+            </tr>
+            <tr>
+              <td><strong>Desarrollo Fase 1 (50%)</strong></td>
+              <td>Pago a la firma/acuerdo de inicio para ingeniería de backend, módulo de subastas, parametrización de vehículos de carga y comisión del 3.5%.</td>
+              <td class="cost">$1,000 USD</td>
+            </tr>
+            <tr>
+              <td><strong>Desarrollo Fase 2 (50%)</strong></td>
+              <td>Pago final contra entrega y despliegue en producción de las aplicaciones móviles y panel web operativo.</td>
+              <td class="cost">$1,000 USD</td>
+            </tr>
+            <tr>
+              <td><strong>Módulos de Inteligencia Artificial</strong></td>
+              <td>Integración de asistente de cubicaje por visión y asistente virtual de soporte.</td>
+              <td class="cost"><span class="included-badge">Incluido</span></td>
+            </tr>
+            <tr>
+              <td><strong>1 Año de Soporte Técnico</strong></td>
+              <td>Garantía de estabilidad, resolución de bugs, monitoreo de base de datos y actualizaciones de seguridad por 12 meses.</td>
+              <td class="cost"><span class="included-badge">Incluido</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background: var(--color-dark-bg); border-radius: 8px; padding: 1.25rem; margin-top: 1.5rem;">
+          <h4 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--color-text-main);">Resumen de Condiciones de Pago:</h4>
+          <ul class="checklist">
+            <li><span class="check-icon">✓</span> <div><strong>$500 USD:</strong> Cuota de Kickoff (inicio inmediato de infraestructura y branding).</div></li>
+            <li><span class="check-icon">✓</span> <div><strong>$1,000 USD (50% de desarrollo):</strong> Contra firma del acuerdo para inicio de programación de funciones.</div></li>
+            <li><span class="check-icon">✓</span> <div><strong>$1,000 USD (50% de desarrollo restante):</strong> Al finalizar las pruebas y realizar el despliegue a producción.</div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Roadmap de Entrega -->
+    <section id="roadmap">
+      <div class="sec-header">
+        <h2 class="sec-title">6. Cronograma de Trabajo & Entregables</h2>
+        <p class="sec-subtitle">Proceso de desarrollo ágil con entregas progresivas y pruebas continuas.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="phase-card">
+          <div class="phase-tag">Hito 1</div>
+          <h4>Kickoff & Branding</h4>
+          <ul>
+            <li>Setup de entorno e infraestructura</li>
+            <li>Generación de assets 3D y logo MulaCargo</li>
+            <li>Configuración de base de datos y API</li>
+          </ul>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-tag">Hito 2</div>
+          <h4>Fletes & Subastas</h4>
+          <ul>
+            <li>Adaptación a categorías de carga pesada</li>
+            <li>Sistema de pujas en vivo (bidding)</li>
+            <li>Cálculo de comisión fija 3.5%</li>
+          </ul>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-tag">Hito 3</div>
+          <h4>Radar & Módulos IA</h4>
+          <ul>
+            <li>Motor de carga de retorno (backhaul)</li>
+            <li>Asistente inteligente de estimación</li>
+            <li>Pruebas en tiempo real de geolocalización</li>
+          </ul>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-tag">Hito 4</div>
+          <h4>Despliegue & Soporte</h4>
+          <ul>
+            <li>Lanzamiento a producción</li>
+            <li>Capacitación de administración</li>
+            <li>Inicio del año de soporte técnico garantizado</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Signoff Block -->
+      <div class="signoff-box">
+        <div>
+          <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 0.5rem;">Aceptado y conforme por el cliente:</p>
+          <div class="sig-block">
+            <div class="sig-name">René Quiroz</div>
+            <div class="sig-title">Director / Patrocinador del Proyecto MulaCargo</div>
+          </div>
+        </div>
+        <div>
+          <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 0.5rem;">Presentado y desarrollado por:</p>
+          <div class="sig-block">
+            <div class="sig-name">Hudson Argollo</div>
+            <div class="sig-title">Lead Architect & Product Engineering | ClubeMkt</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 MulaCargo — Todos los derechos reservados | ClubeMkt Monorepo</p>
+    </div>
+  </footer>
+
+</body>
+</html>

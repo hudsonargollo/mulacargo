@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MulaCargo — Manual de Marca & Guía de Identidad Visual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-brand-primary: #FF5500;
+      --color-brand-hover: #E04B00;
+      --color-brand-light: #FFF0E8;
+      --color-dark-bg: #0B0D11;
+      --color-dark-surface: #14171F;
+      --color-dark-card: #1C202B;
+      --color-dark-border: #2A3040;
+      --color-profit-emerald: #10B981;
+      --color-profit-bg: #064E3B;
+      --color-warning-amber: #F59E0B;
+      --color-text-primary: #F8FAFC;
+      --color-text-secondary: #94A3B8;
+      --color-text-muted: #64748B;
+      --font-display: 'Syne', sans-serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--color-dark-bg);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(180deg, #181C26 0%, #0B0D11 100%);
+      border-bottom: 1px solid var(--color-dark-border);
+      padding: 4rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 85, 0, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 85, 0, 0.12);
+      border: 1px solid rgba(255, 85, 0, 0.3);
+      color: var(--color-brand-primary);
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    h1 span {
+      color: var(--color-brand-primary);
+    }
+
+    .tagline {
+      font-size: 1.25rem;
+      color: var(--color-text-secondary);
+      max-width: 700px;
+    }
+
+    nav.toc {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      border-top: 1px solid var(--color-dark-border);
+      padding-top: 1.5rem;
+    }
+
+    nav.toc a {
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      background: var(--color-dark-surface);
+      transition: all 0.2s ease;
+    }
+
+    nav.toc a:hover {
+      background: var(--color-dark-card);
+      color: var(--color-brand-primary);
+    }
+
+    main {
+      padding: 3.5rem 0 6rem;
+    }
+
+    section {
+      margin-bottom: 4.5rem;
+      scroll-margin-top: 2rem;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 1.5rem;
+      background: var(--color-brand-primary);
+      border-radius: 2px;
+    }
+
+    .section-desc {
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--color-dark-surface);
+      border: 1px solid var(--color-dark-border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      position: relative;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--color-text-primary);
+    }
+
+    .card p {
+      color: var(--color-text-secondary);
+      font-size: 0.925rem;
+    }
+
+    /* Color Swatches */
+    .swatch {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--color-dark-border);
+      background: var(--color-dark-surface);
+    }
+
+    .swatch-preview {
+      height: 110px;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .swatch-info {
+      padding: 1rem;
+    }
+
+    .swatch-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .swatch-role {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Mascot Section */
+    .mascot-box {
+      background: linear-gradient(135deg, #1A1F2C 0%, #12151D 100%);
+      border: 1px solid var(--color-dark-border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 860px) {
+      .mascot-box { grid-template-columns: 1fr; }
+    }
+
+    .mascot-symbol {
+      text-align: center;
+      background: rgba(0,0,0,0.3);
+      border-radius: 12px;
+      padding: 2.5rem 1.5rem;
+      border: 1px dashed var(--color-dark-border);
+    }
+
+    .mascot-glyph {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .mascot-traits {
+      list-style: none;
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .mascot-traits li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.925rem;
+      color: var(--color-text-secondary);
+    }
+
+    .mascot-traits strong {
+      color: var(--color-text-primary);
+    }
+
+    .check-icon {
+      color: var(--color-brand-primary);
+      font-weight: 800;
+    }
+
+    /* Vehicle Class Grid */
+    .vehicle-card {
+      background: var(--color-dark-surface);
+      border: 1px solid var(--color-dark-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border-top: 4px solid var(--color-brand-primary);
+    }
+
+    .vehicle-type {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-brand-primary);
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .vehicle-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .vehicle-models {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .vehicle-specs {
+      background: var(--color-dark-bg);
+      border-radius: 6px;
+      padding: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--color-text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    /* Pillar Badges */
+    .pillar-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: rgba(255, 85, 0, 0.25);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Highlight Banner */
+    .highlight-box {
+      background: linear-gradient(90deg, rgba(255,85,0,0.1) 0%, rgba(16,185,129,0.1) 100%);
+      border: 1px solid rgba(255,85,0,0.25);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .highlight-text h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .highlight-text p {
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .stat-badge {
+      background: var(--color-dark-surface);
+      border: 1px solid var(--color-profit-emerald);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-badge .val {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--color-profit-emerald);
+      line-height: 1;
+    }
+
+    .stat-badge .lbl {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* Code block */
+    pre {
+      background: var(--color-dark-bg);
+      border: 1px solid var(--color-dark-border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #38BDF8;
+    }
+
+    footer {
+      border-top: 1px solid var(--color-dark-border);
+      padding: 3rem 0;
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="brand-badge">Logística & Fletes Digitales</div>
+      <h1>Mula<span>Cargo</span></h1>
+      <p class="tagline">Manual Oficial de Marca, Identidad Visual y Guía de Arquitectura de Producto para la plataforma de fletes, pujas directas y optimización de retorno.</p>
+
+      <nav class="toc">
+        <a href="#proposito">1. Propósito & Pilares</a>
+        <a href="#mascota">2. El Arquetipo: La Mula</a>
+        <a href="#colores">3. Paleta de Colores</a>
+        <a href="#tipografia">4. Tipografía</a>
+        <a href="#vehiculos">5. Taxonomía de Carga</a>
+        <a href="#retorno">6. Radar de Retorno</a>
+        <a href="#tono">7. Tono de Voz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 1. Propósito -->
+    <section id="proposito">
+      <div class="section-header">
+        <h2 class="section-title">1. Propósito & Pilares Estratégicos</h2>
+        <p class="section-desc">MulaCargo transforma el transporte de carga eliminando intermediarios costosos y combatiendo el viaje vacío.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="pillar-number">01</div>
+          <h3>Flete Real, No Taxis</h3>
+          <p>Enfoque 100% en pickups, furgones, camiones 3/4, toco y carretas. Transporte de mercadería, mudanzas, insumos agrícolas, construcción y paquetería B2B.</p>
+        </div>
+
+        <div class="card">
+          <div class="pillar-number">02</div>
+          <h3>Subasta & Bidding Directo</h3>
+          <p>El cliente publica los requerimientos exactos de su carga (peso, volumen, fecha, fotos). Los transportistas envían ofertas competitivas en tiempo real.</p>
+        </div>
+
+        <div class="card">
+          <div class="pillar-number">03</div>
+          <h3>Comisión Fija del 3.5%</h3>
+          <p>Rompe con el 15%-25% de agencias tradicionales. Al tomar solo el 3.5% por viaje concretado, el transportista gana más y el dador de carga paga menos.</p>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <div class="highlight-text">
+          <h4>Ventaja Competitiva Fundamental</h4>
+          <p>El algoritmo <strong>"Radar de Retorno"</strong> asegura que ningún transportista gaste combustible regresando sin carga a su ciudad de origen.</p>
+        </div>
+        <div class="stat-badge">
+          <div class="val">3.5%</div>
+          <div class="lbl">Comisión Plataforma</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Mascota & Arquetipo -->
+    <section id="mascota">
+      <div class="section-header">
+        <h2 class="section-title">2. El Arquetipo & Mascota: "A Mula"</h2>
+        <p class="section-desc">La mula es el símbolo supremo de tracción, resistencia, lealtad y carga pesada en los caminos de América Latina.</p>
+      </div>
+
+      <div class="mascot-box">
+        <div class="mascot-symbol">
+          <span class="mascot-glyph">🫏📦</span>
+          <h3 style="font-family: var(--font-display); font-size: 1.5rem; color: var(--color-brand-primary);">Mula Inteligente</h3>
+          <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-top: 0.5rem;">Sólida • Incansable • Tecnológica</p>
+        </div>
+
+        <div>
+          <h3>Personalidad de Marca</h3>
+          <p>Nuestra representación visual no es un dibujo infantil ni cómico. Es una mula moderna, geométrica, estilizada y con porte poderoso que transmite tracción y robustez:</p>
+          <ul class="mascot-traits">
+            <li><span class="check-icon">✓</span> <div><strong>Paso Firme:</strong> Transmite seguridad absoluta de que la carga llegará intacta sin importar la ruta o el clima.</div></li>
+            <li><span class="check-icon">✓</span> <div><strong>Aguante & Capacidad:</strong> Creada para el trabajo duro, desde camionetas ligeras hasta convoyes interurbanos.</div></li>
+            <li><span class="check-icon">✓</span> <div><strong>Astucia de Ruta:</strong> Conectada digitalmente con GPS y radar de cargas para no dar un solo kilómetro en vano.</div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Paleta de Colores -->
+    <section id="colores">
+      <div class="section-header">
+        <h2 class="section-title">3. Sistema Cromático & Tokens</h2>
+        <p class="section-desc">Diseñada para alta visibilidad en carretera, legibilidad en pantallas bajo luz solar y estética industrial pesada.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="swatch">
+          <div class="swatch-preview" style="background-color: #FF5500; color: #FFFFFF;">#FF5500</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Safety Orange (Primario)</div>
+            <div class="swatch-role">Acción, Botones de Oferta, Tracción</div>
+          </div>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch-preview" style="background-color: #0B0D11; color: #FFFFFF;">#0B0D11</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Asphalt Night (Fondo)</div>
+            <div class="swatch-role">Base de la App, Alto Contraste</div>
+          </div>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch-preview" style="background-color: #10B981; color: #FFFFFF;">#10B981</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Profit Emerald (Ganancia)</div>
+            <div class="swatch-role">Rutas de Retorno, Cobros, Aceptación</div>
+          </div>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch-preview" style="background-color: #64748B; color: #FFFFFF;">#64748B</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Diesel Steel (Metadatos)</div>
+            <div class="swatch-role">Pesos, Dimensiones, Bordes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Tipografía -->
+    <section id="tipografia">
+      <div class="section-header">
+        <h2 class="section-title">4. Sistema Tipográfico</h2>
+        <p class="section-desc">Combinación de tipografía de impacto para marcas y títulos con tipografías ultra legibles para datos logísticos.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--color-brand-primary);">Syne / Clash Display</h3>
+          <p style="margin-bottom: 1rem;">Uso exclusivo en Logotipo, Cabeceras Principales, Títulos de Campaña y Badges de Categoría.</p>
+          <pre>font-family: 'Syne', sans-serif;
+font-weight: 700 / 800;</pre>
+        </div>
+
+        <div class="card">
+          <h3 style="font-family: var(--font-sans); font-size: 1.4rem;">Plus Jakarta Sans / Inter</h3>
+          <p style="margin-bottom: 1rem;">Uso en interfaces de usuario móvil y web, formularios de cotización, listas de viajes y chat en vivo.</p>
+          <pre>font-family: 'Plus Jakarta Sans', sans-serif;
+font-weight: 400 (Body) / 600 (Semibold);</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Taxonomía de Vehículos -->
+    <section id="vehiculos">
+      <div class="section-header">
+        <h2 class="section-title">5. Taxonomía de Vehículos & Categorías de Carga</h2>
+        <p class="section-desc">Estructura de clasificación dentro de las aplicaciones para cálculo preciso de capacidad y cotizaciones.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="vehicle-card">
+          <div class="vehicle-type">Categoría 1</div>
+          <div class="vehicle-title">Utilitario / Pickup</div>
+          <div class="vehicle-models">Hilux, Strada, Saveiro, Fiorino</div>
+          <div class="vehicle-specs">
+            <span>• Capacidad: Hasta 800 kg</span>
+            <span>• Volumen: 2.5 - 4 m³</span>
+            <span>• Ideal: Envíos urgentes y locales</span>
+          </div>
+        </div>
+
+        <div class="vehicle-card">
+          <div class="vehicle-type">Categoría 2</div>
+          <div class="vehicle-title">Furgón / VUC</div>
+          <div class="vehicle-models">Sprinter, Master, Transit, HR</div>
+          <div class="vehicle-specs">
+            <span>• Capacidad: Hasta 1.8 Ton</span>
+            <span>• Volumen: 8 - 14 m³</span>
+            <span>• Ideal: Mudanzas y cajas B2B</span>
+          </div>
+        </div>
+
+        <div class="vehicle-card">
+          <div class="vehicle-type">Categoría 3</div>
+          <div class="vehicle-title">Camión 3/4 & Toco</div>
+          <div class="vehicle-models">Accelo, Delivery, Cargo</div>
+          <div class="vehicle-specs">
+            <span>• Capacidad: 3.5 a 6 Ton</span>
+            <span>• Volumen: 20 - 35 m³</span>
+            <span>• Ideal: Pallets y carga pesada</span>
+          </div>
+        </div>
+
+        <div class="vehicle-card">
+          <div class="vehicle-type">Categoría 4</div>
+          <div class="vehicle-title">Truck & Carreta</div>
+          <div class="vehicle-models">Tractocamión, Semirremolque</div>
+          <div class="vehicle-specs">
+            <span>• Capacidad: 12 a 30+ Ton</span>
+            <span>• Volumen: 60+ m³</span>
+            <span>• Ideal: Fletes interdepartamentales</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Radar de Retorno -->
+    <section id="retorno">
+      <div class="section-header">
+        <h2 class="section-title">6. Motor "Radar de Retorno" (Backhaul Engine)</h2>
+        <p class="section-desc">La funcionalidad clave que maximiza la rentabilidad del transportista y fideliza a la flota.</p>
+      </div>
+
+      <div class="card" style="border-left: 4px solid var(--color-profit-emerald);">
+        <h3 style="color: var(--color-profit-emerald);">¿Cómo opera el algoritmo en la App del Conductor?</h3>
+        <p style="margin-bottom: 1rem;">1. El conductor registra su <strong>Dirección Base / Domicilio</strong> (ej: Santa Cruz de la Sierra).<br>
+        2. Realiza un viaje de ida hacia otra localidad (ej: Montero o Cochabamba).<br>
+        3. Al descargar la carga, el sistema activa automáticamente el <strong>Radar de Retorno</strong>.<br>
+        4. Le notifica con prioridad todas las cargas publicadas en su zona con destino a su ciudad base o paradas intermedias a lo largo de su ruta de vuelta.<br>
+        5. <strong>Resultado:</strong> El conductor duplica su ingreso neto en el mismo viaje, pagando el combustible con la carga de ida y obteniendo pura ganancia con la carga de vuelta.</p>
+      </div>
+    </section>
+
+    <!-- 7. Tono de Voz -->
+    <section id="tono">
+      <div class="section-header">
+        <h2 class="section-title">7. Tono de Voz & Mensajes Clave</h2>
+        <p class="section-desc">Comunicación directa, respetuosa, enfocada en números reales y en el respeto al trabajo de carretera.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Para el Transportista (Conductor)</h3>
+          <p><strong>Enfoque:</strong> Ganancia, autonomía y cero kilómetros muertos.</p>
+          <ul style="margin-top: 0.75rem; padding-left: 1.25rem; font-size: 0.9rem; color: var(--color-text-secondary);">
+            <li>"Vos ponés el precio de tu viaje. Sin tarifas impuestas."</li>
+            <li>"Nunca más vuelvas con la carrocería vacía. Activá tu Radar de Retorno."</li>
+            <li>"Solo 3.5% de comisión. El 96.5% de tu esfuerzo queda en tu bolsillo."</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Para el Cliente (Dador de Carga / Empresa)</h3>
+          <p><strong>Enfoque:</strong> Rapidez, precio competitivo directo y confianza de carga.</p>
+          <ul style="margin-top: 0.75rem; padding-left: 1.25rem; font-size: 0.9rem; color: var(--color-text-secondary);">
+            <li>"Cotizá tu carga en 2 minutos y recibí ofertas de choferes verificados."</li>
+            <li>"Seguí tu mercadería en tiempo real desde tu teléfono con GPS integrado."</li>
+            <li>"Desde una camioneta para mudanza hasta un camión para 30 toneladas."</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>MulaCargo</strong> — Documento de Identidad de Marca y Sistema de Diseño | ClubeMkt Monorepo</p>
+    </div>
+  </footer>
+
+</body>
+</html>

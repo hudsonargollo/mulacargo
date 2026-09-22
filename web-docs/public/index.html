@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MulaCargo — Documentación, Marca & Propuesta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-brand: #FF5500;
+      --color-brand-hover: #E04B00;
+      --color-dark-bg: #0A0C10;
+      --color-dark-surface: #12151D;
+      --color-dark-card: #181C26;
+      --color-dark-border: #262D3D;
+      --color-emerald: #10B981;
+      --color-text-main: #F8FAFC;
+      --color-text-secondary: #94A3B8;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--color-dark-bg);
+      color: var(--color-text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(255, 85, 0, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+    }
+
+    .hub-container {
+      max-width: 900px;
+      width: 100%;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 85, 0, 0.15);
+      border: 1px solid rgba(255, 85, 0, 0.35);
+      color: var(--color-brand);
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    h1 span {
+      color: var(--color-brand);
+    }
+
+    p.lead {
+      color: var(--color-text-secondary);
+      font-size: 1.2rem;
+      max-width: 680px;
+      margin: 0 auto 3rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+      text-align: left;
+    }
+
+    .hub-card {
+      background: var(--color-dark-surface);
+      border: 1px solid var(--color-dark-border);
+      border-radius: 16px;
+      padding: 2.25rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hub-card:hover {
+      border-color: var(--color-brand);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(255, 85, 0, 0.15);
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: var(--color-text-main);
+    }
+
+    .card-desc {
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-link {
+      color: var(--color-brand);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hub-card:hover .card-link {
+      color: #FFA066;
+    }
+
+    footer {
+      margin-top: 4rem;
+      color: #64748B;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hub-container">
+    <div class="badge">Ecosistema MulaCargo</div>
+    <h1>Mula<span>Cargo</span></h1>
+    <p class="lead">Marketplace de fletes pesados, subastas dinámicas con 3.5% de comisión y optimización de rutas con Radar de Retorno.</p>
+
+    <div class="grid">
+      <!-- Card 1 -->
+      <a href="./branding-guide.html" class="hub-card">
+        <div>
+          <div class="card-icon">🎨</div>
+          <div class="card-title">Manual de Marca & Identidad</div>
+          <div class="card-desc">Guía visual oficial, paleta de colores, tokens, tipografía, arquetipo de la Mula y taxonomía de vehículos de carga.</div>
+        </div>
+        <div class="card-link">Ver Manual de Marca →</div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="./proposal-rene-quiroz.html" class="hub-card" style="border-color: rgba(255, 85, 0, 0.35);">
+        <div>
+          <div class="card-icon">💼</div>
+          <div class="card-title">Propuesta Técnica & Comercial</div>
+          <div class="card-desc">Presentado a <strong>René Quiroz</strong>: arquitectura de apps, integración de IA, 1 año de soporte y condiciones de inversión.</div>
+        </div>
+        <div class="card-link">Ver Propuesta Ejecutiva →</div>
+      </a>
+    </div>
+
+    <footer>
+      <p>© 2026 MulaCargo • ClubeMkt Platform Engineering</p>
+    </footer>
+  </div>
+
+</body>
+</html>
