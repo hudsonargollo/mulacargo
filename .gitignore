@@ -1,0 +1,51 @@
+# Root gitignore for MulaCargo monorepo
+
+# Archives & source zips
+_archives/
+*.zip
+*.tar.gz
+*.rar
+
+# Dependencies
+node_modules/
+vendor/
+.pnpm-store/
+
+# Environment files
+.env
+.env.backup
+.env.production
+.env.local
+
+# Build artifacts & caches
+dist/
+build/
+.next/
+.turbo/
+.cache/
+storage/*.key
+backend/storage/framework/cache/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+backend/storage/logs/*
+!backend/storage/framework/.gitignore
+!backend/storage/logs/.gitignore
+
+# React Native & Mobile builds
+apps/**/android/app/build/
+apps/**/android/.gradle/
+apps/**/android/build/
+apps/**/android/local.properties
+apps/**/ios/Pods/
+apps/**/ios/build/
+apps/**/ios/*.xcworkspace/
+apps/**/.expo/
+
+# OS and IDE junk
+.DS_Store
+._*
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo

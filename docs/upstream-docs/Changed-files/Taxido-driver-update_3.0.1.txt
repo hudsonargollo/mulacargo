@@ -1,0 +1,48 @@
+M = modified ( replace file in your project )
+A = added    ( add     file in your project )
+D = deleted  ( delete  file in your project )
+R = renamed  ( rename  file in your project )
+
+1 Added | 6 Deleted | 34 Modified | 0 Renamed
+---
+D	android/.DS_Store
+D	android/app/.DS_Store
+M	android/app/src/main/AndroidManifest.xml
+M	android/gradlew
+M	android/gradlew.bat
+A	android/local.properties
+M	app.json
+M	babel.config.js
+D	ios/.DS_Store
+M	ios/TaxidoDriverUI/Info.plist
+M	package.json
+D	src/.DS_Store
+M	src/api/appClient.ts
+M	src/api/config.tsx
+M	src/api/endpoints/rideRequestEndPoint.ts
+M	src/api/services/rideRequestService.ts
+M	src/api/store/action/rideRequestAction.tsx
+M	src/api/store/types/index.tsx
+D	src/assets/.DS_Store
+M	src/navigation/main/types.ts
+M	src/screen/auth/registration/createAccount/index.tsx
+M	src/screen/auth/registration/uploadDocument/index.tsx
+M	src/screen/fleet/fleetHome/index.tsx
+M	src/screen/home/acceptFare/index.tsx
+D	src/screen/home/component/.DS_Store
+M	src/screen/home/homeScreen/index.tsx
+M	src/screen/home/mapScreen/index.tsx
+M	src/screen/home/otpRide/index.tsx
+M	src/screen/home/otpRide/styles.tsx
+M	src/screen/home/ride/index.tsx
+M	src/screen/intro/splash/index.tsx
+M	src/screen/myRide/pendingDetails/index.tsx
+M	src/screen/myRide/rideContainer/index.tsx
+M	src/screen/myRide/rideStatus/index.tsx
+M	src/screen/settings/bankDetails/index.tsx
+M	src/screen/settings/chat/index.tsx
+M	src/screen/settings/documentDetail/index.tsx
+M	src/screen/settings/incentive/index.tsx
+M	src/utils/context/index.tsx
+M	src/utils/echo.ts
+M	src/utils/pushNotificationHandler.tsx

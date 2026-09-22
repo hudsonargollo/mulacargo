@@ -1,0 +1,29 @@
+]633;E;echo "Read the README.txt first to understand how to use changelog.txt and/or changed-files";e73903d9-ae43-4a8b-9c07-4e33022df9a9]633;CRead the README.txt first to understand how to use changelog.txt and/or changed-files
+
+M = modified ( replace file in your project )
+A = added    ( add     file in your project )
+D = deleted  ( delete  file in your project )
+R = renamed  ( rename  file in your project )
+
+0 Added | 9 Deleted | 11 Modified | 0 Renamed
+---
+D	android/.DS_Store
+D	android/app/.DS_Store
+D	android/app/src/.DS_Store
+D	android/app/src/main/.DS_Store
+M	android/app/src/main/AndroidManifest.xml
+M	android/gradlew
+M	android/gradlew.bat
+D	android/local.properties
+M	app.json
+D	ios/.DS_Store
+M	ios/TaxidoUserApp/Info.plist
+D	src/.DS_Store
+M	src/api/config.tsx
+D	src/assets/.DS_Store
+D	src/assets/images/.DS_Store
+M	src/screens/bookRide/index.tsx
+M	src/screens/chatScreen/index.tsx
+M	src/screens/intro/onBoarding/index.tsx
+M	src/utils/context/index.tsx
+M	src/utils/echo.ts
