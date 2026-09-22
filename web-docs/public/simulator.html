@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Fletes & Radar de Retorno — MulaCargo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0A0A0C;
+      --surface: #12141A;
+      --card: #181C26;
+      --border: rgba(255, 255, 255, 0.08);
+      --orange: #FF5500;
+      --orange-glow: rgba(255, 85, 0, 0.15);
+      --mint: #00E599;
+      --mint-glow: rgba(0, 229, 153, 0.12);
+      --gold: #D4AF37;
+      --text: #F8FAFC;
+      --muted: #8C929D;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 85, 0, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--orange); }
+
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--orange-glow);
+      border: 1px solid rgba(255, 85, 0, 0.3);
+      color: var(--orange);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+    h1 span { color: var(--orange); }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .simulator-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 860px) {
+      .simulator-grid { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+    }
+
+    .panel-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .field-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    select, input[type="text"], input[type="number"] {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    select:focus, input:focus {
+      border-color: var(--orange);
+    }
+
+    .toggle-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .toggle-card.active {
+      border-color: var(--mint);
+      background: var(--mint-glow);
+    }
+
+    .toggle-info h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .toggle-info p {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .switch-pill {
+      background: #262D3D;
+      color: var(--muted);
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .toggle-card.active .switch-pill {
+      background: var(--mint);
+      color: #0A0A0C;
+    }
+
+    .results-hero {
+      background: linear-gradient(135deg, rgba(255, 85, 0, 0.08) 0%, rgba(0, 229, 153, 0.05) 100%);
+      border: 1px solid rgba(255, 85, 0, 0.25);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .results-hero .label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .results-hero .price {
+      font-family: 'Geist Mono', monospace;
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--mint);
+      margin: 0.25rem 0;
+    }
+
+    .results-hero .savings {
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .breakdown-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+    }
+
+    .breakdown-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .breakdown-table td {
+      padding: 0.75rem 0;
+      font-size: 0.88rem;
+    }
+
+    .breakdown-table td:last-child {
+      text-align: right;
+      font-family: 'Geist Mono', monospace;
+      font-weight: 600;
+    }
+
+    .val-highlight { color: var(--mint); font-weight: 700; }
+    .val-fee { color: var(--orange); }
+
+    .efficiency-card {
+      background: var(--card);
+      border-radius: 8px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+    }
+
+    .efficiency-title {
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .efficiency-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .action-btn {
+      display: block;
+      width: 100%;
+      background: var(--orange);
+      color: #FFFFFF;
+      text-align: center;
+      padding: 0.9rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      margin-top: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+    .action-btn:hover { background: #E04B00; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="./" class="nav-back">← Volver al Hub MulaCargo</a>
+      <div class="tag-badge">⚡ Algoritmo de Retorno en Vacío</div>
+      <h1>Simulador de <span>Fletes & Retorno</span></h1>
+      <p class="subtitle">Calcule costos de transporte, tarifas preferenciales de retorno (-35%) y la ganancia neta del transportista en tiempo real.</p>
+    </header>
+
+    <div class="simulator-grid">
+      <!-- Parameters Column -->
+      <div class="panel">
+        <h3 class="panel-title">📦 Parámetros del Viaje</h3>
+
+        <div class="field-group">
+          <label>Corredor de Ruta</label>
+          <select id="routeSelect" onchange="calculateFreight()">
+            <option value="scz_montero" data-km="55" data-base="350">Santa Cruz ↔ Montero / Warnes (55 km)</option>
+            <option value="scz_cbba" data-km="480" data-base="2200" selected>Santa Cruz ↔ Cochabamba (480 km)</option>
+            <option value="scz_lpz" data-km="850" data-base="3800">Santa Cruz ↔ La Paz / El Alto (850 km)</option>
+            <option value="scz_yacuiba" data-km="540" data-base="2600">Santa Cruz ↔ Yacuiba / Frontera (540 km)</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Categoría de Vehículo</label>
+          <select id="vehicleSelect" onchange="calculateFreight()">
+            <option value="pickup" data-multiplier="0.6">Utilitario / Pickup (Hilux / Strada — hasta 700 kg)</option>
+            <option value="van" data-multiplier="0.85">Furgón / VUC (Sprinter / Fiorino — hasta 1,800 kg)</option>
+            <option value="truck34" data-multiplier="1.0" selected>Camión 3/4 & Toco (hasta 5,000 kg)</option>
+            <option value="carreta" data-multiplier="1.8">Heavy Hauler / Carreta (hasta 25,000 kg)</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Peso Estimado de Carga (kg)</label>
+          <input type="number" id="weightInput" value="3200" min="100" max="30000" oninput="calculateFreight()">
+        </div>
+
+        <!-- Radar de Retorno Toggle -->
+        <div class="toggle-card active" id="backhaulToggle" onclick="toggleBackhaul()">
+          <div class="toggle-info">
+            <h4>⚡ Radar de Retorno (Pre-Trip)</h4>
+            <p>Aprovecha un viaje de retorno en vacío hacia la base</p>
+          </div>
+          <span class="switch-pill" id="backhaulPill">ACTIVADO (-35%)</span>
+        </div>
+
+        <div class="efficiency-card">
+          <div class="efficiency-title">💡 Planificación Previa</div>
+          <p class="efficiency-desc">Al programar el retorno antes de salir de origen, el transportista garantiza carga en ambos sentidos y el dador de carga obtiene tarifa preferencial sin esperas.</p>
+        </div>
+      </div>
+
+      <!-- Financial Results Column -->
+      <div class="panel">
+        <h3 class="panel-title">📊 Liquidación Financiera en Vivo</h3>
+
+        <div class="results-hero">
+          <div class="label" id="priceLabel">Precio Final al Dador de Carga</div>
+          <div class="price" id="finalPriceDisplay">Bs. 1,430</div>
+          <div class="savings" id="savingsDisplay">🎉 Ahorro de Bs. 770 aplicado por Retorno</div>
+        </div>
+
+        <table class="breakdown-table">
+          <tr>
+            <td>Flete Estándar Solo Ida:</td>
+            <td id="basePriceRow">Bs. 2,200.00</td>
+          </tr>
+          <tr id="discountRow">
+            <td>Descuento Retorno Radar (-35%):</td>
+            <td class="val-fee" id="discountValueRow">-Bs. 770.00</td>
+          </tr>
+          <tr>
+            <td>Comisión MulaCargo (3.5%):</td>
+            <td class="val-fee" id="platformFeeRow">-Bs. 50.05</td>
+          </tr>
+          <tr style="border-top: 2px solid rgba(255, 255, 255, 0.15);">
+            <td style="font-weight: 700; color: #FFFFFF;">Ganancia Neta Conductor:</td>
+            <td class="val-highlight" id="netDriverEarnings">Bs. 1,379.95</td>
+          </tr>
+        </table>
+
+        <div class="efficiency-card" style="border-color: rgba(0, 229, 153, 0.3);">
+          <div class="efficiency-title" style="color: var(--mint);">🌱 Impacto Logístico</div>
+          <p class="efficiency-desc" id="impactDesc">
+            Eliminación de <strong>480 km</strong> de viaje en vacío (Deadhead). Recuperación completa de combustible de retorno con <strong>Bs. 1,379.95</strong> netos directo al bolsillo del transportista.
+          </p>
+        </div>
+
+        <button class="action-btn" onclick="alert('Simulación completada. En las apps móviles este cálculo se despacha automáticamente vía WebSocket en tiempo real.')">
+          🚀 Probar en App Móvil
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let isBackhaul = true;
+
+    function toggleBackhaul() {
+      isBackhaul = !isBackhaul;
+      const card = document.getElementById('backhaulToggle');
+      const pill = document.getElementById('backhaulPill');
+      if (isBackhaul) {
+        card.classList.add('active');
+        pill.innerText = 'ACTIVADO (-35%)';
+      } else {
+        card.classList.remove('active');
+        pill.innerText = 'DESACTIVADO';
+      }
+      calculateFreight();
+    }
+
+    function calculateFreight() {
+      const routeSelect = document.getElementById('routeSelect');
+      const selectedRoute = routeSelect.options[routeSelect.selectedIndex];
+      const basePrice = parseFloat(selectedRoute.getAttribute('data-base'));
+      const distanceKm = parseInt(selectedRoute.getAttribute('data-km'));
+
+      const vehicleSelect = document.getElementById('vehicleSelect');
+      const selectedVehicle = vehicleSelect.options[vehicleSelect.selectedIndex];
+      const vehicleMultiplier = parseFloat(selectedVehicle.getAttribute('data-multiplier'));
+
+      const grossPrice = basePrice * vehicleMultiplier;
+      const discount = isBackhaul ? grossPrice * 0.35 : 0;
+      const finalPrice = grossPrice - discount;
+      const platformFee = finalPrice * 0.035; // 3.5%
+      const netEarnings = finalPrice - platformFee;
+
+      // Update DOM
+      document.getElementById('finalPriceDisplay').innerText = `Bs. ${Math.round(finalPrice).toLocaleString('es-BO')}`;
+      document.getElementById('basePriceRow').innerText = `Bs. ${grossPrice.toFixed(2)}`;
+      
+      const discountRow = document.getElementById('discountRow');
+      const savingsDisplay = document.getElementById('savingsDisplay');
+      
+      if (isBackhaul) {
+        discountRow.style.display = 'table-row';
+        document.getElementById('discountValueRow').innerText = `-Bs. ${discount.toFixed(2)}`;
+        savingsDisplay.style.display = 'block';
+        savingsDisplay.innerText = `🎉 Ahorro de Bs. ${Math.round(discount).toLocaleString('es-BO')} aplicado por Retorno`;
+      } else {
+        discountRow.style.display = 'none';
+        savingsDisplay.style.display = 'none';
+      }
+
+      document.getElementById('platformFeeRow').innerText = `-Bs. ${platformFee.toFixed(2)}`;
+      document.getElementById('netDriverEarnings').innerText = `Bs. ${netEarnings.toFixed(2)}`;
+
+      document.getElementById('impactDesc').innerHTML = isBackhaul
+        ? `Eliminación de <strong>${distanceKm} km</strong> de viaje en vacío (Deadhead). Recuperación completa de combustible de retorno con <strong>Bs. ${netEarnings.toFixed(2)}</strong> netos directo al transportista.`
+        : `Flete de ida exclusivo por <strong>${distanceKm} km</strong>. Ganancia neta de <strong>Bs. ${netEarnings.toFixed(2)}</strong> para el transportista.`;
+    }
+
+    calculateFreight();
+  </script>
+</body>
+</html>
