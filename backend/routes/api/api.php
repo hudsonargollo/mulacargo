@@ -82,14 +82,21 @@ Route::group(['middleware' => ['localization']], function () {
         Route::get('chat/unread-count', 'ChatController@unreadCount')->name('chat.unreadCount');
     });
 
-    // MulaCargo Freight, AI Vision & Pre-Trip Backhaul Radar
+    // MulaCargo Freight, AI Vision, Pre-Trip Backhaul Radar & Bolivian QR Escrow
     Route::group(['prefix' => 'mulacargo'], function () {
         Route::post('cargo/ai-estimate', 'Api\MulaCargoAiVisionController@estimateCargo');
         Route::post('backhaul/home-base', 'Api\MulaCargoBackhaulController@setHomeBase');
         Route::post('backhaul/schedule-trip', 'Api\MulaCargoBackhaulController@schedulePreTrip');
         Route::get('backhaul/radar-corridor', 'Api\MulaCargoBackhaulController@getReturnCargo');
         Route::get('backhaul/my-trips', 'Api\MulaCargoBackhaulController@getDriverTrips');
+
+        // Bolivian Simple QR Escrow & Settlement
+        Route::post('escrow/generate-qr', 'Api\MulaCargoEscrowController@generateSimpleQr');
+        Route::post('escrow/confirm-payment', 'Api\MulaCargoEscrowController@confirmPayment');
+        Route::post('escrow/verify-delivery-otp', 'Api\MulaCargoEscrowController@verifyDeliveryOtp');
+        Route::get('escrow/status/{freightId}', 'Api\MulaCargoEscrowController@getEscrowStatus');
     });
 });
+
 
 
