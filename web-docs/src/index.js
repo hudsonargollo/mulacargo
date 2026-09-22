@@ -192,6 +192,17 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
+    // 0. Allow Proposal to be completely PUBLIC without password
+    const isPublicProposal =
+      url.pathname === "/proposal-rene-quiroz" ||
+      url.pathname === "/proposal-rene-quiroz.html" ||
+      url.pathname === "/proposal" ||
+      url.pathname === "/proposal.html";
+
+    if (isPublicProposal) {
+      return env.ASSETS.fetch(request);
+    }
+
     // 1. Direct query param unlock (e.g. ?key=mula2026)
     if (url.searchParams.get("key") === PASSWORD) {
       url.searchParams.delete("key");
