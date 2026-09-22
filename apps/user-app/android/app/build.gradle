@@ -21,9 +21,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.taxidouser.webiots"
+    namespace "com.mulacargo.app"
     defaultConfig {
-        applicationId "com.taxidouser.webiots"
+        applicationId "com.mulacargo.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

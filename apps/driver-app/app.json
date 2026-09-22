@@ -1,6 +1,12 @@
 {
   "name": "TaxidoDriverUI",
-  "displayName": "TaxidoDriverUI",
+  "displayName": "MulaCargo Conductor",
+  "android": {
+    "package": "com.mulacargo.driver",
+    "permissions": [
+      "INTERNET"
+    ]
+  },
      "react-native-google-mobile-ads": {
     "android_app_id": "enter your google ads key",
     "ios_app_id": "enter your google ads key"

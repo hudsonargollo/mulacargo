@@ -1,8 +1,8 @@
 {
   "name": "TaxidoUserApp",
-  "displayName": "TaxidoUserApp",
+  "displayName": "MulaCargo",
   "android": {
-    "package": "com.taxidouser.webiots",
+    "package": "com.mulacargo.app",
     "permissions": [
       "INTERNET"
     ]
