@@ -204,6 +204,8 @@ export default {
       isAsset ||
       url.pathname === "/app" ||
       url.pathname === "/app.html" ||
+      url.pathname === "/app-v1" ||
+      url.pathname === "/app-v1.html" ||
       url.pathname === "/app-v2" ||
       url.pathname === "/app-v2.html" ||
       url.pathname === "/proposal-rene-quiroz" ||
