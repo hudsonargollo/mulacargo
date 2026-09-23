@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta Ejecutiva & Arquitectura Técnica — MulaCargo | René Quiroz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700;800&family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --k: #0A0A0C;
+      --k-surface: #111216;
+      --k-card: #16181F;
+      --k-card-hover: #1C202B;
+      --w1: #FFFFFF;
+      --w2: #E0E6ED;
+      --g1: #8C929D;
+      --g2: #1E2024;
+      --gold: #D4AF37;
+      --gold-glow: rgba(212, 175, 55, 0.15);
+      --orange: #FF5500;
+      --orange-glow: rgba(255, 85, 0, 0.15);
+      --emerald: #10B981;
+      --emerald-glow: rgba(16, 185, 129, 0.15);
+      --line: rgba(224, 230, 237, 0.1);
+      --line-soft: rgba(224, 230, 237, 0.05);
+      --sans: "League Spartan", sans-serif;
+      --display: "League Spartan", sans-serif;
+      --mono: "Geist Mono", "JetBrains Mono", monospace;
+      --maxw: 78rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: #000; }
+    body {
+      background-color: var(--k);
+      color: var(--w1);
+      font-family: 'League Spartan', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      padding-top: 80px;
+    }
+
+    ::selection { background: var(--orange); color: #000; }
+
+    /* ---------- Floating Topbar (ClubeMkt Style) ---------- */
+    #topnav {
+      position: fixed;
+      top: 14px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      padding: 0 16px;
+    }
+
+    .pillbar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 48px;
+      width: min(1100px, 100%);
+      padding: 0 16px;
+      background: rgba(15, 17, 22, 0.75);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
+      backdrop-filter: blur(24px) saturate(140%);
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .pillbar .cnr {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border: 1px solid var(--gold);
+    }
+    .pillbar .cnr.tl { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+    .pillbar .cnr.tr { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
+    .pillbar .cnr.bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
+    .pillbar .cnr.br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-title {
+      font-family: var(--display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--w1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-title span { color: var(--orange); }
+    .brand-divider { color: var(--g1); font-size: 12px; }
+    .brand-sub { font-family: var(--mono); font-size: 11px; color: var(--gold); letter-spacing: 0.05em; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+    }
+
+    .nav-links a {
+      color: var(--w2);
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--w1);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hud-badge {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--w2);
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 3px;
+    }
+
+    .led {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 8px var(--emerald);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    /* ---------- Container ---------- */
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      padding: 4.5rem 0 3.0rem;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 15%;
+      width: 500px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(255, 85, 0, 0.09) 0%, rgba(212, 175, 55, 0.04) 50%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .client-ribbon {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--k-surface);
+      border: 1px solid var(--line);
+      padding: 6px 14px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--w2);
+      border-radius: 4px;
+      margin-bottom: 1.75rem;
+    }
+
+    .client-ribbon strong { color: var(--gold); }
+
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title .glow-orange {
+      color: var(--orange);
+      text-shadow: 0 0 30px rgba(255, 85, 0, 0.3);
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--w2);
+      max-width: 860px;
+      line-height: 1.6;
+    }
+
+    /* ---------- Section Architecture ---------- */
+    section {
+      padding: 4.5rem 0;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 60px;
+    }
+
+    .sec-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .sec-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sec-tag::before {
+      content: "//";
+      color: var(--orange);
+    }
+
+    .sec-title {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .sec-subtitle {
+      color: var(--g1);
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      max-width: 720px;
+    }
+
+    /* ---------- Grid & Cards (ClubeMkt HUD Style) ---------- */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+
+    .hud-card {
+      background: var(--k-surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 2rem;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .hud-card:hover {
+      border-color: rgba(224, 230, 237, 0.25);
+      background: var(--k-card);
+      transform: translateY(-2px);
+    }
+
+    .hud-card .card-corner {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border: 1px solid var(--line);
+    }
+    .hud-card .card-corner.tl { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+    .hud-card .card-corner.tr { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
+
+    .hud-card h3 {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      color: var(--w1);
+    }
+
+    .hud-card p {
+      color: var(--w2);
+      font-size: 0.925rem;
+      line-height: 1.6;
+    }
+
+    /* Tech Stack Line */
+    .stack-box {
+      margin-top: 1.25rem;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--line-soft);
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+    }
+
+    .stack-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--line-soft);
+      font-size: 0.85rem;
+    }
+    .stack-row:last-child { border-bottom: none; }
+    .stack-key { color: var(--g1); font-family: 'League Spartan', sans-serif; }
+    .stack-val { color: var(--w1); font-family: var(--mono); font-size: 0.8rem; }
+
+    /* Radar Box Special */
+    .radar-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(10, 12, 16, 0.95) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 8px;
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .radar-banner h4 {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      color: var(--emerald);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ---------- Commercial Pricing Table (ClubeMkt Style) ---------- */
+    .commercial-board {
+      background: var(--k-surface);
+      border: 1px solid var(--gold);
+      border-radius: 10px;
+      padding: 2.5rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(212, 175, 55, 0.08);
+      position: relative;
+    }
+
+    .commercial-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .deal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold-glow);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: var(--gold);
+      padding: 4px 10px;
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-block {
+      text-align: right;
+    }
+    @media (max-width: 640px) { .price-block { text-align: left; } }
+
+    .price-num {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 5vw, 3.6rem);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .price-num span { font-size: 1.1rem; color: var(--w2); font-family: 'League Spartan', sans-serif; }
+    .price-sub { font-family: var(--mono); font-size: 12px; color: var(--g1); margin-top: 4px; }
+
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+    }
+
+    .spec-table th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--g1);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .spec-table td {
+      padding: 1.2rem 1rem;
+      border-bottom: 1px solid var(--line-soft);
+      font-size: 0.925rem;
+    }
+
+    .spec-table td.val {
+      text-align: right;
+      font-family: var(--mono);
+      font-weight: 700;
+      color: var(--w1);
+    }
+
+    .tag-included {
+      background: var(--emerald-glow);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--emerald);
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* Check grid */
+    .terms-box {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .term-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--w2);
+    }
+
+    .term-bullet {
+      color: var(--orange);
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    /* Roadmap */
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .phase-cell {
+      background: var(--k-surface);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 1.5rem;
+    }
+
+    .phase-head {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--orange);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .phase-cell h4 {
+      font-family: var(--display);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    .phase-cell ul {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--g1);
+    }
+
+    .phase-cell li::before { content: "▪ "; color: var(--gold); }
+
+    /* Signoff block */
+    .signoff-section {
+      background: var(--k-surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 2.25rem;
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .sig-line {
+      border-top: 1px dashed var(--line);
+      margin-top: 2rem;
+      padding-top: 0.75rem;
+    }
+
+    .sig-name { font-weight: 700; font-size: 1rem; color: var(--w1); }
+    .sig-role { font-family: var(--mono); font-size: 0.8rem; color: var(--g1); }
+
+    footer {
+      padding: 4rem 0 3rem;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      color: var(--g1);
+      font-size: 0.85rem;
+    }
+
+    .foot-brand {
+      font-family: var(--display);
+      font-size: 14px;
+      color: var(--w1);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .foot-brand span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Navigation -->
+  <div id="topnav">
+    <div class="pillbar">
+      <div class="cnr tl"></div><div class="cnr tr"></div><div class="cnr bl"></div><div class="cnr br"></div>
+      
+      <div class="brand-group">
+        <div class="brand-title">Mula<span>Cargo</span></div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#vision">Visión</a>
+        <a href="#arquitectura">Arquitectura</a>
+        <a href="#ia">Soporte IA</a>
+        <a href="#radar">Radar de Retorno</a>
+        <a href="#propuesta">Propuesta</a>
+        <a href="#roadmap">Fases</a>
+      </nav>
+
+      <div class="hud-badge">
+        <div class="led"></div>
+        <span>PRESUPUESTO ACTIVO</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Master -->
+  <header class="hero">
+    <div class="container">
+      <div class="client-ribbon">
+        <span>PROPUESTA EJECUTIVA</span>
+        <span>•</span>
+        <span>CLIENTE: <strong>RENÉ QUIROZ</strong></span>
+      </div>
+
+      <h1 class="hero-title">MULA<span class="glow-orange">CARGO</span> PLATAFORMA INTEGRAL DE FLETES</h1>
+      <p class="hero-desc">
+        Especificación técnica y comercial para el desarrollo de la plataforma de fletes pesados con subastas en vivo, motor de comisiones al 3%, algoritmo inteligente de cargas de retorno, soporte de Inteligencia Artificial y 1 año de garantía operativa.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 1. Visión & Monetización -->
+    <section id="vision">
+      <div class="sec-header">
+        <div class="sec-tag">01 // MODELO DE NEGOCIO</div>
+        <h2 class="sec-title">Mercado de Fletes & Monetización</h2>
+        <p class="sec-subtitle">MulaCargo trasciende el modelo de taxis urbanos para dominar la logística de carga pesada, utilitarios y transporte interurbano.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="hud-card">
+          <div class="card-corner tl"></div><div class="card-corner tr"></div>
+          <h3>Comisión Fija del 3%</h3>
+          <p>Débito automatizado de la billetera del conductor sobre cada flete completado. La tasa ultra-competitiva del 3% elimina la resistencia del gremio de transportistas y multiplica el volumen de transacciones.</p>
+        </div>
+
+        <div class="hud-card">
+          <div class="card-corner tl"></div><div class="card-corner tr"></div>
+          <h3>Subasta Dinámica (Bidding)</h3>
+          <p>Mecanismo de puja en tiempo real donde el cliente publica fotos y especificaciones de carga, y los conductores ofertan competitivamente para adjudicarse el viaje.</p>
+        </div>
+
+        <div class="hud-card">
+          <div class="card-corner tl"></div><div class="card-corner tr"></div>
+          <h3>Enfoque en Carga Real</h3>
+          <p>Diseñado para pickups (Strada, Hilux), furgones (Sprinter, Master), camiones 3/4, toco y carretas pesadas para mercadería, mudanzas, agro e industria.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Arquitectura & Stack -->
+    <section id="arquitectura">
+      <div class="sec-header">
+        <div class="sec-tag">02 // INGENIERÍA DE SOFTWARE</div>
+        <h2 class="sec-title">Arquitectura Técnica del Ecosistema</h2>
+        <p class="sec-subtitle">Infraestructura modular de alto rendimiento compuesta por backend administrativo y dos aplicaciones móviles nativas.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="hud-card">
+          <div class="card-corner tl"></div><div class="card-corner tr"></div>
+          <h3>Backend & Panel Web</h3>
+          <p>Panel integral para administración de usuarios, verificación de licencias y vehículos, balance de comisiones, zonas y pasarelas de pago.</p>
+          <div class="stack-box">
+            <div class="stack-row"><span class="stack-key">Core API:</span> <span class="stack-val">Laravel 11 / PHP 8.3</span></div>
+            <div class="stack-row"><span class="stack-key">Base de Datos:</span> <span class="stack-val">MySQL / PostgreSQL</span></div>
+            <div class="stack-row"><span class="stack-key">Real-Time:</span> <span class="stack-val">WebSockets / Pusher</span></div>
+            <div class="stack-row"><span class="stack-key">Push Engine:</span> <span class="stack-val">Firebase FCM</span></div>
+          </div>
+        </div>
+
+        <div class="hud-card">
+          <div class="card-corner tl"></div><div class="card-corner tr"></div>
+          <h3>App Móvil del Cliente</h3>
+          <p>Publicación inmediata de carga, subida de fotos para cubicaje asistido, recepción de ofertas en vivo, seguimiento GPS y prueba de entrega digital.</p>
+          <div class="stack-box">
+            <div class="stack-row"><span class="stack-key">Framework:</span> <span class="stack-val">React Native (iOS/Android)</span></div>
+            <div class="stack-row"><span class="stack-key">Mapas:</span> <span class="stack-val">Google Maps / OSM SDK</span></div>
+            <div class="stack-row"><span class="stack-key">Pujas:</span> <span class="stack-val">Live Bidding Socket</span></div>
+            <div class="stack-row"><span class="stack-key">Firmas:</span> <span class="stack-val">Digital POD + Camera</span></div>
+          </div>
+        </div>
+
+        <div class="hud-card">
+          <div class="card-corner tl"></div><div class="card-corner tr"></div>
+          <h3>App del Conductor</h3>
+          <p>Gestión de ofertas, billetera digital prepago con cálculo del 3%, navegación y el motor especializado de cargas de retorno.</p>
+          <div class="stack-box">
+            <div class="stack-row"><span class="stack-key">Framework:</span> <span class="stack-val">React Native (iOS/Android)</span></div>
+            <div class="stack-row"><span class="stack-key">Billetera:</span> <span class="stack-val">Wallet + Auto-Deduction</span></div>
+            <div class="stack-row"><span class="stack-key">Optimización:</span> <span class="stack-val">Radar de Retorno v1.0</span></div>
+            <div class="stack-row"><span class="stack-key">Navegación:</span> <span class="stack-val">Waze / Google Intent</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Módulos IA -->
+    <section id="ia">
+      <div class="sec-header">
+        <div class="sec-tag">03 // INTELIGENCIA APLICADA</div>
+        <h2 class="sec-title">Soporte con Inteligencia Artificial</h2>
+        <p class="sec-subtitle">Capacidades automatizadas para asistir al dador de carga en la cotización y garantizar asistencia 24/7 a los choferes.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="hud-card" style="border-left: 3px solid var(--orange);">
+          <div class="card-corner tl"></div><div class="card-corner tr"></div>
+          <h3>Estimador Visual de Carga por IA</h3>
+          <p>El cliente fotografía los bultos o mercadería. El modelo multimodal analiza dimensiones y volumen estimado, recomendando el tipo de vehículo idóneo (camioneta, furgón o camión de 2 ejes) para evitar cancelaciones por espacio insuficiente.</p>
+        </div>
+
+        <div class="hud-card" style="border-left: 3px solid var(--emerald);">
+          <div class="card-corner tl"></div><div class="card-corner tr"></div>
+          <h3>Asistente de Despacho & Soporte IA</h3>
+          <p>Atención 24/7 a choferes para consultas de saldo, desbloqueo de cuentas, reglas de comisiones y reporte de incidencias en ruta con resolución instantánea y escalamiento a operadores humanos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Radar de Retorno -->
+    <section id="radar">
+      <div class="sec-header">
+        <div class="sec-tag">04 // VENTAJA COMPETITIVA</div>
+        <h2 class="sec-title">Algoritmo "Radar de Retorno"</h2>
+        <p class="sec-subtitle">Eliminación de kilómetros vacíos: el conductor aprovecha su regreso a casa para maximizar ganancias netas.</p>
+      </div>
+
+      <div class="radar-banner">
+        <h4>⚡ Optimización del Corredor Inverso (Backhaul)</h4>
+        <p style="color: var(--w2); margin-bottom: 1.5rem; max-width: 820px;">
+          Cuando un transportista completa una entrega en un destino alejado, el sistema detecta su <strong>dirección base</strong> y rastrea cargas en origen cuya ruta de destino coincida con su trayecto de retorno.
+        </p>
+
+        <div class="grid-3">
+          <div style="background: rgba(0,0,0,0.5); padding: 1.25rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
+            <strong style="color: var(--w1); font-size: 0.95rem;">1. Geofence de Entrega:</strong>
+            <p style="font-size: 0.85rem; color: var(--g1); margin-top: 0.35rem;">Al finalizar el viaje de ida, se activa automáticamente el estado "Buscando Carga de Retorno".</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.5); padding: 1.25rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
+            <strong style="color: var(--w1); font-size: 0.95rem;">2. Match de Trayecto:</strong>
+            <p style="font-size: 0.85rem; color: var(--g1); margin-top: 0.35rem;">Filtra fletes disponibles hacia su ciudad base o paradas intermedias sin desvíos significativos.</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.5); padding: 1.25rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.2);">
+            <strong style="color: var(--w1); font-size: 0.95rem;">3. Ganancia Neta:</strong>
+            <p style="font-size: 0.85rem; color: var(--g1); margin-top: 0.35rem;">El combustible de vuelta queda cubierto por la carga de retorno, generando hasta un 85% más de lucro neto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Propuesta Económica -->
+    <section id="propuesta">
+      <div class="sec-header">
+        <div class="sec-tag">05 // TÉRMINOS COMERCIALES</div>
+        <h2 class="sec-title">Propuesta de Inversión & Desarrollo</h2>
+        <p class="sec-subtitle">Estructura transparente de pagos por hitos con soporte técnico y mantenimiento anual garantizado.</p>
+      </div>
+
+      <div class="commercial-board">
+        <div class="commercial-top">
+          <div>
+            <div class="deal-badge">PRESUPUESTO CERRADO LLAVE EN MANO</div>
+            <h3 style="font-family: var(--display); font-size: 1.7rem; text-transform: uppercase;">Desarrollo, IA & Despliegue</h3>
+            <p style="color: var(--w2); font-size: 0.95rem; margin-top: 4px;">Apps Conductor/Cliente + Backend Web + 1 Año de Soporte Técnico</p>
+          </div>
+          <div class="price-block">
+            <div class="price-num">$3,500 <span>USD</span></div>
+            <div class="price-sub">INVERSIÓN TOTAL DEL PROYECTO</div>
+          </div>
+        </div>
+
+        <table class="spec-table">
+          <thead>
+            <tr>
+              <th>ETAPA / ENTREGABLE</th>
+              <th>ALCANCE TÉCNICO</th>
+              <th style="text-align: right;">VALOR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Kickoff Fee (Inicio)</strong></td>
+              <td>Alistamiento de servidores en la nube, onboarding de repositorios, generación de assets 3D/marca y arquitectura base.</td>
+              <td class="val">$500 USD</td>
+            </tr>
+            <tr>
+              <td><strong>Desarrollo Fase 1 (50%)</strong></td>
+              <td>A la firma del acuerdo: programación de backend, motor de subastas, configuración de vehículos de carga y cobro del 3%.</td>
+              <td class="val">$1,500 USD</td>
+            </tr>
+            <tr>
+              <td><strong>Desarrollo Fase 2 (50%)</strong></td>
+              <td>Contra entrega y despliegue: integración de apps móviles, Radar de Retorno, pasarelas de pago y puesta en producción.</td>
+              <td class="val">$1,500 USD</td>
+            </tr>
+            <tr>
+              <td><strong>Módulos de Inteligencia Artificial</strong></td>
+              <td>Asistente visual de estimación de carga + Bot inteligente de despacho y soporte 24/7.</td>
+              <td class="val"><span class="tag-included">INCLUIDO</span></td>
+            </tr>
+            <tr>
+              <td><strong>1 Año de Soporte Técnico</strong></td>
+              <td>Mantenimiento preventivo, corrección de bugs, monitoreo de bases de datos y soporte de servidores por 12 meses.</td>
+              <td class="val"><span class="tag-included">INCLUIDO</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="terms-box">
+          <div class="term-item">
+            <span class="term-bullet">01</span>
+            <div><strong>$500 USD (Kickoff):</strong> Pago inicial para activación de infraestructura y activos.</div>
+          </div>
+          <div class="term-item">
+            <span class="term-bullet">02</span>
+            <div><strong>$1,500 USD (Hito 1):</strong> Al iniciar desarrollo de funcionalidades operativas (50% desarrollo).</div>
+          </div>
+          <div class="term-item">
+            <span class="term-bullet">03</span>
+            <div><strong>$1,500 USD (Hito 2):</strong> Contra despliegue final y entrega en tiendas / servidor productivo (50% desarrollo restante).</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Fases de Entrega -->
+    <section id="roadmap">
+      <div class="sec-header">
+        <div class="sec-tag">06 // PLAN DE IMPLEMENTACIÓN</div>
+        <h2 class="sec-title">Cronograma de Fases & Entregables</h2>
+        <p class="sec-subtitle">Despliegue ágil estructurado en 4 sprints de entrega continua.</p>
+      </div>
+
+      <div class="phase-grid">
+        <div class="phase-cell">
+          <div class="phase-head">Fase 01</div>
+          <h4>Kickoff & Brand</h4>
+          <ul>
+            <li>Infraestructura Cloud</li>
+            <li>Assets 3D MulaCargo</li>
+            <li>Setup de Base de Datos</li>
+          </ul>
+        </div>
+
+        <div class="phase-cell">
+          <div class="phase-head">Fase 02</div>
+          <h4>Fletes & Bidding</h4>
+          <ul>
+            <li>Parámetros de Carga Pesada</li>
+            <li>Pujas WebSocket en Vivo</li>
+            <li>Comisión 3% & Billetera</li>
+          </ul>
+        </div>
+
+        <div class="phase-cell">
+          <div class="phase-head">Fase 03</div>
+          <h4>Radar & Módulos IA</h4>
+          <ul>
+            <li>Motor de Retorno (Backhaul)</li>
+            <li>Estimador Visual con IA</li>
+            <li>Testing de Geolocalización</li>
+          </ul>
+        </div>
+
+        <div class="phase-cell">
+          <div class="phase-head">Fase 04</div>
+          <h4>Lanzamiento</h4>
+          <ul>
+            <li>Despliegue a Producción</li>
+            <li>Capacitación de Panel</li>
+            <li>Inicio del Año de Soporte</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Signoff Block -->
+      <div class="signoff-section">
+        <div>
+          <p style="font-size: 0.85rem; color: var(--g1); text-transform: uppercase; font-family: var(--mono); margin-bottom: 0.5rem;">Aceptado por el Cliente:</p>
+          <div class="sig-line">
+            <div class="sig-name">René Quiroz</div>
+            <div class="sig-role">Director / Patrocinador MulaCargo</div>
+          </div>
+        </div>
+
+        <div>
+          <p style="font-size: 0.85rem; color: var(--g1); text-transform: uppercase; font-family: var(--mono); margin-bottom: 0.5rem;">Presentado y Desarrollado por:</p>
+          <div class="sig-line">
+            <div class="sig-name">Hudson Argollo</div>
+            <div class="sig-role">Lead Architect & Founder • ClubeMkt Digital</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="foot-brand">MULA<span>CARGO</span></div>
+      <p>© 2026 MulaCargo — Todos los derechos reservados | ClubeMkt</p>
+    </div>
+  </footer>
+
+</body>
+</html>
