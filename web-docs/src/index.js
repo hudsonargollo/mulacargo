@@ -22,7 +22,7 @@ function renderLoginScreen(error = false) {
   <title>Acceso Protegido — MulaCargo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700&family=Inter:wght@400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700;800&family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --k: #0A0A0C;
@@ -39,7 +39,7 @@ function renderLoginScreen(error = false) {
     body {
       background: var(--k);
       color: var(--w1);
-      font-family: 'Inter', sans-serif;
+      font-family: 'League Spartan', sans-serif;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -82,7 +82,7 @@ function renderLoginScreen(error = false) {
     .cnr.br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
 
     .brand {
-      font-family: 'Syne', sans-serif;
+      font-family: 'League Spartan', sans-serif;
       font-size: 1.6rem;
       font-weight: 800;
       text-transform: uppercase;
@@ -133,7 +133,7 @@ function renderLoginScreen(error = false) {
       color: #fff;
       border: none;
       padding: 0.85rem;
-      font-family: 'Syne', sans-serif;
+      font-family: 'League Spartan', sans-serif;
       font-weight: 700;
       font-size: 0.95rem;
       text-transform: uppercase;
