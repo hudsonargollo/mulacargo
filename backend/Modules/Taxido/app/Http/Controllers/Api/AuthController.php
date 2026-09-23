@@ -216,7 +216,7 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            'message' => __('OTP sent successfully to your email!'),
+            'message' => __('Código de Confirmación sent successfully to your email!'),
             'success' => true
         ], 200);
     }
@@ -232,7 +232,7 @@ class AuthController extends Controller
             sendSMS('+' . $country_code . $phone, $token);
         }
 
-        return response()->json(['message' => __('OTP sent successfully to your phone!'), 'success' => true], 200);
+        return response()->json(['message' => __('Código de Confirmación sent successfully to your phone!'), 'success' => true], 200);
     }
 
     public function generateToken($country_code = null, $phone = null, $email = null)

@@ -54,9 +54,9 @@ Futuristic 3D isometric map interface showing a glowing highway route connecting
 Conceptual 3D illustration of an interactive digital bidding auction for cargo freight. In the center, a floating 3D shipping pallet with digital telemetry (weight, dimensions, destination tag). On both sides, floating sleek bid cards with driver ratings, truck icons, and competitive price counters ticking down. Vibrant high-vis orange and electric green highlights against a dark slate background, modern fintech & logistics aesthetic --v 6.0 --ar 16:9
 ```
 
-### Prompt 3.3: 3.5% Low Commission Guarantee Badge
+### Prompt 3.3: 3% Low Commission Guarantee Badge
 ```text
-3D metallic emblem badge shaped like a rugged industrial shield engraved with "3.5% COMISSÃO FIXA" (or "3.5% FLAT FEE"). Brushed titanium and safety orange enamel, glowing emerald outline, micro-textured grip pattern on borders, pristine studio lighting, premium quality crypto-fintech style coin/badge, 8k render --v 6.0 --ar 1:1
+3D metallic emblem badge shaped like a rugged industrial shield engraved with "3% COMISSÃO FIXA" (or "3% FLAT FEE"). Brushed titanium and safety orange enamel, glowing emerald outline, micro-textured grip pattern on borders, pristine studio lighting, premium quality crypto-fintech style coin/badge, 8k render --v 6.0 --ar 1:1
 ```
 
 ---

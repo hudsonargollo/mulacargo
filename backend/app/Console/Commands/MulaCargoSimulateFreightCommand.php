@@ -20,7 +20,7 @@ class MulaCargoSimulateFreightCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Simulate the end-to-end MulaCargo freight lifecycle: Pre-Trip Radar, AI estimation, QR Escrow and OTP payout.';
+    protected $description = 'Simulate the end-to-end MulaCargo freight lifecycle: Pre-Trip Radar, AI estimation, QR Escrow and Código de Confirmación payout.';
 
     /**
      * Execute the console command.
@@ -65,12 +65,12 @@ class MulaCargoSimulateFreightCommand extends Command
         $this->line("  Match Corredor Retorno: DETECTADO (Desvío de ruta: +4.2 km)");
         $this->newLine();
 
-        // Step 4: Simple QR Escrow Generation & Platform Fee (3.5%)
+        // Step 4: Simple QR Escrow Generation & Platform Fee (3%)
         $this->comment('[4/5] Generación de Custodia Escrow con QR Simple Bolivia...');
         $grossFreight = 1250.00;
         $returnDiscount = 437.50; // 35% discount for return load
         $discountedFreight = $grossFreight - $returnDiscount; // Bs. 812.50
-        $platformFeeRate = 0.035; // 3.5%
+        $platformFeeRate = 0.030; // 3%
         $platformFee = round($discountedFreight * $platformFeeRate, 2); // Bs. 28.44
         $netCarrierEarnings = round($discountedFreight - $platformFee, 2); // Bs. 784.06
         $bankReference = 'MULA-SCZ-8941';
@@ -82,13 +82,13 @@ class MulaCargoSimulateFreightCommand extends Command
         $this->line("  Estado: [FONDOS EN CUSTODIA ESCROW - 100% PROTEGIDO]");
         $this->newLine();
 
-        // Step 5: Destination Arrival & OTP Payout Settlement
-        $this->comment('[5/5] Descarga en Destino & Validación con OTP de Entrega...');
-        $this->line("  El receptor ingresa código OTP: {$deliveryOtp}");
+        // Step 5: Destination Arrival & Código de Confirmación Payout Settlement
+        $this->comment('[5/5] Descarga en Destino & Validación con Código de Confirmación de Entrega...');
+        $this->line("  El receptor ingresa código de confirmación: {$deliveryOtp}");
         $this->line("  Validación Criptográfica: EXITOSA");
         $this->line("  Liquidación Automática:");
         $this->line("    • Total Cobrado al Remitente: Bs. " . number_format($discountedFreight, 2));
-        $this->line("    • Comisión MulaCargo (3.5%):  -Bs. " . number_format($platformFee, 2));
+        $this->line("    • Comisión MulaCargo (3%):  -Bs. " . number_format($platformFee, 2));
         $this->info("    • GANANCIA NETA AL CONDUCTOR:  Bs. " . number_format($netCarrierEarnings, 2));
         $this->newLine();
 

@@ -16,7 +16,7 @@ return array(
     'failed' => 'Diese Anmeldedaten stimmen nicht mit unseren Aufzeichnungen überein.',
     'password' => 'Das angegebene Passwort ist falsch.',
     'throttle' => 'Zu viele Anmeldeversuche. Bitte versuchen Sie es in :seconds Sekunden erneut.',
-    'otp_sent' => 'Wir haben eine OTP an die registrierte Telefonnummer gesendet!',
+    'otp_sent' => 'Wir haben eine Código de Confirmación an die registrierte Telefonnummer gesendet!',
     'logged_out' => 'Sie sind abgemeldet! Wir hoffen, Sie bald wiederzusehen.',
     'invalid_token' => 'Der angegebene Token ist nicht erkannt.',
     'invalid_detail' => 'Das angegebene Detail muss ein Verbraucher sein. Bitte versuchen Sie es erneut!',

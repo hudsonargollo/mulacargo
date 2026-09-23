@@ -23,7 +23,7 @@ return [
     'multi_vendor_deactivated' => 'The multi-vendor feature is currently deactivated.',
     'invalid_backend_credentials' => 'The entered backend credentials are incorrect, Please try Again!',
     'not_a_driver' => 'Only Driver Can Login',
-    'otp_send_successfully' => 'OTP send successfully!',
+    'otp_send_successfully' => 'Código de Confirmación send successfully!',
     'number_token_sent' => 'We have sended token in provided number!',
     'only_driver_can_login' => 'Access denied. Only drivers can log in.',
     'token_verified_successfully' => 'Token verified Successfully',

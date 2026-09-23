@@ -67,10 +67,10 @@
       </p>
 
 <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-<a class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white font-bold text-base shadow-xl shadow-brand-orange/25 transition-transform hover:-translate-y-0.5" href="./simulator.html">
+<a class="w-full sm:w-auto px-8 py-3.0 rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white font-bold text-base shadow-xl shadow-brand-orange/25 transition-transform hover:-translate-y-0.5" href="./simulator.html">
           App Generador de Carga
         </a>
-<a class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-brand-emerald border border-brand-emerald/40 font-bold text-base flex items-center justify-center gap-2 transition-transform hover:-translate-y-0.5" href="./conductor.html">
+<a class="w-full sm:w-auto px-8 py-3.0 rounded-xl bg-slate-800 hover:bg-slate-700 text-brand-emerald border border-brand-emerald/40 font-bold text-base flex items-center justify-center gap-2 transition-transform hover:-translate-y-0.5" href="./conductor.html">
 <span class="w-2.5 h-2.5 rounded-full bg-brand-emerald"></span>
           App Conductor / Propietario
         </a>
@@ -203,7 +203,7 @@
 <div class="text-2xl mb-4">🚛</div>
 <h3 class="text-lg font-bold text-slate-900">Taxonomía de Flota Homologada</h3>
 <p class="text-sm text-slate-600 mt-2 leading-relaxed">
-            Desde Pickups (1.2T) y Furgones VUC (3.5T) para distribución urbana en Santa Cruz, hasta Camiones 3/4, Tocos (10T) y Semirremolques Graneleros (30T+).
+            Desde Pickups (1.2T) y Furgones VUC (3.0T) para distribución urbana en Santa Cruz, hasta Camiones 3/4, Tocos (10T) y Semirremolques Graneleros (30T+).
           </p>
 </div>
 <div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all" id="radar">
@@ -267,7 +267,7 @@
 <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2" for="sim-vehicle">Tipo de Unidad</label>
 <select class="w-full rounded-xl border-slate-300 focus:border-brand-orange focus:ring-brand-orange text-sm font-semibold text-slate-800 bg-white" id="sim-vehicle">
 <option value="pickup">Camioneta / Pickup (1.2 Ton)</option>
-<option value="furgon">Furgón VUC Urbano (3.5 Ton)</option>
+<option value="furgon">Furgón VUC Urbano (3.0 Ton)</option>
 <option value="toco">Camión 3/4 o Toco (10 Ton)</option>
 <option selected="" value="trailer">Semirremolque / Carretera (28-30 Ton)</option>
 </select>
@@ -292,9 +292,9 @@
 </p>
 </div>
 <div class="bg-brand-orange-light p-4 rounded-xl border border-brand-orange/20 text-center md:text-right">
-<span class="text-xs font-bold text-brand-orange uppercase">Comisión Plataforma (3.5%)</span>
+<span class="text-xs font-bold text-brand-orange uppercase">Comisión Plataforma (3%)</span>
 <p class="text-xl font-extrabold text-brand-orange-dark font-display" id="savings-output">-Bs. 575.00</p>
-<span class="text-[11px] text-slate-600">96.5% directo a tu cuenta</span>
+<span class="text-[11px] text-slate-600">97% neto directo a tu cuenta</span>
 </div>
 </div>
 <div class="mt-6 text-center">
@@ -390,7 +390,7 @@
         calculatedPrice = Math.min(calculatedPrice * 0.8, 13000);
       }
 
-      const platformFee = Math.round(calculatedPrice * 0.035);
+      const platformFee = Math.round(calculatedPrice * 0.030);
 
       priceOutput.textContent = 'Bs. ' + Math.round(calculatedPrice).toLocaleString('es-BO');
       savingsOutput.textContent = '-Bs. ' + platformFee.toLocaleString('es-BO');

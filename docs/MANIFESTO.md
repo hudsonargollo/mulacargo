@@ -42,16 +42,16 @@ El corazón de MulaCargo es su motor de optimización de corredores inversos (*B
 ### 2. Pagos Instantáneos por Simple QR EMVCo (T+0)
 Olvídese de las esperas de semanas. MulaCargo integra el estándar de pagos interbancarios de Bolivia (**Simple QR** con soporte para BNB, BCP, Banco Unión, Mercantil Santa Cruz, Bisa y Ganadero). 
 - El dador de carga fondea el servicio de forma digital.
-- Los fondos quedan respaldados y se liquidan automáticamente a la cuenta del transportista en el mismo instante en que el receptor en destino valida la entrega mediante un código **PIN OTP de 6 dígitos**.
+- Los fondos quedan respaldados y se liquidan automáticamente a la cuenta del transportista en el mismo instante en que el receptor en destino valida la entrega mediante un código **Código de Entrega de 6 dígitos**.
 
 ### 3. IA Vision Cargo Estimator (Cubicaje Inteligente)
 ¿Cuántos metros cúbicos ocupa una carga irregular de maquinaria o insumos agrícolas? 
 - Con nuestro módulo de visión artificial, el remitente sube una fotografía de la carga y el sistema calcula al instante el volumen ($m^3$), peso estimado y sugiere la categoría de vehículo exacta (desde Pickups hasta Semirremolques Carretas), evitando sorpresas en báscula.
 
-### 4. Comisión Fija Transparente del 3.5%
-Mientras los intermediarios tradicionales extraen un cuarto del valor del flete, MulaCargo opera con una **comisión fija del 3.5%**. 
+### 4. Comisión Fija Transparente del 3%
+Mientras los intermediarios tradicionales extraen un cuarto del valor del flete, MulaCargo opera con una **comisión fija del 3%**. 
 - Transparencia radical en cada boliviano facturado.
-- El 96.5% restante va directo al bolsillo del transportista, incentivando la formalización y el mantenimiento preventivo de las flotas.
+- El 97% restante va directo al bolsillo del transportista, incentivando la formalización y el mantenimiento preventivo de las flotas.
 
 ---
 

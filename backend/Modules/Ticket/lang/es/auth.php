@@ -4,7 +4,7 @@ return [
     'failed' => 'Estas credenciales no coinciden con nuestros registros.',
     'password' => 'La contraseña proporcionada es incorrecta.',
     'throttle' => 'Demasiados intentos de inicio de sesión. Por favor intenta de nuevo en :seconds segundos.',
-    'otp_sent' => '¡Hemos enviado un OTP al número de teléfono registrado!',
+    'otp_sent' => '¡Hemos enviado un Código de Confirmación al número de teléfono registrado!',
     'logged_out' => '¡Has cerrado sesión! Esperamos verte pronto de nuevo.',
     'invalid_token' => 'El token proporcionado no es reconocido.',
     'invalid_detail' => 'El detalle proporcionado debe ser de consumidor, ¡Por favor intenta de nuevo!',

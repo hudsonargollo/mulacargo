@@ -35,7 +35,7 @@ return array(
   'invalid_backend_credentials' => 'البيانات المدخلة غير صحيحة في الواجهة الخلفية، الرجاء المحاولة مرة أخرى!',
   'not_a_driver' => 'يمكن للسائق فقط تسجيل الدخول.',
   'not_a_rider' => 'يمكن للركاب فقط تسجيل الدخول.',
-  'otp_send_successfully' => 'تم إرسال OTP بنجاح!',
+  'otp_send_successfully' => 'تم إرسال Código de Confirmación بنجاح!',
   'number_token_sent' => 'لقد أرسلنا الرمز بالرقم المقدم!',
   'only_driver_can_login' => 'تم رفض الوصول. يمكن للسائقين فقط تسجيل الدخول.',
   'token_verified_successfully' => 'تم التحقق من الرمز بنجاح',

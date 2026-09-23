@@ -80,7 +80,7 @@
 
                 @if ($ride->otp)
                     <div class="badge badge-info" id="otp">
-                        OTP: {{ $ride->otp }}
+                        Código de Confirmación: {{ $ride->otp }}
                     </div>
                 @endif
             </div>
@@ -1405,7 +1405,7 @@
                 updateRideDetails(rideData) {
                     this.updateElement('ride-number', `#${rideData.ride_number || ''}`);
                     if (rideData.otp) {
-                        this.updateElement('otp', `OTP: ${rideData.otp}`);
+                        this.updateElement('otp', `Código de Confirmación: ${rideData.otp}`);
                     }
 
                     const statusElement = document.getElementById('ride-status');

@@ -15,7 +15,7 @@ return new class extends Migration
                 $table->unsignedBigInteger('shipper_id')->index();
                 $table->unsignedBigInteger('carrier_id')->index()->nullable();
                 $table->decimal('gross_amount', 10, 2);
-                $table->decimal('platform_commission_pct', 5, 2)->default(3.50);
+                $table->decimal('platform_commission_pct', 5, 2)->default(3.00);
                 $table->decimal('platform_commission_amount', 10, 2);
                 $table->decimal('net_carrier_amount', 10, 2);
                 $table->string('currency')->default('BOB');

@@ -60,7 +60,7 @@ class MulaCargoFreightSeeder extends Seeder
             );
         }
 
-        // Set default commission to 3.5% in settings if settings table exists
+        // Set default commission to 3% in settings if settings table exists
         if (Schema::hasTable('settings')) {
             // Configure platform take rate
         }

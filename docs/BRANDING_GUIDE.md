@@ -17,7 +17,7 @@
 | Pillar | Description |
 | :--- | :--- |
 | **Bidding Marketplace** | Shippers post freight specs (cargo type, dimensions, weight, pickup/drop-off windows, photos). Verified drivers submit competitive bids. |
-| **3.5% Flat Take Rate** | Ultra-lean 3.5% platform fee on completed freights (vs. traditional 15-25% broker cuts), maximizing driver take-home earnings and offering shippers lower prices. |
+| **3% Flat Take Rate** | Ultra-lean 3% platform fee on completed freights (vs. traditional 15-25% broker cuts), maximizing driver take-home earnings and offering shippers lower prices. |
 | **Smart Backhaul Matching ("Radar de Retorno")** | Proprietary homeward route matching. When a carrier finishes a delivery outside their home base, MulaCargo automatically pushes freight requests along their return corridor to eliminate empty miles ("rodagem morta"). |
 | **Endurance & Reliability** | Built for heavy work: pickups (Strada, Hilux, Ranger), cargo vans (Master, Sprinter), medium trucks (3/4, Toco, VUC), and heavy haulers (Truck, Carreta). |
 

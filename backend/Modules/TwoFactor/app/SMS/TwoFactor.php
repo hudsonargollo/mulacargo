@@ -10,7 +10,7 @@ class TwoFactor
     public static function getIntent($sendTo, $message)
     {
         $api_key = env('TWOFACTOR_KEY');
-        $templateName = env('OTP_TEMPLATE_NAME');
+        $templateName = env('Código de Confirmación_TEMPLATE_NAME');
         $sendTo  = rawurlencode($sendTo);
         $message = rawurlencode($message);
 

@@ -74,7 +74,7 @@ class AuthController extends Controller
         if(!isDemoMode()) {
             Mail::to($email)->queue(new VerifyEmail($token));
         }
-        return response()->json(['message' => 'OTP sent successfully to your email!', 'success' => true], 200);
+        return response()->json(['message' => 'Código de Confirmación sent successfully to your email!', 'success' => true], 200);
     }
 
     private function sendPhoneToken($country_code, $phone)
@@ -83,7 +83,7 @@ class AuthController extends Controller
         if(!isDemoMode()) {
             sendSMS('+' . $country_code . $phone, $token);
         }
-        return response()->json(['message' => 'OTP sent successfully to your phone!', 'success' => true], 200);
+        return response()->json(['message' => 'Código de Confirmación sent successfully to your phone!', 'success' => true], 200);
     }
 
     public function generateToken($country_code = null, $phone = null, $email = null)
@@ -105,7 +105,7 @@ class AuthController extends Controller
     public function verifyOtp()
     {
         if (!session('email_or_phone')) {
-            return redirect()->route('front.cab.login.index')->with('error', 'Please request an OTP first.');
+            return redirect()->route('front.cab.login.index')->with('error', 'Please request an Código de Confirmación first.');
         }
 
         return view('taxido::front.auth.verify_otp');

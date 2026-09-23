@@ -23,7 +23,7 @@ class MulaCargoEscrowController extends Controller
         ]);
 
         $grossAmount = (float) $validated['amount'];
-        $commissionPct = 3.50;
+        $commissionPct = 3.00;
         $commissionAmount = round($grossAmount * ($commissionPct / 100), 2);
         $netCarrierAmount = round($grossAmount - $commissionAmount, 2);
 
@@ -61,7 +61,7 @@ class MulaCargoEscrowController extends Controller
             'bank_reference' => $bankRef,
             'qr_code_url' => 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' . urlencode($qrPayload),
             'amount_bob' => $grossAmount,
-            'commission_rate' => '3.5%',
+            'commission_rate' => '3%',
             'platform_fee_bob' => $commissionAmount,
             'carrier_payout_bob' => $netCarrierAmount,
             'demo_delivery_otp' => $deliveryOtp, // For staging/testing verification
@@ -102,7 +102,7 @@ class MulaCargoEscrowController extends Controller
     }
 
     /**
-     * Receiver verifies Delivery OTP, releasing funds to carrier wallet.
+     * Receiver verifies Delivery Código de Confirmación, releasing funds to carrier wallet.
      */
     public function verifyDeliveryOtp(Request $request)
     {
@@ -121,7 +121,7 @@ class MulaCargoEscrowController extends Controller
         }
 
         if (!password_verify($validated['otp'], $escrow->delivery_otp_hash)) {
-            return response()->json(['success' => false, 'message' => 'Código OTP de entrega incorrecto.'], 422);
+            return response()->json(['success' => false, 'message' => 'Código Código de Confirmación de entrega incorrecto.'], 422);
         }
 
         DB::table('mulacargo_escrow_payments')
@@ -140,7 +140,7 @@ class MulaCargoEscrowController extends Controller
                 'mula_commission_3_5_pct' => $escrow->platform_commission_amount,
                 'net_paid_to_carrier' => $escrow->net_carrier_amount,
             ],
-            'message' => 'Entrega validada exitosamente. Fondos liquidados al transportista con descuento automático de comisión 3.5%.',
+            'message' => 'Entrega validada exitosamente. Fondos liquidados al transportista con descuento automático de comisión 3%.',
         ]);
     }
 

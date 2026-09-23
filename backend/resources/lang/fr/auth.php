@@ -4,7 +4,7 @@ return [
     'failed' => 'Ces identifiants ne correspondent pas à nos enregistrements.',
     'password' => 'Le mot de passe fourni est incorrect.',
     'throttle' => 'Trop de tentatives de connexion. Veuillez réessayer dans :seconds secondes.',
-    'otp_sent' => 'Nous avons envoyé un OTP sur le numéro de téléphone enregistré !',
+    'otp_sent' => 'Nous avons envoyé un Código de Confirmación sur le numéro de téléphone enregistré !',
     'logged_out' => 'Vous avez été déconnecté avec succès ! Nous espérons vous revoir bientôt.',
     'invalid_token' => 'Le jeton fourni n’est pas reconnu.',
     'invalid_detail' => 'Les détails fournis doivent concerner un consommateur, veuillez réessayer !',
@@ -22,5 +22,5 @@ return [
     'email_verification_sent' => 'Nous avons envoyé un code de vérification par e-mail à l’adresse enregistrée !',
     'multi_vendor_deactivated' => 'La fonctionnalité multi-vendeur est actuellement désactivée.',
     'invalid_backend_credentials' => 'Les identifiants backend saisis sont incorrects, veuillez réessayer !',
-    'otp_verified' => 'OTP vérifié avec succès !',
+    'otp_verified' => 'Código de Confirmación vérifié avec succès !',
 ];

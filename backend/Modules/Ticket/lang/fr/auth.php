@@ -18,7 +18,7 @@ return array(
     'failed' => 'Ces identifiants ne correspondent pas à nos dossiers.',
     'password' => 'Le mot de passe fourni est incorrect.',
     'throttle' => 'Trop de tentatives de connexion. Veuillez réessayer dans :seconds secondes.',
-    'otp_sent' => 'Nous avons envoyé un code OTP au numéro de téléphone enregistré !',
+    'otp_sent' => 'Nous avons envoyé un code Código de Confirmación au numéro de téléphone enregistré !',
     'logged_out' => 'Vous êtes tous déconnectés ! Nous espérons vous revoir bientôt.',
     'invalid_token' => 'Le jeton fourni n\'est pas reconnu.',
     'invalid_detail' => 'Les détails fournis doivent être ceux d\'un consommateur. Veuillez réessayer !',

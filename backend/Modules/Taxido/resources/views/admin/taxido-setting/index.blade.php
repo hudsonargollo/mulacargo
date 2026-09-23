@@ -516,7 +516,7 @@
                                             </div>
                                         </div>
 
-                                        {{-- Ride OTP --}}
+                                        {{-- Ride Código de Confirmación --}}
                                         <div class="form-group row">
                                             <label class="col-md-5"
                                                 for="activation[ride_otp]">{{ __('taxido::static.settings.ride_otp') }}
@@ -545,7 +545,7 @@
                                             </div>
                                         </div>
 
-                                        {{-- Parcel OTP --}}
+                                        {{-- Parcel Código de Confirmación --}}
                                         <div class="form-group row">
                                             <label class="col-md-5"
                                                 for="activation[parcel_otp]">{{ __('taxido::static.settings.parcel_otp') }}

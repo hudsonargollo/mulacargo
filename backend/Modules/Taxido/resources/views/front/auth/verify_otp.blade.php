@@ -1,5 +1,5 @@
 @extends('front.layouts.master')
-@section('title', 'OTP Verification')
+@section('title', 'Código de Confirmación Verification')
 @section('content')
     <section class="authentication-section section-b-space">
         <div class="container">

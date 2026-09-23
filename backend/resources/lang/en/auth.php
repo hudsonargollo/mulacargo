@@ -22,5 +22,5 @@ return [
     'email_verification_sent' => 'We have e-mailed verification code in registered mail!',
     'multi_vendor_deactivated' => 'The multi-vendor feature is currently deactivated.',
     'invalid_backend_credentials' => 'The entered backend credentials are incorrect, Please try Again!',
-    'otp_verified' => 'OTP Verified Successfully!',
+    'otp_verified' => 'Código de Confirmación Verified Successfully!',
 ];

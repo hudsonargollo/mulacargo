@@ -313,7 +313,7 @@
       </div>
       <div class="tag-badge">⚡ Calculadora de Rentabilidad & Retorno</div>
       <h1>Simulador de <span>Ganancia por Viaje Redondo</span></h1>
-      <p class="subtitle">Descubre cómo el Radar de Retorno duplica tus ingresos eliminando los viajes en vacío con solo 3.5% de comisión.</p>
+      <p class="subtitle">Descubre cómo el Radar de Retorno duplica tus ingresos eliminando los viajes en vacío con solo 3% de comisión.</p>
     </header>
 
     <div class="simulator-grid">
@@ -380,7 +380,7 @@
             <td style="font-weight: 700; color: #FFFFFF;" id="grossTotalRow">Bs. 4,800.00</td>
           </tr>
           <tr>
-            <td>Comisión MulaCargo (3.5%):</td>
+            <td>Comisión MulaCargo (3%):</td>
             <td class="val-fee" id="platformFeeRow">-Bs. 168.00</td>
           </tr>
           <tr style="border-top: 2px solid rgba(255, 255, 255, 0.15);">
@@ -433,7 +433,7 @@
       const legPrice = basePrice * vehicleMultiplier;
       const returnPrice = isBackhaul ? legPrice : 0;
       const grossTotal = legPrice + returnPrice;
-      const platformFee = grossTotal * 0.035; // 3.5%
+      const platformFee = grossTotal * 0.030; // 3%
       const netEarnings = grossTotal - platformFee;
 
       // Update DOM

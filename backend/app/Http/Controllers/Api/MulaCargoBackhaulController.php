@@ -195,7 +195,7 @@ class MulaCargoBackhaulController extends Controller
             'summary' => [
                 'total_opportunities' => count($corridorFreights),
                 'max_potential_earnings' => array_sum(array_column($corridorFreights, 'net_driver_earnings')),
-                'commission_rate' => '3.5%',
+                'commission_rate' => '3%',
             ]
         ]);
     }

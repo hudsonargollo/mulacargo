@@ -6,7 +6,7 @@
         'image' => 'modules/twoFactor/images/logo.svg',
         'configs' => [
             'twoFactor_key' => env('TWOFACTOR_API_KEY'),
-            'otp_template_name' => env('OTP_TEMPLATE_NAME'),
+            'otp_template_name' => env('Código de Confirmación_TEMPLATE_NAME'),
         ],
         'fields' => [
             'twoFactor_key' => [

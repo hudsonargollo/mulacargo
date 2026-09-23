@@ -4,7 +4,7 @@ return [
     'failed' => 'Diese Anmeldeinformationen stimmen nicht mit unseren Aufzeichnungen überein.',
     'password' => 'Das angegebene Passwort ist falsch.',
     'throttle' => 'Zu viele Anmeldeversuche. Bitte versuchen Sie es in :seconds Sekunden erneut.',
-    'otp_sent' => 'Wir haben einen OTP-Code an Ihre registrierte Telefonnummer gesendet!',
+    'otp_sent' => 'Wir haben einen Código de Confirmación-Code an Ihre registrierte Telefonnummer gesendet!',
     'logged_out' => 'Sie wurden erfolgreich abgemeldet! Wir hoffen, Sie bald wiederzusehen.',
     'invalid_token' => 'Das angegebene Token wird nicht erkannt.',
     'invalid_detail' => 'Die angegebenen Details müssen vom Verbraucher stammen. Bitte versuchen Sie es erneut!',
@@ -22,5 +22,5 @@ return [
     'email_verification_sent' => 'Wir haben einen Verifizierungscode an Ihre registrierte E-Mail-Adresse gesendet!',
     'multi_vendor_deactivated' => 'Die Multi-Vendor-Funktion ist derzeit deaktiviert.',
     'invalid_backend_credentials' => 'Die eingegebenen Backend-Anmeldedaten sind falsch. Bitte versuchen Sie es erneut!',
-    'otp_verified' => 'OTP erfolgreich verifiziert!',
+    'otp_verified' => 'Código de Confirmación erfolgreich verifiziert!',
 ];
