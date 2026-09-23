@@ -10,7 +10,7 @@ use Carbon\Carbon;
 class MulaCargoEscrowController extends Controller
 {
     /**
-     * Generate Bolivian Simple QR for Escrow Freight Deposit.
+     * Generate Bolivian Pago por Código QR for Escrow Freight Deposit.
      */
     public function generateSimpleQr(Request $request)
     {
@@ -30,7 +30,7 @@ class MulaCargoEscrowController extends Controller
         $bankRef = 'MULA-' . strtoupper(bin2hex(random_bytes(4))) . '-' . $validated['freight_id'];
         $deliveryOtp = (string) random_int(1000, 9999);
 
-        // Generate synthetic EMVCo Simple QR payload for Bolivian Interbank Switch (Asoban / Simple QR)
+        // Generate synthetic Bancario Pago por Código QR payload for Bolivian Interbank Switch (Asoban / Pago por Código QR)
         $qrPayload = sprintf(
             '00020101021226480010BO.GOB.ASOBAN0112MULA_CARGO_BO520459995303068540%s5802BO5912MULACARGO_SRL6011SANTA_CRUZ62240120%s6304ABCD',
             number_format($grossAmount, 2, '.', ''),

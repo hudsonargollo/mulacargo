@@ -65,7 +65,7 @@ class MulaCargoSimulateFreightCommand extends Command
         $this->line("  Match Corredor Retorno: DETECTADO (Desvío de ruta: +4.2 km)");
         $this->newLine();
 
-        // Step 4: Simple QR Escrow Generation & Platform Fee (3%)
+        // Step 4: Pago por Código QR Escrow Generation & Platform Fee (3%)
         $this->comment('[4/5] Generación de Custodia Escrow con QR Simple Bolivia...');
         $grossFreight = 1250.00;
         $returnDiscount = 437.50; // 35% discount for return load
@@ -78,7 +78,7 @@ class MulaCargoSimulateFreightCommand extends Command
 
         $this->line("  Flete Estándar Ida: Bs. " . number_format($grossFreight, 2));
         $this->line("  Tarifa Preferencial Retorno (-35%): Bs. " . number_format($discountedFreight, 2));
-        $this->line("  Referencia Interbancaria: {$bankReference} (Simple QR)");
+        $this->line("  Referencia Interbancaria: {$bankReference} (Pago por Código QR)");
         $this->line("  Estado: [FONDOS EN CUSTODIA ESCROW - 100% PROTEGIDO]");
         $this->newLine();
 

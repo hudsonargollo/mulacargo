@@ -39,8 +39,8 @@ El corazón de MulaCargo es su motor de optimización de corredores inversos (*B
 - **Match Automático:** El sistema cruza geocercas y empalma la ruta de regreso con cargas pendientes en origen.
 - **Resultado:** El camión viaja con carga completa tanto de ida como de vuelta (**2X Rentabilidad Neta**), eliminando los kilómetros muertos y abaratando el flete para el generador sin sacrificar la ganancia del chofer.
 
-### 2. Pagos Instantáneos por Simple QR EMVCo (T+0)
-Olvídese de las esperas de semanas. MulaCargo integra el estándar de pagos interbancarios de Bolivia (**Simple QR** con soporte para BNB, BCP, Banco Unión, Mercantil Santa Cruz, Bisa y Ganadero). 
+### 2. Pagos Instantáneos por Pago Directo por QR Bancario (T+0)
+Olvídese de las esperas de semanas. MulaCargo integra el estándar de pagos interbancarios de Bolivia (**Pago por Código QR** con soporte para BNB, BCP, Banco Unión, Mercantil Santa Cruz, Bisa y Ganadero). 
 - El dador de carga fondea el servicio de forma digital.
 - Los fondos quedan respaldados y se liquidan automáticamente a la cuenta del transportista en el mismo instante en que el receptor en destino valida la entrega mediante un código **Código de Entrega de 6 dígitos**.
 

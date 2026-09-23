@@ -90,7 +90,7 @@ Route::group(['middleware' => ['localization']], function () {
         Route::get('backhaul/radar-corridor', 'Api\MulaCargoBackhaulController@getReturnCargo');
         Route::get('backhaul/my-trips', 'Api\MulaCargoBackhaulController@getDriverTrips');
 
-        // Bolivian Simple QR Escrow & Settlement
+        // Bolivian Pago por Código QR Escrow & Settlement
         Route::post('escrow/generate-qr', 'Api\MulaCargoEscrowController@generateSimpleQr');
         Route::post('escrow/confirm-payment', 'Api\MulaCargoEscrowController@confirmPayment');
         Route::post('escrow/verify-delivery-otp', 'Api\MulaCargoEscrowController@verifyDeliveryOtp');
