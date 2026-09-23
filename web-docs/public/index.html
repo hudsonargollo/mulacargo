@@ -1,228 +1,406 @@
 <!DOCTYPE html>
-<html lang="es">
+<html class="scroll-smooth" lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MulaCargo — Documentación, Marca & Propuesta</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700;800&family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --color-brand: #FF5500;
-      --color-brand-hover: #E04B00;
-      --color-dark-bg: #0A0C10;
-      --color-dark-surface: #12151D;
-      --color-dark-card: #181C26;
-      --color-dark-border: #262D3D;
-      --color-emerald: #10B981;
-      --color-text-main: #F8FAFC;
-      --color-text-secondary: #94A3B8;
-      --font-display: 'League Spartan', sans-serif;
-      --font-body: 'League Spartan', sans-serif;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MulaCargo — Plataforma Tecnológica de Fletes y Logística Pesada en Bolivia</title>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700;800&family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#FF5500',
+              'orange-dark': '#E04B00',
+              'orange-light': '#FFF2EA',
+              emerald: '#00E599',
+              'emerald-dark': '#00B377',
+              dark: '#0A0A0C',
+              surface: '#12141A',
+              slate: '#181C26'
+            }
+          },
+          fontFamily: {
+            sans: ['League Spartan', 'sans-serif'],
+            display: ['League Spartan', 'sans-serif'],
+            mono: ['Geist Mono', 'monospace']
+          }
+        }
+      }
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background-color: var(--color-dark-bg);
-      color: var(--color-text-main);
-      font-family: var(--font-body);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-      position: relative;
-      overflow-x: hidden;
+  </script>
+<style data-purpose="custom-layout">
+    .hero-glow {
+      background: radial-gradient(circle at 50% 30%, rgba(255, 85, 0, 0.22) 0%, rgba(10, 10, 12, 0) 70%);
     }
-
-    body::before {
-      content: "";
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(255, 85, 0, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
-      pointer-events: none;
+    .custom-scroll::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
     }
-
-    .hub-container {
-      max-width: 900px;
-      width: 100%;
-      z-index: 1;
-      text-align: center;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255, 85, 0, 0.15);
-      border: 1px solid rgba(255, 85, 0, 0.35);
-      color: var(--color-brand);
-      padding: 0.4rem 1rem;
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
       border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 1.5rem;
-    }
-
-    h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 5vw, 4.2rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-      line-height: 1.1;
-    }
-
-    h1 span {
-      color: var(--color-brand);
-    }
-
-    p.lead {
-      color: var(--color-text-secondary);
-      font-size: 1.2rem;
-      max-width: 680px;
-      margin: 0 auto 3rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.75rem;
-      text-align: left;
-    }
-
-    .hub-card {
-      background: var(--color-dark-surface);
-      border: 1px solid var(--color-dark-border);
-      border-radius: 16px;
-      padding: 2.25rem;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .hub-card:hover {
-      border-color: var(--color-brand);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 32px rgba(255, 85, 0, 0.15);
-    }
-
-    .card-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .card-title {
-      font-family: var(--font-display);
-      font-size: 1.45rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      color: var(--color-text-main);
-    }
-
-    .card-desc {
-      color: var(--color-text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.5;
-      margin-bottom: 1.5rem;
-    }
-
-    .card-link {
-      color: var(--color-brand);
-      font-weight: 700;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .hub-card:hover .card-link {
-      color: #FFA066;
-    }
-
-    footer {
-      margin-top: 4rem;
-      color: #64748B;
-      font-size: 0.85rem;
     }
   </style>
 </head>
-<body>
+<body class="bg-[#F8FAFC] text-slate-800 antialiased font-sans">
+<!-- BEGIN: HeroSection -->
+<section class="relative bg-brand-dark text-white pt-12 pb-28 overflow-hidden hero-glow" id="inicio">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
 
-  <div class="hub-container">
-    <div class="badge">Ecosistema MulaCargo</div>
-    <h1>Mula<span>Cargo</span></h1>
-    <p class="lead">Marketplace de fletes pesados, subastas dinámicas con 3% de comisión y optimización de rutas con Radar de Retorno.</p>
+<div class="flex justify-center mb-8">
+  <img src="./mulacargo.webp" alt="MulaCargo" class="h-32 sm:h-48 w-auto object-contain filter drop-shadow-[0_15px_30px_rgba(255,85,0,0.45)] transform hover:scale-105 transition-transform duration-300">
+</div>
 
-    <div class="grid">
-      <!-- Card 0: Main Landing v2 -->
-      <a href="./app-v2.html" class="hub-card" style="border-color: rgba(255, 85, 0, 0.6); grid-column: 1 / -1; background: linear-gradient(135deg, rgba(255, 85, 0, 0.15) 0%, rgba(18, 20, 26, 1) 100%);">
-        <div>
-          <div class="card-icon">🚀</div>
-          <div class="card-title" style="font-size: 1.6rem; color: #FFFFFF;">Landing Page Oficial de la App v2 (Nueva)</div>
-          <div class="card-desc" style="max-width: 750px;">Página de conversión v2 optimizada con tipografía League Spartan, logo oficial mulacargo.webp, pagos directos por Pago por Código QR y simulador de doble rentabilidad por viaje redondo.</div>
+<h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-display max-w-4xl mx-auto leading-tight sm:leading-tight">
+        Mueve tu Carga con <span class="text-brand-orange underline decoration-brand-orange/40 decoration-wavy decoration-2">Seguridad</span>, Transporta con Confianza
+      </h1>
+
+<p class="mt-6 text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+        La plataforma tecnológica de fletes y logística pesada de Bolivia. Optimizamos rutas interdepartamentales con cubicaje por IA, radar anti-viajes vacíos y pagos blindados por <span class="text-brand-emerald font-semibold">Pago Directo por QR Bancario</span>.
+      </p>
+
+<div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="w-full sm:w-auto px-8 py-3.0 rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white font-bold text-base shadow-xl shadow-brand-orange/25 transition-transform hover:-translate-y-0.5" href="./simulator.html">
+          App Generador de Carga
+        </a>
+<a class="w-full sm:w-auto px-8 py-3.0 rounded-xl bg-slate-800 hover:bg-slate-700 text-brand-emerald border border-brand-emerald/40 font-bold text-base flex items-center justify-center gap-2 transition-transform hover:-translate-y-0.5" href="./conductor.html">
+<span class="w-2.5 h-2.5 rounded-full bg-brand-emerald"></span>
+          App Conductor / Propietario
+        </a>
+</div>
+
+<!-- Mobile UI Centerpiece Mockup -->
+<div class="mt-14 max-w-4xl mx-auto relative px-2">
+<div class="relative mx-auto rounded-3xl bg-slate-900 border-4 border-slate-700 p-4 sm:p-6 shadow-2xl shadow-black/80 max-w-lg">
+<div class="flex items-center justify-between pb-4 border-b border-slate-800 text-left">
+<div>
+<p class="text-xs text-slate-400">Bienvenido de nuevo</p>
+<h4 class="text-sm font-bold text-white flex items-center gap-1.5">
+                Don Hilarión Mamani (Chofer Verificado)
+                <span class="bg-brand-emerald/20 text-brand-emerald text-[10px] px-1.5 py-0.5 rounded font-bold">VIP 5★</span>
+</h4>
+</div>
+<div class="text-right">
+<span class="text-[10px] bg-brand-orange/20 text-brand-orange px-2 py-1 rounded-full font-bold">GPS Activo</span>
+</div>
+</div>
+
+<div class="mt-4 p-4 rounded-xl bg-slate-800/90 border border-slate-700 text-left">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-[10px] uppercase tracking-wide font-extrabold text-brand-emerald">Oferta Directa Confirmada</span>
+<h5 class="text-base font-bold text-white mt-0.5">SCZ (Parque Industrial) ➔ LPB (El Alto)</h5>
+<p class="text-xs text-slate-400 mt-1">Carga: 28 Toneladas Granel Soja Limpia · Carretera El Sillar</p>
+</div>
+<div class="text-right">
+<span class="text-xl font-extrabold text-brand-orange">Bs. 9,400</span>
+<p class="text-[10px] text-brand-emerald font-semibold">Pago Directo Pago por Código QR</p>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-300">
+<span class="flex items-center gap-1">📍 Santa Cruz (KM 0)</span>
+<div class="h-1.5 flex-1 mx-3 bg-slate-700 rounded-full overflow-hidden">
+<div class="bg-brand-orange h-full w-2/3"></div>
+</div>
+<span class="flex items-center gap-1">🏁 El Alto (Almacén Central)</span>
+</div>
+</div>
+
+<div class="grid grid-cols-3 gap-2 mt-4 text-center">
+<div class="p-2.5 rounded-lg bg-slate-800/50 border border-slate-700">
+<p class="text-xs text-slate-400">Tranca actual</p>
+<p class="text-sm font-bold text-white">Yapacaní OK</p>
+</div>
+<div class="p-2.5 rounded-lg bg-slate-800/50 border border-slate-700">
+<p class="text-xs text-slate-400">Cubicaje IA</p>
+<p class="text-sm font-bold text-brand-emerald">94% Óptimo</p>
+</div>
+<div class="p-2.5 rounded-lg bg-slate-800/50 border border-slate-700">
+<p class="text-xs text-slate-400">Retorno Asegurado</p>
+<p class="text-sm font-bold text-brand-orange">LPB ➔ SCZ</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+
+<!-- BEGIN: MetricCounterStrip -->
+<section class="py-14 bg-white border-b border-slate-200" data-purpose="metric-strip">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+<div>
+<span class="text-brand-orange font-bold text-xs uppercase tracking-wider">Métricas Reales en Carreteras</span>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mt-1">
+            Impulsando el Transporte Terrestre Boliviano 🇧🇴
+          </h2>
+</div>
+<p class="mt-3 md:mt-0 text-sm text-slate-500 max-w-md">
+          Conectamos a las mayores empresas agroindustriales y comerciales con miles de transportistas sindicalizados e independientes en todo el país.
+        </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 text-center hover:shadow-md transition-shadow">
+<div class="w-12 h-12 mx-auto rounded-full bg-emerald-100 flex items-center justify-center text-brand-emerald mb-4 font-bold text-lg">✓</div>
+<h3 class="text-sm font-semibold text-slate-700">Fletes Completados</h3>
+<p class="text-xs text-slate-500 mt-1">Santa Cruz, Montero, Cochabamba, La Paz y Oruro</p>
+<div class="mt-4 text-3xl font-extrabold text-brand-emerald font-display">+18,500</div>
+</div>
+<div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 text-center hover:shadow-md transition-shadow">
+<div class="w-12 h-12 mx-auto rounded-full bg-orange-100 flex items-center justify-center text-brand-orange mb-4 font-bold text-lg">🏢</div>
+<h3 class="text-sm font-semibold text-slate-700">Empresas &amp; Productores</h3>
+<p class="text-xs text-slate-500 mt-1">Agro, retail, importadores y faenas mineras</p>
+<div class="mt-4 text-3xl font-extrabold text-brand-orange font-display">+2,400</div>
+</div>
+<div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 text-center hover:shadow-md transition-shadow">
+<div class="w-12 h-12 mx-auto rounded-full bg-orange-100 flex items-center justify-center text-brand-orange mb-4 font-bold text-lg">🚛</div>
+<h3 class="text-sm font-semibold text-slate-700">Choferes &amp; Carretas</h3>
+<p class="text-xs text-slate-500 mt-1">Con verificación legal RUAT, SOAT &amp; FELCC</p>
+<div class="mt-4 text-3xl font-extrabold text-brand-orange font-display">+4,800</div>
+</div>
+<div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 text-center hover:shadow-md transition-shadow">
+<div class="w-12 h-12 mx-auto rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-4 font-bold text-lg">⚡</div>
+<h3 class="text-sm font-semibold text-slate-700">Entregas Conformes T+0</h3>
+<p class="text-xs text-slate-500 mt-1">Desembolso directo vía Pago por Código QR</p>
+<div class="mt-4 text-3xl font-extrabold text-blue-600 font-display">99.8%</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: MetricCounterStrip -->
+
+<!-- BEGIN: CoreFeaturesGrid -->
+<section class="py-20 bg-slate-50" data-purpose="features-grid" id="por-que-mulacargo">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+<div>
+<span class="text-brand-orange font-bold text-xs uppercase tracking-wider">Ventaja Tecnológica</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display mt-1">
+            Por Qué MulaCargo es tu Mejor Opción de Carga 🇧🇴
+          </h2>
+</div>
+<p class="mt-3 md:mt-0 text-slate-500 text-sm max-w-md">
+          Infraestructura digital diseñada para resolver la geografía boliviana: trancas, cordilleras, clima y pagos sin demoras burocráticas.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all">
+<div class="text-2xl mb-4">📍</div>
+<h3 class="text-lg font-bold text-slate-900">Rastreo Satelital &amp; Alertas de Cordillera</h3>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            Telemetría en vivo con actualización cada 30 segundos. Alertas automáticas ante trancaderas en El Sillar, vientos cruzados en la Cumbre o cierres de trancas provinciales.
+          </p>
+</div>
+<div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all" id="flota">
+<div class="text-2xl mb-4">🚛</div>
+<h3 class="text-lg font-bold text-slate-900">Taxonomía de Flota Homologada</h3>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            Desde Pickups (1.2T) y Furgones VUC (3.0T) para distribución urbana en Santa Cruz, hasta Camiones 3/4, Tocos (10T) y Semirremolques Graneleros (30T+).
+          </p>
+</div>
+<div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all" id="radar">
+<div class="text-2xl mb-4">⚡</div>
+<h3 class="text-lg font-bold text-slate-900">Radar de Retorno (Backhaul Engine)</h3>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            Elimina los viajes vacíos. Si llevas carga de Santa Cruz a La Paz, el algoritmo te pre-asigna carga de retorno desde El Alto o Cochabamba para duplicar tus ingresos.
+          </p>
+</div>
+<div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all" id="estimador">
+<div class="text-2xl mb-4">🤖</div>
+<h3 class="text-lg font-bold text-slate-900">AI Vision Cargo Estimator</h3>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            Sube fotos de tus pallets o bultos. Nuestra inteligencia artificial calcula al instante el volumen cúbico (m³), peso estimado y recomienda el camión exacto para no pagar de más.
+          </p>
+</div>
+<div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all" id="pagos-qr">
+<div class="text-2xl mb-4">📲</div>
+<h3 class="text-lg font-bold text-slate-900">Pagos Directos Pago Directo por QR Bancario</h3>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            Cero incertidumbre con cheques o cobranzas demoradas. Pagos y cobros instantáneos (T+0) mediante Pago por Código QR interbancario de Bolivia directo a tu cuenta bancaria.
+          </p>
+</div>
+<div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all">
+<div class="text-2xl mb-4">🧾</div>
+<h3 class="text-lg font-bold text-slate-900">Facturación Computarizada SIAT</h3>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">
+            Emisión de factura con crédito fiscal válido ante el SIN boliviano, junto con la Hoja de Ruta, Manifiesto de Carga y Carta de Porte homologada en cada servicio.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: CoreFeaturesGrid -->
+
+<!-- BEGIN: InteractiveRateSimulator -->
+<section class="py-20 bg-white" data-purpose="simulator-section" id="simulador">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<span class="text-brand-orange font-bold text-xs uppercase tracking-wider">Simulador en Vivo</span>
+<h2 class="text-3xl font-extrabold text-slate-900 font-display mt-1">
+          Calcula tu Tarifa y Rentabilidad por Viaje Redondo 🇧🇴
+        </h2>
+<p class="text-sm text-slate-600 mt-2">
+          Estima los costos de referencia por tonelada y el beneficio de completar tus retornos con carga en los corredores bolivianos.
+        </p>
+</div>
+<div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-lg">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2" for="sim-route">Corredor Troncal</label>
+<select class="w-full rounded-xl border-slate-300 focus:border-brand-orange focus:ring-brand-orange text-sm font-semibold text-slate-800 bg-white" id="sim-route">
+<option value="scz-cbb">Santa Cruz ➔ Cochabamba (480 km)</option>
+<option selected="" value="scz-lpb">Santa Cruz ➔ La Paz / El Alto (850 km)</option>
+<option value="cbb-scz">Cochabamba ➔ Santa Cruz (480 km)</option>
+<option value="lpb-scz">La Paz / El Alto ➔ Santa Cruz (850 km)</option>
+<option value="scz-yacuiba">Santa Cruz ➔ Yacuiba / Frontera (550 km)</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2" for="sim-vehicle">Tipo de Unidad</label>
+<select class="w-full rounded-xl border-slate-300 focus:border-brand-orange focus:ring-brand-orange text-sm font-semibold text-slate-800 bg-white" id="sim-vehicle">
+<option value="pickup">Camioneta / Pickup (1.2 Ton)</option>
+<option value="furgon">Furgón VUC Urbano (3.0 Ton)</option>
+<option value="toco">Camión 3/4 o Toco (10 Ton)</option>
+<option selected="" value="trailer">Semirremolque / Carretera (28-30 Ton)</option>
+</select>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="text-xs font-bold uppercase tracking-wider text-slate-700" for="sim-weight">Toneladas a Cargar</label>
+<span class="text-xs font-bold text-brand-orange" id="weight-val">25 Ton</span>
+</div>
+<input class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-orange mt-2" id="sim-weight" max="32" min="1" type="range" value="25"/>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6 bg-white p-6 rounded-2xl border border-slate-100">
+<div>
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Ganancia Neta Estimada (Ida + Vuelta)</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display" id="price-output">Bs. 16,450</span>
+<span class="text-xs text-slate-500 font-medium">Neto Transportista</span>
+</div>
+<p class="text-xs text-brand-emerald font-semibold mt-1 flex items-center gap-1">
+<span>✓ Incluye seguro de carga en tránsito y monitoreo GPS 24/7</span>
+</p>
+</div>
+<div class="bg-brand-orange-light p-4 rounded-xl border border-brand-orange/20 text-center md:text-right">
+<span class="text-xs font-bold text-brand-orange uppercase">Comisión Plataforma (3%)</span>
+<p class="text-xl font-extrabold text-brand-orange-dark font-display" id="savings-output">-Bs. 575.00</p>
+<span class="text-[11px] text-slate-600">97% neto directo a tu cuenta</span>
+</div>
+</div>
+<div class="mt-6 text-center">
+<a class="inline-flex items-center justify-center px-8 py-3 rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white font-bold text-sm shadow-md transition-all" href="./conductor.html">
+            Registrar mi Camión y Activar Radar
+          </a>
+</div>
+</div>
+</div>
+</section>
+<!-- END: InteractiveRateSimulator -->
+
+<!-- Footer -->
+<footer class="bg-brand-dark text-white pt-16 pb-12 border-t border-slate-800" data-purpose="footer-section" id="choferes">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+<div class="lg:col-span-2">
+<img alt="MulaCargo Logo Blanco" class="h-12 w-auto object-contain mb-4 rounded" src="./mulacargo.webp"/>
+<p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+            MulaCargo OS es la infraestructura de software logístico para el transporte de carga pesada en Bolivia. Operamos en Santa Cruz de la Sierra con alcance a los principales corredores del país.
+          </p>
+<div class="mt-4 flex items-center space-x-2 text-xs text-slate-300">
+<span class="font-bold text-brand-orange">Santa Cruz Hub:</span>
+<span>Av. San Martín, Equipetrol Norte</span>
+</div>
+</div>
+<div>
+<h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Ecosistema</h4>
+<ul class="space-y-2 text-xs text-slate-400">
+<li><a class="hover:text-brand-orange transition-colors" href="./app.html">Landing Oficial</a></li>
+<li><a class="hover:text-brand-orange transition-colors" href="./conductor.html">Portal Choferes</a></li>
+<li><a class="hover:text-brand-orange transition-colors" href="./simulator.html">Simulador </a></li>
+<li><a class="hover:text-brand-orange transition-colors" href="./proposal-rene-quiroz.html">Propuesta Comercial</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Marco Legal</h4>
+<ul class="space-y-2 text-xs text-slate-400">
+<li><a class="hover:text-brand-orange transition-colors" href="./proposal-rene-quiroz.html">Propuesta René Quiroz</a></li>
+<li><a class="hover:text-brand-orange transition-colors" href="./branding-guide.html">Manual de Marca</a></li>
+<li><a class="hover:text-brand-orange transition-colors" href="#">Facturación SIAT / SIN</a></li>
+<li><a class="hover:text-brand-orange transition-colors" href="#">Carta de Porte Homologada</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Soporte Operativo</h4>
+<p class="text-xs text-slate-400 mb-3">Atención 24/7 en carretera ante emergencias y trancas provinciales.</p>
+<a href="https://wa.me/59170000000" target="_blank" class="inline-block bg-[#25D366] text-[#0A0A0C] font-bold text-xs px-4 py-2.5 rounded-lg">💬 WhatsApp de Operaciones</a>
+</div>
+</div>
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+<div>
+          © 2026 MulaCargo Bolivia SRL. Todos los derechos reservados. Desarrollado con tecnología boliviana para la troncal nacional.
         </div>
-        <div class="card-link" style="color: var(--color-brand); font-size: 1rem;">Abrir Landing v2 en Vivo →</div>
-      </a>
+<div class="flex space-x-6 text-slate-400">
+<a class="hover:text-brand-orange transition-colors" href="#">Términos y Privacidad</a>
+<a class="hover:text-brand-orange transition-colors" href="#">API Docs</a>
+<a class="hover:text-brand-orange transition-colors" href="#">Soporte 24/7</a>
+</div>
+</div>
+</div>
+</footer>
 
-      <!-- Card 1 -->
-      <a href="./branding-guide.html" class="hub-card">
-        <div>
-          <div class="card-icon">🎨</div>
-          <div class="card-title">Manual de Marca & Identidad</div>
-          <div class="card-desc">Guía visual oficial, paleta de colores, tokens, tipografía, arquetipo de la Mula y taxonomía de vehículos de carga.</div>
-        </div>
-        <div class="card-link">Ver Manual de Marca →</div>
-      </a>
+<script data-purpose="simulator-engine">
+    const routeSelect = document.getElementById('sim-route');
+    const vehicleSelect = document.getElementById('sim-vehicle');
+    const weightInput = document.getElementById('sim-weight');
+    const weightValDisplay = document.getElementById('weight-val');
+    const priceOutput = document.getElementById('price-output');
+    const savingsOutput = document.getElementById('savings-output');
 
-      <!-- Card 2 -->
-      <a href="./simulator.html" class="hub-card" style="border-color: rgba(0, 229, 153, 0.35);">
-        <div>
-          <div class="card-icon">⚡</div>
-          <div class="card-title">Simulador de Fletes & Radar</div>
-          <div class="card-desc">Calculadora interactiva en vivo: simulación de rutas (Cochabamba, La Paz, Montero), tarifa de retorno (-35%) y liquidación con 3% de comisión.</div>
-        </div>
-        <div class="card-link" style="color: #00E599;">Abrir Simulador en Vivo →</div>
-      </a>
+    const routeBase = {
+      'scz-cbb': { base: 4500, perTon: 160 },
+      'scz-lpb': { base: 7000, perTon: 220 },
+      'cbb-scz': { base: 4200, perTon: 150 },
+      'lpb-scz': { base: 6500, perTon: 200 },
+      'scz-yacuiba': { base: 5200, perTon: 180 }
+    };
 
-      <!-- Card 3 -->
-      <a href="./conductor.html" class="hub-card" style="border-color: rgba(212, 175, 55, 0.35);">
-        <div>
-          <div class="card-icon">🚜</div>
-          <div class="card-title">Portal de Conductores & Flotas</div>
-          <div class="card-desc">Calculadora de ingresos mensuales por retorno, registro de transportistas, pagos por QR y activación de cuenta vía WhatsApp.</div>
-        </div>
-        <div class="card-link" style="color: #D4AF37;">Registrarme como Conductor →</div>
-      </a>
+    function recalculateRates() {
+      const selectedRoute = routeSelect.value;
+      const tons = parseInt(weightInput.value, 10);
+      weightValDisplay.textContent = tons + ' Ton';
 
-      <!-- Card 4 -->
-      <a href="./proposal-rene-quiroz.html" class="hub-card" style="border-color: rgba(255, 85, 0, 0.35);">
-        <div>
-          <div class="card-icon">💼</div>
-          <div class="card-title">Propuesta Técnica & Comercial</div>
-          <div class="card-desc">Presentado a <strong>René Quiroz</strong>: arquitectura de apps, integración de IA, 1 año de soporte y condiciones de inversión.</div>
-        </div>
-        <div class="card-link">Ver Propuesta Ejecutiva →</div>
-      </a>
-    </div>
+      const config = routeBase[selectedRoute] || routeBase['scz-lpb'];
+      let calculatedPrice = (config.base + (tons * config.perTon)) * 2; // Round trip double
 
-    <footer>
-      <p>© 2026 MulaCargo • ClubeMkt Platform Engineering</p>
-    </footer>
-  </div>
+      if (vehicleSelect.value === 'pickup') {
+        calculatedPrice = Math.min(calculatedPrice * 0.35, 4500);
+      } else if (vehicleSelect.value === 'furgon') {
+        calculatedPrice = Math.min(calculatedPrice * 0.55, 7800);
+      } else if (vehicleSelect.value === 'toco') {
+        calculatedPrice = Math.min(calculatedPrice * 0.8, 13000);
+      }
 
+      const platformFee = Math.round(calculatedPrice * 0.030);
+
+      priceOutput.textContent = 'Bs. ' + Math.round(calculatedPrice).toLocaleString('es-BO');
+      savingsOutput.textContent = '-Bs. ' + platformFee.toLocaleString('es-BO');
+    }
+
+    routeSelect.addEventListener('change', recalculateRates);
+    vehicleSelect.addEventListener('change', recalculateRates);
+    weightInput.addEventListener('input', recalculateRates);
+
+    recalculateRates();
+  </script>
 </body>
 </html>
