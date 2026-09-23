@@ -213,7 +213,9 @@ export default {
       url.pathname === "/simulator" ||
       url.pathname === "/simulator.html" ||
       url.pathname === "/conductor" ||
-      url.pathname === "/conductor.html";
+      url.pathname === "/conductor.html" ||
+      url.pathname === "/manifesto" ||
+      url.pathname === "/manifesto.html";
 
     if (isPublicRoute) {
       return env.ASSETS.fetch(request);
