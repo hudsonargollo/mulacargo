@@ -1,0 +1,53 @@
+services:
+  mulacargo-backend:
+    container_name: mulacargo-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8086:80"
+    depends_on:
+      - mulacargo-mysql
+    networks:
+      - mulacargo-network
+    environment:
+      - APP_NAME=MulaCargo
+      - APP_ENV=production
+      - APP_KEY=base64:c3VwZXJzZWNyZXRtdWxhY2FyZ29rZXkxMjM0NTY3OA==
+      - APP_URL=https://mulacargo.clubemkt.online
+      - DB_CONNECTION=mysql
+      - DB_HOST=mulacargo-mysql
+      - DB_PORT=3306
+      - DB_DATABASE=mulacargo_db
+      - DB_USERNAME=mulacargo_user
+      - DB_PASSWORD=mulacargo_pass
+    volumes:
+      - ./backend:/var/www/html
+      - mulacargo-vendor:/var/www/html/vendor
+      - mulacargo-storage:/var/www/html/storage
+
+  mulacargo-mysql:
+    container_name: mulacargo-mysql
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mulacargo_root_pass
+      MYSQL_DATABASE: mulacargo_db
+      MYSQL_USER: mulacargo_user
+      MYSQL_PASSWORD: mulacargo_pass
+    ports:
+      - "3308:3306"
+    volumes:
+      - mulacargo-mysql-data:/var/lib/mysql
+    networks:
+      - mulacargo-network
+
+networks:
+  mulacargo-network:
+    driver: bridge
+
+volumes:
+  mulacargo-mysql-data:
+  mulacargo-storage:
+  mulacargo-vendor:

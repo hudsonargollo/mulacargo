@@ -32,7 +32,7 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction
 
 # Install Node.js dependencies and build assets
-RUN npm ci && npm run build && rm -rf node_modules
+RUN npm install --no-audit && npm run build && rm -rf node_modules
 
 # Run Laravel storage link
 RUN php artisan storage:link
@@ -87,9 +87,9 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 # Expose port 80
 EXPOSE 80
 
-# Copy install script to handle startup
-COPY install.sh /install.sh
-RUN chmod +x /install.sh
+# Copy entrypoint script to handle startup
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 # Start PHP-FPM and Nginx
-CMD ["/install.sh"]
+CMD ["/docker-entrypoint.sh"]
