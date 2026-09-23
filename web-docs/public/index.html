@@ -4,6 +4,11 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>MulaCargo — Plataforma Tecnológica de Fletes y Logística Pesada en Bolivia</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -117,7 +122,14 @@
 <body class="bg-[#F8FAFC] text-slate-800 antialiased font-sans">
 <!-- BEGIN: HeroSection -->
 <section class="relative bg-brand-dark text-white pt-12 pb-28 overflow-hidden hero-glow" id="inicio">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+  <!-- Background Image with clean dimming scrim overlay -->
+  <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+    <img src="./bck-hero.webp" alt="MulaCargo Fleet" class="w-full h-full object-cover object-[center_35%] opacity-55 filter contrast-105">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0F1117]/70 via-[#0F1117]/50 to-[#0F1117]"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0F1117]/80 via-transparent to-[#0F1117]/80"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
 
 <div class="flex justify-center mb-8">
   <img src="./mulacargo.webp" alt="MulaCargo" class="h-32 sm:h-48 w-auto object-contain filter drop-shadow-[0_15px_30px_rgba(255,85,0,0.45)] transform hover:scale-105 transition-transform duration-300">
@@ -131,14 +143,18 @@
         La plataforma tecnológica de fletes y logística pesada de Bolivia. Optimizamos rutas interdepartamentales con cubicaje por IA, radar anti-viajes vacíos y pagos blindados por <span class="text-brand-emerald font-semibold">Pago Directo por QR Bancario</span>.
       </p>
 
-<div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-<a class="w-full sm:w-auto px-8 py-3.0 rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white font-bold text-base shadow-xl shadow-brand-orange/25 transition-transform hover:-translate-y-0.5" href="./simulator.html">
-          App Generador de Carga
-        </a>
-<a class="w-full sm:w-auto px-8 py-3.0 rounded-xl bg-slate-800 hover:bg-slate-700 text-brand-emerald border border-brand-emerald/40 font-bold text-base flex items-center justify-center gap-2 transition-transform hover:-translate-y-0.5" href="./conductor.html">
-<span class="w-2.5 h-2.5 rounded-full bg-brand-emerald"></span>
-          App Conductor / Propietario
-        </a>
+<div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
+  <a class="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-gradient-to-r from-brand-orange to-[#FF6B1A] hover:from-brand-orange-dark hover:to-brand-orange text-white font-bold text-sm sm:text-base tracking-wide uppercase whitespace-nowrap shadow-[0_10px_24px_rgba(255,85,0,0.35),inset_0_1px_1px_rgba(255,255,255,0.35)] border border-white/20 flex items-center justify-center gap-2.5 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0.5 cursor-pointer" href="./simulator.html">
+    <span class="whitespace-nowrap">App Generador de Carga</span>
+    <svg class="w-4 h-4 text-white/90 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+  </a>
+  <a class="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-[#141822] hover:bg-[#1B212F] text-brand-emerald border-2 border-brand-emerald/50 hover:border-brand-emerald font-bold text-sm sm:text-base tracking-wide uppercase whitespace-nowrap shadow-[0_10px_24px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.08)] flex items-center justify-center gap-2.5 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0.5 cursor-pointer" href="./conductor.html">
+    <span class="relative flex h-2.5 w-2.5 shrink-0">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-emerald opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-emerald"></span>
+    </span>
+    <span class="whitespace-nowrap">App Conductor / Propietario</span>
+  </a>
 </div>
 
 <!-- Mobile UI Centerpiece Mockup -->
@@ -391,7 +407,8 @@
 <ul class="space-y-2 text-xs text-slate-400">
 <li><a class="hover:text-brand-orange transition-colors" href="./app.html">Landing Oficial</a></li>
 <li><a class="hover:text-brand-orange transition-colors" href="./conductor.html">Portal Choferes</a></li>
-<li><a class="hover:text-brand-orange transition-colors" href="./simulator.html">Simulador </a></li>
+<li><a class="hover:text-brand-orange transition-colors" href="./simulator.html">Simulador de Fletes</a></li>
+<li><a class="hover:text-brand-orange text-brand-orange font-semibold transition-colors" href="./playbook.html">🎯 Playbook GTM 2026</a></li>
 <li><a class="hover:text-brand-orange transition-colors" href="./proposal-rene-quiroz.html">Propuesta Comercial</a></li>
 </ul>
 </div>

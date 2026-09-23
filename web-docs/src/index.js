@@ -202,6 +202,8 @@ export default {
 
     const isPublicRoute =
       isAsset ||
+      url.pathname === "/" ||
+      url.pathname === "/index.html" ||
       url.pathname === "/app" ||
       url.pathname === "/app.html" ||
       url.pathname === "/app-v1" ||
@@ -217,10 +219,21 @@ export default {
       url.pathname === "/conductor" ||
       url.pathname === "/conductor.html" ||
       url.pathname === "/manifesto" ||
-      url.pathname === "/manifesto.html";
+      url.pathname === "/manifesto.html" ||
+      url.pathname === "/branding-guide" ||
+      url.pathname === "/branding-guide.html" ||
+      url.pathname === "/playbook" ||
+      url.pathname === "/playbook.html";
 
     if (isPublicRoute) {
-      return env.ASSETS.fetch(request);
+      const response = await env.ASSETS.fetch(request);
+      if (response.status === 404 && !url.pathname.includes(".")) {
+        const htmlUrl = new URL(request.url);
+        htmlUrl.pathname = url.pathname === "/" ? "/index.html" : `${url.pathname}.html`;
+        const htmlResp = await env.ASSETS.fetch(new Request(htmlUrl, request));
+        if (htmlResp.status === 200) return htmlResp;
+      }
+      return response;
     }
 
     // 1. Direct query param unlock (e.g. ?key=mula2026)

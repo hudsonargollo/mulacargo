@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Únete como Transportista — MulaCargo</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
   <meta name="description" content="Regístrate como conductor o transportista en MulaCargo. Duplica tus ingresos con el Radar de Retorno, cobra directo por QR y paga solo 3% de comisión.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,6 +48,27 @@
       height: 500px;
       background: radial-gradient(circle, rgba(255, 85, 0, 0.12) 0%, transparent 70%);
       pointer-events: none;
+    }
+
+    .hero-bg-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 600px;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-bg-layer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      opacity: 0.50;
+      filter: contrast(1.1);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
     }
 
     .container {
@@ -331,6 +357,10 @@
 
 </head>
 <body>
+
+  <div class="hero-bg-layer">
+    <img src="./bck-hero.webp" alt="MulaCargo Fleet">
+  </div>
 
   <div class="container">
     <a href="./app.html" class="nav-back">← Volver a MulaCargo</a>
