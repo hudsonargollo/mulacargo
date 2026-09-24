@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MulaCargo — GTM Playbook & Marketing Engine</title>
+  <title>MulaCargo — Playbook Engine & GTM Command Center</title>
   
   <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
@@ -33,7 +33,8 @@
               dark: '#0A0A0C',
               surface: '#12141A',
               card: '#181C26',
-              border: '#242B38'
+              border: '#242B38',
+              amber: '#F59E0B'
             }
           },
           fontFamily: {
@@ -62,6 +63,7 @@
 
     .font-mono {
       font-family: 'Geist Mono', monospace;
+      font-feature-settings: "tnum";
     }
 
     /* Custom Scrollbar */
@@ -99,6 +101,16 @@
     .badge-corner.bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
     .badge-corner.br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
 
+    .reflective-tape {
+      background: repeating-linear-gradient(
+        -45deg,
+        #FF5500,
+        #FF5500 12px,
+        #0A0A0C 12px,
+        #0A0A0C 24px
+      );
+    }
+
     .tab-btn.active {
       background-color: #FF5500;
       color: #FFFFFF;
@@ -106,7 +118,6 @@
       box-shadow: 0 4px 15px rgba(255, 85, 0, 0.35);
     }
 
-    /* Toast Animation */
     @keyframes slideDown {
       from { transform: translate(-50%, -100%); opacity: 0; }
       to { transform: translate(-50%, 0); opacity: 1; }
@@ -131,7 +142,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         
-        <!-- Brand & Playbook Engine Label -->
+        <!-- Brand & Engine Title -->
         <div class="flex items-center gap-3">
           <a href="/index.html" class="flex items-center gap-2 group">
             <div class="w-9 h-9 rounded bg-gradient-to-br from-brand-orange to-orange-600 flex items-center justify-center font-extrabold text-white text-lg tracking-tight shadow-md group-hover:scale-105 transition-transform">
@@ -142,69 +153,79 @@
                 <span class="font-extrabold text-xl tracking-tight text-white uppercase">MULA<span class="text-brand-orange">CARGO</span></span>
                 <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-brand-orange/20 text-brand-orange border border-brand-orange/40 uppercase font-semibold">Playbook Engine</span>
               </div>
-              <p class="text-[10px] font-mono text-gray-400">GTM // SANTA CRUZ 2026 // $5,000 USD BUDGET</p>
+              <p class="text-[10px] font-mono text-gray-400">GTM & BRANDING // SANTA CRUZ 2026 // 3.5% FLAT TAKE-RATE</p>
             </div>
           </a>
         </div>
 
-        <!-- Right Action Controls -->
+        <!-- Right Quick Actions -->
         <div class="flex items-center gap-2 sm:gap-4">
-          <a href="/index.html" class="hidden md:inline-flex items-center gap-1.5 text-xs font-mono text-gray-400 hover:text-white px-3 py-1.5 rounded border border-brand-border hover:border-gray-500 transition-colors">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-            Portal Principal
+          <a href="/identidad-visual.html" class="inline-flex items-center gap-1.5 text-xs font-mono text-brand-orange hover:text-white px-3 py-1.5 rounded border border-brand-orange/40 hover:bg-brand-orange/20 transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+            Identidad Visual
           </a>
-          <button onclick="window.print()" class="inline-flex items-center gap-1.5 text-xs font-mono bg-brand-surface hover:bg-brand-card text-gray-300 hover:text-white px-3 py-1.5 rounded border border-brand-border transition-colors">
+          <button onclick="window.print()" class="hidden md:inline-flex items-center gap-1.5 text-xs font-mono bg-brand-surface hover:bg-brand-card text-gray-300 hover:text-white px-3 py-1.5 rounded border border-brand-border transition-colors">
             <svg class="w-3.5 h-3.5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-            Imprimir / PDF
+            Imprimir
           </button>
-          <div class="h-4 w-px bg-brand-border hidden sm:block"></div>
           <div class="flex items-center gap-1.5 text-[11px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-800/50 px-2.5 py-1 rounded-full">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            LIVE PLAYBOOK
+            LIVE V2.0
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Navigation Tabs -->
+    <!-- Navigation Bar with All 8 Modules -->
     <div class="bg-brand-surface border-t border-brand-border overflow-x-auto custom-scroll">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav class="flex space-x-2 py-2.5 min-w-max" aria-label="Tabs">
-          <button onclick="switchTab('posicionamiento')" id="tab-btn-posicionamiento" class="tab-btn active px-3.5 py-2 rounded-lg text-xs font-mono font-medium border border-transparent transition-all flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-            1. Posicionamiento & Ángulos
+        <nav class="flex space-x-1.5 py-2.5 min-w-max" aria-label="Tabs">
+          
+          <button onclick="switchTab('posicionamiento')" id="tab-btn-posicionamiento" class="tab-btn active px-3 py-2 rounded-lg text-xs font-mono font-medium border border-transparent transition-all flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            1. Posicionamiento
+          </button>
+
+          <button onclick="switchTab('audiencia')" id="tab-btn-audiencia" class="tab-btn px-3 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            2. Perfil "Lucho" & Jerga
+          </button>
+
+          <button onclick="switchTab('valores')" id="tab-btn-valores" class="tab-btn px-3 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            3. Valores & Voz
+          </button>
+
+          <button onclick="switchTab('guiones')" id="tab-btn-guiones" class="tab-btn px-3 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            4. Creator Studio
+          </button>
+
+          <button onclick="switchTab('ig-grid')" id="tab-btn-ig-grid" class="tab-btn px-3 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            5. Instagram Grid (Parabrisas)
           </button>
           
-          <button onclick="switchTab('guiones')" id="tab-btn-guiones" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-            2. Creator Studio & Guiones
+          <button onclick="switchTab('calculadora')" id="tab-btn-calculadora" class="tab-btn px-3 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            6. ROI Referidos
           </button>
           
-          <button onclick="switchTab('calculadora')" id="tab-btn-calculadora" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-            3. Calculadora ROI Referidos
+          <button onclick="switchTab('presupuesto')" id="tab-btn-presupuesto" class="tab-btn px-3 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            7. Presupuesto GTM
           </button>
           
-          <button onclick="switchTab('presupuesto')" id="tab-btn-presupuesto" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            4. Presupuesto GTM ($5k)
-          </button>
-          
-          <button onclick="switchTab('roadmap')" id="tab-btn-roadmap" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-            5. Roadmap & Checklist
-          </button>
-          
-          <button onclick="switchTab('prensa')" id="tab-btn-prensa" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
-            6. PR Pitch & Prensa
+          <button onclick="switchTab('prensa')" id="tab-btn-prensa" class="tab-btn px-3 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+            8. Prensa & PR
           </button>
         </nav>
       </div>
     </div>
   </header>
 
-  <!-- Main Content Layout -->
+  <!-- Main Workspace -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
     <!-- ========================================================================= -->
@@ -222,7 +243,7 @@
             <span class="w-2 h-2 rounded-full bg-brand-orange animate-ping"></span>
             MANIFIESTO Y MARCO DE POSICIONAMIENTO
           </div>
-          <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+          <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight uppercase">
             Posicionamiento Estratégico <span class="text-brand-orange">Mula Cargo</span>
           </h1>
           <p class="mt-3 text-base text-gray-300 leading-relaxed">
@@ -230,18 +251,18 @@
           </p>
         </div>
 
-        <div class="mt-6 pt-6 border-t border-brand-border/60 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="mt-6 pt-6 border-t border-brand-border/60 grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs">
           <div class="bg-[#0A0A0C]/60 p-3.5 rounded-xl border border-brand-border">
-            <div class="text-[11px] font-mono text-gray-400 uppercase">Mercado Inicial</div>
-            <div class="text-sm font-bold text-white mt-0.5">Santa Cruz de la Sierra (54% Tech Hub)</div>
+            <div class="text-gray-400 uppercase text-[10px]">Mercado Inicial</div>
+            <div class="text-sm font-bold text-white mt-0.5">Santa Cruz de la Sierra (54% Startups)</div>
           </div>
           <div class="bg-[#0A0A0C]/60 p-3.5 rounded-xl border border-brand-border">
-            <div class="text-[11px] font-mono text-gray-400 uppercase">Modelo GTM</div>
-            <div class="text-sm font-bold text-white mt-0.5">Product-Led Growth (PLG) + Red de Nodos</div>
+            <div class="text-gray-400 uppercase text-[10px]">Comisión Plana</div>
+            <div class="text-sm font-bold text-emerald-400 mt-0.5">3.5% Fijo (vs 15-20% tradicional)</div>
           </div>
           <div class="bg-[#0A0A0C]/60 p-3.5 rounded-xl border border-brand-border">
-            <div class="text-[11px] font-mono text-gray-400 uppercase">Diferenciador Clave</div>
-            <div class="text-sm font-bold text-brand-orange mt-0.5">Escrow Wallet + Bidding Dinámico</div>
+            <div class="text-gray-400 uppercase text-[10px]">Diferenciador Clave</div>
+            <div class="text-sm font-bold text-brand-orange mt-0.5">Escrow Wallet + Radar de Retorno</div>
           </div>
         </div>
       </div>
@@ -264,11 +285,11 @@
         </blockquote>
       </div>
 
-      <!-- 3 Viral Angles Grid -->
+      <!-- 3 Viral Angles Grid with Strategic Trade-offs -->
       <div>
         <div class="mb-4">
-          <h2 class="text-xl font-bold text-white">3 Ángulos de Posicionamiento Viral (TikTok & Reels)</h2>
-          <p class="text-xs font-mono text-gray-400 mt-1">Diseñados para captar retención en los primeros 3 segundos, ordenados por potencial de viralidad.</p>
+          <h2 class="text-xl font-bold text-white">3 Ángulos Estratégicos & Trade-offs</h2>
+          <p class="text-xs font-mono text-gray-400 mt-1">Beneficios inmediatos y compensaciones operativas para cada ángulo de mercado.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -276,136 +297,256 @@
           <!-- Angle 1 -->
           <div class="bg-brand-surface border border-brand-orange/40 rounded-xl p-6 relative flex flex-col justify-between hover:border-brand-orange transition-all glow-orange">
             <div class="absolute -top-3 left-4 bg-brand-orange text-white text-[10px] font-mono uppercase px-2.5 py-0.5 rounded font-bold">
-              🔥 Viralidad #1 (Alta)
+              🔥 Ángulo 1: Blindaje Financiero
             </div>
             <div>
-              <div class="text-xs font-mono text-brand-orange font-bold uppercase mt-2">Ángulo Antifraude</div>
-              <h3 class="text-lg font-bold text-white mt-1">El Escrow / Billetera en Garantía</h3>
+              <div class="text-xs font-mono text-brand-orange font-bold uppercase mt-2">Enfoque Billetera Escrow</div>
+              <h3 class="text-lg font-bold text-white mt-1">El Escrow / Plata Segura</h3>
               <p class="text-sm font-semibold text-brand-orange-light/90 italic mt-2">
                 "El Uber de la carga boliviana donde nadie te roba un peso."
               </p>
               <div class="mt-4 space-y-2 text-xs text-gray-300">
                 <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
-                  <strong class="text-white">Dolor que ataca:</strong> Las estafas masivas en grupos de Facebook y conductores sin pago tras completar el flete.
+                  <strong class="text-emerald-400">Lo que ganas:</strong> Lealtad inquebrantable del chofer. Resuelve el dolor de "me bicicletean el flete".
                 </div>
                 <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
-                  <strong class="text-white">Mecanismo psicológico:</strong> El dinero queda "congelado" de forma segura hasta confirmar la entrega física. Alivio inmediato.
+                  <strong class="text-red-400">Trade-off / Riesgo:</strong> Fricción con clientes corporativos acostumbrados a pagar a 30/60 días.
                 </div>
               </div>
             </div>
             <div class="mt-4 pt-3 border-t border-brand-border text-[11px] font-mono text-gray-400">
-              Formato: Sketch Comedia / Contraste "Rogar vs Cobrar"
+              Mecanismo: Fondos retenidos antes del arranque
             </div>
           </div>
 
           <!-- Angle 2 -->
           <div class="bg-brand-surface border border-brand-border rounded-xl p-6 relative flex flex-col justify-between hover:border-brand-orange transition-all">
-            <div class="absolute -top-3 left-4 bg-red-600 text-white text-[10px] font-mono uppercase px-2.5 py-0.5 rounded font-bold">
-              🚨 Emocional / Retención
+            <div class="absolute -top-3 left-4 bg-blue-600 text-white text-[10px] font-mono uppercase px-2.5 py-0.5 rounded font-bold">
+              🧭 Ángulo 2: Maximizador de Ruta
             </div>
             <div>
-              <div class="text-xs font-mono text-red-400 font-bold uppercase mt-2">Ángulo de Supervivencia</div>
-              <h3 class="text-lg font-bold text-white mt-1">Seguridad en Carretera & Botón SOS</h3>
+              <div class="text-xs font-mono text-blue-400 font-bold uppercase mt-2">Enfoque Radar de Retorno</div>
+              <h3 class="text-lg font-bold text-white mt-1">Muerte al Rodaje Vacío</h3>
               <p class="text-sm font-semibold text-gray-200 italic mt-2">
-                "Tu carga y tu vida, seguras en ruta."
+                "Nunca más vuelvas pateando oxígeno."
               </p>
               <div class="mt-4 space-y-2 text-xs text-gray-300">
                 <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
-                  <strong class="text-white">Dolor que ataca:</strong> Asaltos, piratería en rutas desoladas, y transportistas incomunicados.
+                  <strong class="text-emerald-400">Lo que ganas:</strong> ROI directo y calculable. El chofer ahorra hasta 50% de sus costos en cada retorno.
                 </div>
                 <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
-                  <strong class="text-white">Mecanismo psicológico:</strong> El botón SOS conectado 24/7 y la telemetría GPS en vivo posicionan la app como protector en ruta.
+                  <strong class="text-red-400">Trade-off / Riesgo:</strong> Vulnerabilidad al inicio en frío (requiere alta liquidez de cargas en destino).
                 </div>
               </div>
             </div>
             <div class="mt-4 pt-3 border-t border-brand-border text-[11px] font-mono text-gray-400">
-              Formato: Storytime Casual / Chofer en cabina
+              Mecanismo: Emparejamiento homeward automático
             </div>
           </div>
 
           <!-- Angle 3 -->
           <div class="bg-brand-surface border border-brand-border rounded-xl p-6 relative flex flex-col justify-between hover:border-brand-orange transition-all">
             <div class="absolute -top-3 left-4 bg-emerald-600 text-white text-[10px] font-mono uppercase px-2.5 py-0.5 rounded font-bold">
-              💰 Racional / Negocio
+              🛡️ Ángulo 3: Defensor del Chofer
             </div>
             <div>
-              <div class="text-xs font-mono text-emerald-400 font-bold uppercase mt-2">Ángulo de Eficiencia</div>
-              <h3 class="text-lg font-bold text-white mt-1">El Hack del Retorno Vacío</h3>
+              <div class="text-xs font-mono text-emerald-400 font-bold uppercase mt-2">Enfoque Anti-Intermediarios</div>
+              <h3 class="text-lg font-bold text-white mt-1">Cero Fletes de Hambre</h3>
               <p class="text-sm font-semibold text-gray-200 italic mt-2">
-                "Nunca más vuelvas con el camión vacío."
+                "Comisión plana del 3.5% y piso tarifario respetado."
               </p>
               <div class="mt-4 space-y-2 text-xs text-gray-300">
                 <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
-                  <strong class="text-white">Dolor que ataca:</strong> Pérdida del 50% de margen operativo por regresar sin carga a la ciudad base.
+                  <strong class="text-emerald-400">Lo que ganas:</strong> Resonancia militante en trancas y paradas de camiones. Unión de conductores.
                 </div>
                 <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
-                  <strong class="text-white">Mecanismo psicológico:</strong> Sistema de pujas para rentabilizar combustible y amortización de viaje.
+                  <strong class="text-red-400">Trade-off / Riesgo:</strong> Filtra generadores de carga que solo buscan fletes irrisorios.
                 </div>
               </div>
             </div>
             <div class="mt-4 pt-3 border-t border-brand-border text-[11px] font-mono text-gray-400">
-              Formato: Business Hack Directo / Pantalla de pujas
+              Mecanismo: Freno algorítmico de piso mínimo
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Target Segment Positioning Matrix -->
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: PERFIL DE AUDIENCIA "LUCHO" & JERGA RUTERA -->
+    <!-- ========================================================================= -->
+    <section id="pane-audiencia" class="space-y-8 hidden">
+      
+      <!-- Persona Header -->
+      <div class="bg-brand-surface border border-brand-border rounded-2xl p-6 sm:p-8 relative glow-orange">
+        <div class="badge-corner tl"></div><div class="badge-corner tr"></div>
+        <div class="badge-corner bl"></div><div class="badge-corner br"></div>
+
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div>
+            <div class="inline-flex items-center gap-2 text-xs font-mono text-brand-orange bg-brand-orange/10 px-3 py-1 rounded-full border border-brand-orange/30 mb-2">
+              TARGET USER PERSONA // TRANSPORTISTA CRUCEÑO
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black text-white uppercase">"Lucho" — El Transportista Independiente</h2>
+            <p class="text-sm text-gray-300 mt-2 max-w-2xl">
+              42 años, radicado en Santa Cruz de la Sierra. Dueño-chofer (*obligueño*) de un Volvo F12 o Scania. 15+ años manejando en las rutas troncales de Bolivia. Proveedor principal de su familia.
+            </p>
+          </div>
+          <div class="bg-brand-card p-4 rounded-xl border border-brand-border font-mono text-xs space-y-1.5 min-w-[240px]">
+            <div class="text-gray-400">Perfil Psicológico:</div>
+            <div class="text-white font-bold">• Intensamente Independiente</div>
+            <div class="text-white font-bold">• Escéptico de Apps & Promesas</div>
+            <div class="text-white font-bold">• Ultra Pragmático ("Plata Hoy")</div>
+            <div class="text-white font-bold">• Resiliente ante Bloqueos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Jerga Rutera & Frustraciones Reales -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Frustration 1 -->
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">💨</span>
+            <h3 class="text-base font-bold text-white">Rodaje Vacío (Retorno)</h3>
+          </div>
+          <p class="text-xs text-gray-400">El mayor drenaje de su ingreso mensual: entregar carga y volver sin nada.</p>
+          
+          <div class="space-y-2 font-mono text-xs">
+            <div class="bg-brand-card p-2.5 rounded border border-brand-border text-brand-orange">
+              "Vuelvo pateando oxígeno."
+              <span class="block text-[10px] text-gray-400 font-sans mt-0.5">Volver completamente vacío perdiendo diésel y tiempo.</span>
+            </div>
+            <div class="bg-brand-card p-2.5 rounded border border-brand-border text-gray-300">
+              "Me clavé a la vuelta."
+              <span class="block text-[10px] text-gray-400 font-sans mt-0.5">Quedarse varado días esperando flete de regreso.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frustration 2 -->
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">🚲</span>
+            <h3 class="text-base font-bold text-white">Cobros Impagos o Postergados</h3>
+          </div>
+          <p class="text-xs text-gray-400">Entregar conforme pero esperar semanas a que el cliente libere el dinero.</p>
+          
+          <div class="space-y-2 font-mono text-xs">
+            <div class="bg-brand-card p-2.5 rounded border border-brand-border text-brand-orange">
+              "Me están bicicleteando el flete."
+              <span class="block text-[10px] text-gray-400 font-sans mt-0.5">Poner excusas continuas y no soltar el depósito.</span>
+            </div>
+            <div class="bg-brand-card p-2.5 rounded border border-brand-border text-gray-300">
+              "Trabajando al fíat."
+              <span class="block text-[10px] text-gray-400 font-sans mt-0.5">Trabajar a la fe o al crédito, altísimo riesgo.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Frustration 3 -->
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">📉</span>
+            <h3 class="text-base font-bold text-white">Tarifas Abusivas de Intermediarios</h3>
+          </div>
+          <p class="text-xs text-gray-400">Brokers tradicionales que recortan hasta 20% y pagan migajas.</p>
+          
+          <div class="space-y-2 font-mono text-xs">
+            <div class="bg-brand-card p-2.5 rounded border border-brand-border text-brand-orange">
+              "Es un flete de hambre."
+              <span class="block text-[10px] text-gray-400 font-sans mt-0.5">Tarifa que no cubre ni el mantenimiento del camión.</span>
+            </div>
+            <div class="bg-brand-card p-2.5 rounded border border-brand-border text-gray-300">
+              "Están maleando el mercado."
+              <span class="block text-[10px] text-gray-400 font-sans mt-0.5">Intermediarios bajando precios a niveles insostenibles.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Motivación & Consumo de Medios -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        <!-- Financial Security Definition -->
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 space-y-3">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <span class="text-emerald-400 font-mono text-base">💰</span>
+            ¿Cómo define Lucho la Seguridad Financiera?
+          </h3>
+          <p class="text-xs text-gray-400">No sueña con volverse millonario; busca estabilidad predecible y proteger a los suyos.</p>
+          
+          <div class="space-y-2 text-xs text-gray-300">
+            <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
+              <strong class="text-emerald-400 font-mono">"Para la ollita":</strong> El dinero intocable para garantizar la comida diaria de su familia. Es la emoción motora más potente.
+            </div>
+            <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
+              <strong class="text-brand-orange font-mono">"Asegurar la vuelta":</strong> Saber que el viaje de regreso ya está pagado antes de descargar en destino.
+            </div>
+            <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
+              <strong class="text-white font-mono">"Tener trabajo parado":</strong> Flujo continuo de fletes sin perder semanas en surtidores o paradas.
+            </div>
+          </div>
+        </div>
+
+        <!-- Media Consumption Habits -->
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 space-y-3">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <span class="text-blue-400 font-mono text-base">📻</span>
+            Hábitos Reales de Consumo de Medios
+          </h3>
+          <p class="text-xs text-gray-400">Canales donde Lucho se informa y toma decisiones de ruta.</p>
+          
+          <div class="space-y-2 text-xs text-gray-300">
+            <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
+              <strong class="text-white">Radio Troncal (Vital):</strong> Radio Panamericana, Fides y Oriental. Escucha reportes de trancas, taquiraris y micrófonos abiertos de choferes.
+            </div>
+            <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
+              <strong class="text-white">Grupos de Facebook:</strong> Páginas de "Transporte Pesado Bolivia" y noticias locales de El Deber / El Día.
+            </div>
+            <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
+              <strong class="text-white">TikTok & WhatsApp Valles:</strong> Entretenimiento en paradas de carretera (videos de camiones) y decenas de grupos de WhatsApp caóticos.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Competitor Analysis & White Space -->
       <div class="bg-brand-surface border border-brand-border rounded-xl p-6">
-        <h2 class="text-xl font-bold text-white mb-4">Matriz de Segmentos y Propuesta de Valor</h2>
+        <h3 class="text-xl font-bold text-white mb-4">Competidores Principales vs. Océano Azul Mula Cargo</h3>
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs sm:text-sm">
+          <table class="w-full text-left text-xs">
             <thead>
-              <tr class="border-b border-brand-border text-gray-400 font-mono text-xs uppercase bg-brand-card">
-                <th class="p-3.5 rounded-tl-lg">Segmento</th>
-                <th class="p-3.5">Propuesta de Valor Central</th>
-                <th class="p-3.5">Mensaje Clave (Hook)</th>
-                <th class="p-3.5 rounded-tr-lg">Diferenciador Tecnológico</th>
+              <tr class="border-b border-brand-border text-gray-400 font-mono uppercase bg-brand-card">
+                <th class="p-3.5 rounded-tl-lg">Tipo de Actor</th>
+                <th class="p-3.5">Enfoque Actual</th>
+                <th class="p-3.5">Fallo con el Conductor</th>
+                <th class="p-3.5 rounded-tr-lg">Ventaja Mula Cargo</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-brand-border">
-              <tr class="hover:bg-brand-card/40 transition-colors">
-                <td class="p-3.5 font-bold text-brand-orange whitespace-nowrap">
-                  🚚 Transportistas Independientes
-                </td>
-                <td class="p-3.5 text-gray-300">
-                  Empoderamiento financiero, fin de las esperas de cobro y seguridad en carretera.
-                </td>
-                <td class="p-3.5 text-gray-200 italic">
-                  "Tú decides cuánto cobras. La plata va directo a tu billetera y nunca viajas solo."
-                </td>
-                <td class="p-3.5 text-emerald-400 font-mono text-xs">
-                  Billetera Digital Escrow + Botón SOS 24/7
-                </td>
+              <tr class="hover:bg-brand-card/40">
+                <td class="p-3.5 font-bold text-purple-400">Startup Tech (DeltaX)</td>
+                <td class="p-3.5 text-gray-300">Grandes corporaciones y flotas internacionales.</td>
+                <td class="p-3.5 text-red-400">Demasiado corporativo y frío para el transportista independiente.</td>
+                <td class="p-3.5 text-emerald-400 font-bold">Hecho para el chofer de cabina con lenguaje de ruta.</td>
               </tr>
-              <tr class="hover:bg-brand-card/40 transition-colors">
-                <td class="p-3.5 font-bold text-blue-400 whitespace-nowrap">
-                  🏢 PYMES & Comerciantes
-                </td>
-                <td class="p-3.5 text-gray-300">
-                  Ahorro en costos logísticos mediante mercado abierto de pujas y choferes verificados.
-                </td>
-                <td class="p-3.5 text-gray-200 italic">
-                  "No pagues de más por tus fletes. Pon tu precio y deja que los choferes compitan."
-                </td>
-                <td class="p-3.5 text-blue-300 font-mono text-xs">
-                  Mercado de Pujas Dinámicas + Escrow Seguro
-                </td>
+              <tr class="hover:bg-brand-card/40">
+                <td class="p-3.5 font-bold text-blue-400">Agencias / Brokers (Blazer)</td>
+                <td class="p-3.5 text-gray-300">Intermediarios tradicionales con oficinas físicas.</td>
+                <td class="p-3.5 text-red-400">Cobran 15-20% de comisión y ocultan el precio real del cliente.</td>
+                <td class="p-3.5 text-emerald-400 font-bold">Comisión transparente y fija del 3.5%.</td>
               </tr>
-              <tr class="hover:bg-brand-card/40 transition-colors">
-                <td class="p-3.5 font-bold text-purple-400 whitespace-nowrap">
-                  🚛 Dueños de Flotas
-                </td>
-                <td class="p-3.5 text-gray-300">
-                  Control multi-vehículo centralizado, reducción de tiempos muertos y telemetría.
-                </td>
-                <td class="p-3.5 text-gray-200 italic">
-                  "Gestiona toda tu flota y elige la mejor tarifa en un solo panel transparente."
-                </td>
-                <td class="p-3.5 text-purple-300 font-mono text-xs">
-                  Panel Web Multi-Vehículo + GPS Multi-Mapa
-                </td>
+              <tr class="hover:bg-brand-card/40">
+                <td class="p-3.5 font-bold text-gray-400">WhatsApp & Facebook</td>
+                <td class="p-3.5 text-gray-300">Grupos caóticos informales entre pares.</td>
+                <td class="p-3.5 text-red-400">Cero seguridad de pago, estafas constantes y fletes de hambre.</td>
+                <td class="p-3.5 text-emerald-400 font-bold">Escrow con dinero congelado antes de arrancar.</td>
               </tr>
             </tbody>
           </table>
@@ -415,7 +556,156 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- TAB 2: CREATOR STUDIO & GUIONES -->
+    <!-- TAB 3: VALORES CENTRALES & VOZ DE MARCA -->
+    <!-- ========================================================================= -->
+    <section id="pane-valores" class="space-y-8 hidden">
+      
+      <div class="bg-brand-surface border border-brand-border rounded-xl p-6 sm:p-8">
+        <div class="max-w-3xl mb-6">
+          <div class="text-xs font-mono text-brand-orange uppercase font-bold">BRAND FOUNDATIONS // 5 VALORES INNEGOCIABLES</div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white mt-1 uppercase">Los 5 Valores Centrales de Mula Cargo</h2>
+          <p class="text-xs text-gray-400 font-mono mt-1">Cómo se traducen nuestros principios en reglas de diseño UI y contenido.</p>
+        </div>
+
+        <div class="space-y-4">
+          
+          <!-- Value 1 -->
+          <div class="bg-brand-card p-5 rounded-xl border border-brand-border flex flex-col md:flex-row gap-4 justify-between">
+            <div class="space-y-1 md:max-w-md">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded bg-brand-orange/20 text-brand-orange font-mono font-bold text-xs flex items-center justify-center">1</span>
+                <h3 class="text-base font-bold text-white">Plata Segura Antes del Arranque (Escrow Inquebrantable)</h3>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed">
+                La confianza no es abstracta: significa saber que el dinero ya está depositado antes de gastar un litro de diésel.
+              </p>
+            </div>
+            <div class="bg-[#0A0A0C] p-3 rounded-lg border border-brand-border text-xs space-y-1 font-mono text-gray-300 min-w-[280px]">
+              <div><strong class="text-emerald-400">Regla UI:</strong> Candado verde visual obligatorio antes de habilitar el botón "Iniciar Viaje".</div>
+              <div><strong class="text-brand-orange">Regla Copy:</strong> Cero uso de "confianza"; usamos "Pagos garantizados en cuenta".</div>
+            </div>
+          </div>
+
+          <!-- Value 2 -->
+          <div class="bg-brand-card p-5 rounded-xl border border-brand-border flex flex-col md:flex-row gap-4 justify-between">
+            <div class="space-y-1 md:max-w-md">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded bg-brand-orange/20 text-brand-orange font-mono font-bold text-xs flex items-center justify-center">2</span>
+                <h3 class="text-base font-bold text-white">Claridad Financiera Radical (Cero Peajes Ocultos)</h3>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed">
+                Nuestra comisión fija del 3.5% es un arma contra los intermediarios que muerden el 15-20% ocultando cifras.
+              </p>
+            </div>
+            <div class="bg-[#0A0A0C] p-3 rounded-lg border border-brand-border text-xs space-y-1 font-mono text-gray-300 min-w-[280px]">
+              <div><strong class="text-emerald-400">Regla UI:</strong> Desglose en 3 líneas gigantes: Pago cliente, 3.5% app y Payout neto.</div>
+              <div><strong class="text-brand-orange">Regla Copy:</strong> La app actúa como cobrador implacable del chofer ante demoras.</div>
+            </div>
+          </div>
+
+          <!-- Value 3 -->
+          <div class="bg-brand-card p-5 rounded-xl border border-brand-border flex flex-col md:flex-row gap-4 justify-between">
+            <div class="space-y-1 md:max-w-md">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded bg-brand-orange/20 text-brand-orange font-mono font-bold text-xs flex items-center justify-center">3</span>
+                <h3 class="text-base font-bold text-white">La Vuelta es el Verdadero Viaje (Muerte al Rodaje Vacío)</h3>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed">
+                La ganancia no está en la ida; está en no volver pateando oxígeno. El viaje de una sola vía es incompleto.
+              </p>
+            </div>
+            <div class="bg-[#0A0A0C] p-3 rounded-lg border border-brand-border text-xs space-y-1 font-mono text-gray-300 min-w-[280px]">
+              <div><strong class="text-emerald-400">Regla UI:</strong> Radar de Retorno se despliega automáticamente al aceptar una carga.</div>
+              <div><strong class="text-brand-orange">Regla Copy:</strong> Atacar el rodaje vacío como el enemigo #1 del transportista.</div>
+            </div>
+          </div>
+
+          <!-- Value 4 -->
+          <div class="bg-brand-card p-5 rounded-xl border border-brand-border flex flex-col md:flex-row gap-4 justify-between">
+            <div class="space-y-1 md:max-w-md">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded bg-brand-orange/20 text-brand-orange font-mono font-bold text-xs flex items-center justify-center">4</span>
+                <h3 class="text-base font-bold text-white">Diseñado para el Dedo Gordo en Ruta Bacheada (Thumb-Friendly)</h3>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed">
+                La app debe operarse en una cabina vibrando sobre ripio con señal 3G débil y botones gigantes.
+              </p>
+            </div>
+            <div class="bg-[#0A0A0C] p-3 rounded-lg border border-brand-border text-xs space-y-1 font-mono text-gray-300 min-w-[280px]">
+              <div><strong class="text-emerald-400">Regla UI:</strong> Botones de más de 52px de altura y caché offline en zonas de montaña.</div>
+              <div><strong class="text-brand-orange">Regla Copy:</strong> "Baja señal. Guardando tus datos para reconectar automáticamente".</div>
+            </div>
+          </div>
+
+          <!-- Value 5 -->
+          <div class="bg-brand-card p-5 rounded-xl border border-brand-border flex flex-col md:flex-row gap-4 justify-between">
+            <div class="space-y-1 md:max-w-md">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded bg-brand-orange/20 text-brand-orange font-mono font-bold text-xs flex items-center justify-center">5</span>
+                <h3 class="text-base font-bold text-white">Defensa del Piso Mínimo (Cero Fletes de Hambre)</h3>
+              </div>
+              <p class="text-xs text-gray-300 leading-relaxed">
+                No somos un marketplace neutro; defendemos el costo del diésel y la dignidad del trabajo de transporte.
+              </p>
+            </div>
+            <div class="bg-[#0A0A0C] p-3 rounded-lg border border-brand-border text-xs space-y-1 font-mono text-gray-300 min-w-[280px]">
+              <div><strong class="text-emerald-400">Regla UI:</strong> La app del cliente bloquea ofertas que matemáticamente sean ruina.</div>
+              <div><strong class="text-brand-orange">Regla Copy:</strong> "No aceptamos fletes de hambre en esta plataforma".</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Brand Voice & UI Copy Examples -->
+      <div class="bg-brand-surface border border-brand-border rounded-xl p-6">
+        <h3 class="text-xl font-bold text-white mb-4">Ejemplos Reales de Copy en la Interfaz (UI Strings)</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 font-mono text-xs">
+          
+          <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-1.5">
+            <div class="text-brand-orange font-bold uppercase">Estado Vacío (Radar)</div>
+            <div class="text-white font-bold">"Radar en Blanco"</div>
+            <p class="text-gray-400 font-sans text-xs">"Aún no hay fletes de retorno en tu zona. Deja la app en el tablero; seguimos escaneando para que no vuelvas pateando oxígeno."</p>
+          </div>
+
+          <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-1.5">
+            <div class="text-red-400 font-bold uppercase">Error de Foto / Licencia</div>
+            <div class="text-white font-bold">"Freno de mano con tu foto"</div>
+            <p class="text-gray-400 font-sans text-xs">"La foto no subió por la señal de ruta. Sube otra sin flash que rebote. Sin papeles validados, no hay flete."</p>
+          </div>
+
+          <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-1.5">
+            <div class="text-emerald-400 font-bold uppercase">Puja Ganada</div>
+            <div class="text-white font-bold">"¡Flete Asegurado, Hermano!"</div>
+            <p class="text-gray-400 font-sans text-xs">"Ganaste la carga. Fondos bloqueados en Escrow. Cero intermediarios mordiendo tu plata hoy. ¡A facturar!"</p>
+          </div>
+
+          <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-1.5">
+            <div class="text-emerald-400 font-bold uppercase">Tooltip Escrow</div>
+            <div class="text-white font-bold">"Plata Segura (Escrow)"</div>
+            <p class="text-gray-400 font-sans text-xs">"El cliente ya pagó. MulaCargo tiene el dinero bajo llave para que nadie te bicicletee. Entregas y cae el pago."</p>
+          </div>
+
+          <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-1.5">
+            <div class="text-brand-orange font-bold uppercase">Push Notification</div>
+            <div class="text-white font-bold">"Estás parado sobre plata"</div>
+            <p class="text-gray-400 font-sans text-xs">"Hay cargas buscando camión en tu zona pagando lo justo. Prende tu radar y no le dejes tu flete a comisionistas."</p>
+          </div>
+
+          <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-1.5">
+            <div class="text-purple-400 font-bold uppercase">Llegada a Destino</div>
+            <div class="text-white font-bold">"Descarga conforme"</div>
+            <p class="text-gray-400 font-sans text-xs">"Fondo liberado de inmediato a tu billetera. Califica al cliente y revisa las 3 cargas de retorno listas."</p>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: CREATOR STUDIO & GUIONES -->
     <!-- ========================================================================= -->
     <section id="pane-guiones" class="space-y-8 hidden">
       
@@ -441,7 +731,7 @@
         </div>
       </div>
 
-      <!-- Scripts List Container -->
+      <!-- Scripts List -->
       <div id="scripts-container" class="space-y-6">
 
         <!-- Script 1: El Hack del retorno -->
@@ -456,12 +746,11 @@
             </div>
             <button onclick="copyScript('script-1')" class="self-start sm:self-auto bg-black/40 hover:bg-black/60 text-white text-xs font-mono px-3 py-1.5 rounded flex items-center gap-1.5 transition-colors">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-              Copiar Guión Completo
+              Copiar Guión
             </button>
           </div>
 
           <div class="p-6 space-y-4" id="script-1">
-            <!-- Hook -->
             <div class="bg-brand-orange/10 border border-brand-orange/30 rounded-lg p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
                 <span class="text-[11px] font-mono font-bold text-brand-orange uppercase">Gancho en Pantalla (0:00 - 0:03):</span>
@@ -471,48 +760,28 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <!-- Visual Column -->
               <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-2">
-                <div class="text-xs font-mono text-brand-orange font-bold uppercase flex items-center gap-1.5">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                  Guía Visual & Cámara
-                </div>
+                <div class="text-xs font-mono text-brand-orange font-bold uppercase">Guía Visual & Cámara</div>
                 <ul class="text-xs text-gray-300 space-y-2">
-                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5">
-                    <strong class="text-white">(0:00-0:03)</strong> Creador en la cabina del camión con aguayo naranja visible. Mira a la cámara con frustración real.
-                  </li>
-                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5">
-                    <strong class="text-white">(0:03-0:10)</strong> Crash zoom hacia el celular mostrando la pantalla de pujas y cargas disponibles en ruta.
-                  </li>
-                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5">
-                    <strong class="text-white">(0:10-0:15)</strong> Sonríe, arranca el camión. Señala hacia abajo donde se ubica el link de descarga.
-                  </li>
+                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5"><strong class="text-white">(0:00-0:03)</strong> Creador en cabina con aguayo naranja visible. Mira a cámara con frustración.</li>
+                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5"><strong class="text-white">(0:03-0:10)</strong> Crash zoom hacia el celular mostrando pantalla de pujas y cargas de vuelta.</li>
+                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5"><strong class="text-white">(0:10-0:15)</strong> Sonríe, arranca el camión. Señala hacia abajo donde se ubica la descarga.</li>
                 </ul>
               </div>
 
-              <!-- Audio Column -->
               <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-2">
-                <div class="text-xs font-mono text-emerald-400 font-bold uppercase flex items-center gap-1.5">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"/></svg>
-                  Guión de Audio / Locución
-                </div>
+                <div class="text-xs font-mono text-emerald-400 font-bold uppercase">Guión de Audio / Locución</div>
                 <div class="text-xs text-gray-200 space-y-2 italic font-sans leading-relaxed">
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "¿Sigues volviendo con el camión vacío? Estás perdiendo plata, pariente."
-                  </p>
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "Descárgate Mula Cargo. Aquí tú mismo le pones precio a la carga de vuelta con pujas en vivo."
-                  </p>
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "Carga segura y directo a tu ruta. Usa mi código para no pagar comisión en tu primer viaje."
-                  </p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"¿Sigues volviendo con el camión vacío? Estás perdiendo plata, pariente."</p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"Descárgate Mula Cargo. Aquí tú mismo le pones precio a la carga de vuelta con pujas en vivo."</p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"Carga segura y directo a tu ruta. Usa mi código para no pagar comisión en tu primer viaje."</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Script 2: El calvario del pago -->
+        <!-- Script 2: POV El Calvario del Pago -->
         <div class="script-card transport bg-brand-surface border border-brand-border rounded-xl overflow-hidden hover:border-brand-orange transition-all">
           <div class="bg-gradient-to-r from-orange-600 to-brand-orange text-white px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
@@ -524,7 +793,7 @@
             </div>
             <button onclick="copyScript('script-2')" class="self-start sm:self-auto bg-black/40 hover:bg-black/60 text-white text-xs font-mono px-3 py-1.5 rounded flex items-center gap-1.5 transition-colors">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-              Copiar Guión Completo
+              Copiar Guión
             </button>
           </div>
 
@@ -541,30 +810,18 @@
               <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-2">
                 <div class="text-xs font-mono text-brand-orange font-bold uppercase">Guía Visual & Actuación</div>
                 <ul class="text-xs text-gray-300 space-y-2">
-                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5">
-                    <strong class="text-white">(0:00-0:05)</strong> Personaje 1: Cansado, con cuaderno viejo, rogando por teléfono a un cliente moroso.
-                  </li>
-                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5">
-                    <strong class="text-white">(0:05-0:12)</strong> Personaje 2: Limpio, relajado. SFX fuerte de notificación de dinero ingresado en app.
-                  </li>
-                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5">
-                    <strong class="text-white">(0:12-0:18)</strong> Personaje 2 muestra la Billetera Mula con saldo en verde y señala su código de referido.
-                  </li>
+                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5"><strong class="text-white">(0:00-0:05)</strong> Personaje 1: Cansado, rogando por teléfono a un cliente moroso.</li>
+                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5"><strong class="text-white">(0:05-0:12)</strong> Personaje 2: Limpio, relajado. SFX alegre de notificación de dinero.</li>
+                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5"><strong class="text-white">(0:12-0:18)</strong> Muestra la Billetera Mula con saldo verde y señala su código de referido.</li>
                 </ul>
               </div>
 
               <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-2">
                 <div class="text-xs font-mono text-emerald-400 font-bold uppercase">Guión de Audio / Locución</div>
                 <div class="text-xs text-gray-200 space-y-2 italic font-sans leading-relaxed">
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "Ya puej caserito, deposíteme lo del flete... ¿El viernes recién? Pucha no sea malo..."
-                  </p>
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "Yo ya no ruego a nadie. Con Mula Cargo entrego la carga y el pago entra automático a mi billetera digital."
-                  </p>
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "Descarga la del aguayo naranja, usa mi código y maneja tranquilo."
-                  </p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"Ya puej caserito, deposíteme lo del flete... ¿El viernes recién? Pucha no sea malo..."</p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"Yo ya no ruego a nadie. Con Mula Cargo entrego la carga y el pago entra automático a mi billetera digital."</p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"Descarga la del aguayo naranja, usa mi código y maneja tranquilo."</p>
                 </div>
               </div>
             </div>
@@ -583,7 +840,7 @@
             </div>
             <button onclick="copyScript('script-3')" class="self-start sm:self-auto bg-black/40 hover:bg-black/60 text-white text-xs font-mono px-3 py-1.5 rounded flex items-center gap-1.5 transition-colors">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-              Copiar Guión Completo
+              Copiar Guión
             </button>
           </div>
 
@@ -600,30 +857,18 @@
               <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-2">
                 <div class="text-xs font-mono text-brand-orange font-bold uppercase">Guía Visual & Escena</div>
                 <ul class="text-xs text-gray-300 space-y-2">
-                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5">
-                    <strong class="text-white">(0:00-0:05)</strong> Creador limpiando el espejo retrovisor del camión en un surtidor. Mirada casual y cercana.
-                  </li>
-                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5">
-                    <strong class="text-white">(0:05-0:12)</strong> Muestra en su celular el Botón SOS activo y luego cambia a la pestaña de 'Invitar Amigos'.
-                  </li>
-                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5">
-                    <strong class="text-white">(0:12-0:20)</strong> Sonríe confiado mientras aparece texto flotante con código de invitación.
-                  </li>
+                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5"><strong class="text-white">(0:00-0:05)</strong> Limpiando el espejo del camión en surtidor. Contacto visual casual.</li>
+                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5"><strong class="text-white">(0:05-0:12)</strong> Muestra Botón SOS y luego la pestaña de invitar choferes.</li>
+                  <li class="border-l-2 border-brand-orange pl-2.5 py-0.5"><strong class="text-white">(0:12-0:20)</strong> Sonríe, aparece texto flotante con código de referido.</li>
                 </ul>
               </div>
 
               <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-2">
                 <div class="text-xs font-mono text-emerald-400 font-bold uppercase">Guión de Audio / Locución</div>
                 <div class="text-xs text-gray-200 space-y-2 italic font-sans leading-relaxed">
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "Storytime de cómo la app de la mula naranja me salvó en carretera y además me pagó un extra."
-                  </p>
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "Usé el botón SOS, me asistieron rápido, y le pasé la voz a mi compadre..."
-                  </p>
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "...él agarró su primer viaje y a mí me cayó un bono en efectivo a la billetera. Usa mi código."
-                  </p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"Storytime de cómo la app de la mula naranja me salvó en carretera y me pagó."</p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"Usé el botón SOS, me asistieron, y le pasé mi código a mi compadre..."</p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"...él agarró su viaje y a mí me cayó bono en efectivo. Usa mi código."</p>
                 </div>
               </div>
             </div>
@@ -642,7 +887,7 @@
             </div>
             <button onclick="copyScript('script-4')" class="self-start sm:self-auto bg-black/40 hover:bg-black/60 text-white text-xs font-mono px-3 py-1.5 rounded flex items-center gap-1.5 transition-colors">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-              Copiar Guión Completo
+              Copiar Guión
             </button>
           </div>
 
@@ -659,30 +904,18 @@
               <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-2">
                 <div class="text-xs font-mono text-blue-400 font-bold uppercase">Guía Visual & Cámara</div>
                 <ul class="text-xs text-gray-300 space-y-2">
-                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5">
-                    <strong class="text-white">(0:00-0:04)</strong> Creador en tienda o depósito sellando una caja rápidamente con cinta de embalaje (SFX fuerte).
-                  </li>
-                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5">
-                    <strong class="text-white">(0:04-0:12)</strong> Muestra la app con 3 ofertas de choferes compitiendo con precios transparentes.
-                  </li>
-                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5">
-                    <strong class="text-white">(0:12-0:18)</strong> Levanta la caja y señala al enlace de descarga en biografía.
-                  </li>
+                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5"><strong class="text-white">(0:00-0:04)</strong> Creador sella caja rápidamente (SFX fuerte de cinta).</li>
+                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5"><strong class="text-white">(0:04-0:12)</strong> Muestra celular con varios transportistas ofreciendo precios en vivo.</li>
+                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5"><strong class="text-white">(0:12-0:18)</strong> Levanta la caja y señala al link de descarga.</li>
                 </ul>
               </div>
 
               <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-2">
                 <div class="text-xs font-mono text-emerald-400 font-bold uppercase">Guión de Audio / Locución</div>
                 <div class="text-xs text-gray-200 space-y-2 italic font-sans leading-relaxed">
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "Si tienes negocio o vendes por mayor, deja de aceptar el primer precio inflado que te den por flete."
-                  </p>
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "Yo subo mi carga a Mula Cargo, los choferes pujan en vivo y elijo el mejor precio y reputación."
-                  </p>
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "Es 100% seguro y garantizado. Descárgate Mula Cargo y ponle vos el precio a tu logística."
-                  </p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"Si tienes negocio, deja de aceptar el primer precio inflado que te dan por flete."</p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"Yo subo mi carga a Mula Cargo, los choferes pujan y elijo el mejor precio."</p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"Es 100% seguro. Descárgate Mula Cargo y ponle vos el precio."</p>
                 </div>
               </div>
             </div>
@@ -701,7 +934,7 @@
             </div>
             <button onclick="copyScript('script-5')" class="self-start sm:self-auto bg-black/40 hover:bg-black/60 text-white text-xs font-mono px-3 py-1.5 rounded flex items-center gap-1.5 transition-colors">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-              Copiar Guión Completo
+              Copiar Guión
             </button>
           </div>
 
@@ -718,30 +951,18 @@
               <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-2">
                 <div class="text-xs font-mono text-blue-400 font-bold uppercase">Guía Visual & Actuación</div>
                 <ul class="text-xs text-gray-300 space-y-2">
-                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5">
-                    <strong class="text-white">(0:00-0:06)</strong> Agenciero: Actitud despectiva con calculadora vieja diciendo que no hay camiones disponibles.
-                  </li>
-                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5">
-                    <strong class="text-white">(0:06-0:12)</strong> Comerciante: Se ríe, saca el teléfono con la app abierta y muestra cómo bajan los precios con pujas.
-                  </li>
-                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5">
-                    <strong class="text-white">(0:12-0:18)</strong> Dueño de negocio habla directo a cámara con CTA animado flotante.
-                  </li>
+                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5"><strong class="text-white">(0:00-0:06)</strong> Agenciero despectivo con calculadora diciendo que no hay camiones.</li>
+                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5"><strong class="text-white">(0:06-0:12)</strong> Comerciante se ríe, saca celular y muestra cómo bajó la tarifa con pujas.</li>
+                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5"><strong class="text-white">(0:12-0:18)</strong> Dueño habla directo a cámara con CTA flotante.</li>
                 </ul>
               </div>
 
               <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-2">
                 <div class="text-xs font-mono text-emerald-400 font-bold uppercase">Guión de Audio / Locución</div>
                 <div class="text-xs text-gray-200 space-y-2 italic font-sans leading-relaxed">
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "A ver casero... te sale 3,000 bolivianos. Tómalo o déjalo porque no hay camiones."
-                  </p>
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "No gracias. Ya la subí a Mula Cargo, recibí 4 ofertas y el flete bajó a 2,200 con chofer verificado."
-                  </p>
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "Comerciante inteligente no regala su plata. Bájate la app y que gane el mejor."
-                  </p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"A ver casero... te sale 3,000 bolivianos. Tómalo o déjalo porque no hay camiones."</p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"No gracias. Ya la subí a Mula Cargo, tengo pujas y el flete bajó a 2,200."</p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"Comerciante inteligente no pierde plata. Bájate la app y que gane el mejor."</p>
                 </div>
               </div>
             </div>
@@ -760,7 +981,7 @@
             </div>
             <button onclick="copyScript('script-6')" class="self-start sm:self-auto bg-black/40 hover:bg-black/60 text-white text-xs font-mono px-3 py-1.5 rounded flex items-center gap-1.5 transition-colors">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-              Copiar Guión Completo
+              Copiar Guión
             </button>
           </div>
 
@@ -768,39 +989,27 @@
             <div class="bg-blue-950/40 border border-blue-500/30 rounded-lg p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
                 <span class="text-[11px] font-mono font-bold text-blue-400 uppercase">Gancho en Pantalla (0:00 - 0:03):</span>
-                <p class="text-sm font-bold text-white mt-0.5">"Casi pierdo 10.000 Bs por contratar un chofer de Facebook 😱"</p>
+                <p class="text-sm font-bold text-white mt-0.5">"Casi pierdo 10.000 Bs por un chofer de Facebook 😱"</p>
               </div>
-              <button onclick="copyTextDirect('Casi pierdo 10.000 Bs por contratar un chofer de Facebook 😱')" class="text-[11px] font-mono text-blue-400 hover:underline whitespace-nowrap">Copiar Hook</button>
+              <button onclick="copyTextDirect('Casi pierdo 10.000 Bs por un chofer de Facebook 😱')" class="text-[11px] font-mono text-blue-400 hover:underline whitespace-nowrap">Copiar Hook</button>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-2">
                 <div class="text-xs font-mono text-blue-400 font-bold uppercase">Guía Visual & Escena</div>
                 <ul class="text-xs text-gray-300 space-y-2">
-                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5">
-                    <strong class="text-white">(0:00-0:05)</strong> Revisando inventario con cara de estrés y preocupación evidente.
-                  </li>
-                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5">
-                    <strong class="text-white">(0:05-0:15)</strong> Cuenta con dramatismo cómo casi pierde todo y luego muestra la app con fondos protegidos en escrow.
-                  </li>
-                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5">
-                    <strong class="text-white">(0:15-0:22)</strong> Sonríe relajado. Gráfico en pantalla: "Tú decides el precio".
-                  </li>
+                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5"><strong class="text-white">(0:00-0:05)</strong> Revisando inventario con cara de estrés y preocupación evidente.</li>
+                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5"><strong class="text-white">(0:05-0:15)</strong> Cuenta con dramatismo y luego muestra la app con fondos seguros en escrow.</li>
+                  <li class="border-l-2 border-blue-500 pl-2.5 py-0.5"><strong class="text-white">(0:15-0:22)</strong> Sonríe relajado. Gráfico: 'Tú decides el precio'.</li>
                 </ul>
               </div>
 
               <div class="bg-brand-card p-4 rounded-lg border border-brand-border space-y-2">
                 <div class="text-xs font-mono text-emerald-400 font-bold uppercase">Guión de Audio / Locución</div>
                 <div class="text-xs text-gray-200 space-y-2 italic font-sans leading-relaxed">
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "Storytime de cómo casi pierdo mercadería por buscar flete barato en grupos informales."
-                  </p>
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "El chofer no llegó y me bloquearon. Ahora solo trabajo con choferes verificados en Mula Cargo."
-                  </p>
-                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">
-                    "El dinero queda en garantía hasta que recibo conforme. Duermo tranquilo. Descárgala en mi perfil."
-                  </p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"Storytime de cómo casi pierdo mercadería por buscar flete barato en grupos de Facebook."</p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"El chofer no llegó y me bloquearon. Ahora solo trabajo con choferes verificados en Mula Cargo."</p>
+                  <p class="border-l-2 border-emerald-500/50 pl-2.5 py-0.5">"El dinero queda en garantía hasta que recibo conforme. Duermo tranquilo. Descárgala en mi perfil."</p>
                 </div>
               </div>
             </div>
@@ -809,99 +1018,110 @@
 
       </div>
 
-      <!-- Strategy Cards: Horarios & Hashtags -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-        
-        <!-- Bolivian Peak Hours -->
-        <div class="bg-brand-surface border border-brand-border rounded-xl p-6">
-          <div class="flex items-center justify-between mb-4 border-b border-brand-border pb-3">
-            <h3 class="text-lg font-bold text-white flex items-center gap-2">
-              <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              Horarios Estratégicos de Publicación (Bolivia)
-            </h3>
-            <span class="text-[10px] font-mono text-gray-400">BOT-OPTIMIZED</span>
-          </div>
+    </section>
 
-          <div class="space-y-3">
-            <div class="bg-brand-card p-3.5 rounded-lg border border-brand-border flex items-start gap-3">
-              <div class="bg-brand-orange/20 text-brand-orange font-mono font-bold text-xs px-2.5 py-1 rounded border border-brand-orange/40 whitespace-nowrap">
-                06:00 - 07:30
-              </div>
-              <div>
-                <div class="text-sm font-bold text-white">La Mañana (Desayuno y Espera de Carga)</div>
-                <p class="text-xs text-gray-400 mt-0.5">Choferes revisando celulares en paradas y surtidores. Ideal para <strong class="text-brand-orange">Hacks educativos rápidos</strong>.</p>
-              </div>
-            </div>
-
-            <div class="bg-brand-card p-3.5 rounded-lg border border-brand-border flex items-start gap-3">
-              <div class="bg-brand-orange/20 text-brand-orange font-mono font-bold text-xs px-2.5 py-1 rounded border border-brand-orange/40 whitespace-nowrap">
-                12:30 - 14:00
-              </div>
-              <div>
-                <div class="text-sm font-bold text-white">El Mediodía (Almuerzo y Paradas)</div>
-                <p class="text-xs text-gray-400 mt-0.5">Consumo rápido de entretenimiento. Ideal para <strong class="text-brand-orange">Sketches de comedia y contrastes</strong>.</p>
-              </div>
-            </div>
-
-            <div class="bg-brand-card p-3.5 rounded-lg border border-brand-border flex items-start gap-3">
-              <div class="bg-brand-orange/20 text-brand-orange font-mono font-bold text-xs px-2.5 py-1 rounded border border-brand-orange/40 whitespace-nowrap">
-                19:30 - 21:30
-              </div>
-              <div>
-                <div class="text-sm font-bold text-white">La Noche (Fin de Jornada y Hogar)</div>
-                <p class="text-xs text-gray-400 mt-0.5">Mayor tiempo de retención. Ideal para <strong class="text-brand-orange">Storytimes largos y testimonios de seguridad</strong>.</p>
-              </div>
-            </div>
-          </div>
+    <!-- ========================================================================= -->
+    <!-- TAB 5: INSTAGRAM GRID ("EL PARABRISAS Y EL TABLERO") -->
+    <!-- ========================================================================= -->
+    <section id="pane-ig-grid" class="space-y-8 hidden">
+      
+      <div class="bg-brand-surface border border-brand-border rounded-xl p-6 sm:p-8 glow-orange">
+        <div class="max-w-3xl mb-6">
+          <div class="text-xs font-mono text-brand-orange uppercase font-bold">SOCIAL CREATIVE DIRECTION // INSTAGRAM & TIKTOK</div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white mt-1 uppercase">El Grid: "El Parabrisas y el Tablero"</h2>
+          <p class="text-xs text-gray-400 font-mono mt-1">El feed replica el campo visual del transportista: mirar al asfalto y bajar la vista a los instrumentos.</p>
         </div>
 
-        <!-- 3-3-3 Hashtag Generator -->
-        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4 border-b border-brand-border pb-3">
-              <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                <svg class="w-5 h-5 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/></svg>
-                Fórmula de Hashtags (3-3-3)
-              </h3>
-              <button onclick="copyHashtags()" class="text-xs font-mono text-brand-orange hover:text-orange-400 flex items-center gap-1">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                Copiar los 9
-              </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- The Windshield -->
+          <div class="bg-brand-card p-6 rounded-xl border border-brand-border space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-brand-orange"></span>
+              <h3 class="text-lg font-bold text-white uppercase">El Parabrisas (Realidad a Nivel del Asfalto)</h3>
             </div>
-            <p class="text-xs text-gray-400 mb-4">Mezcla exactamente 9 hashtags para mantener el algoritmo enfocado sin saturar la descripción.</p>
-
-            <div class="grid grid-cols-3 gap-2.5 font-mono text-xs text-center">
-              <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
-                <div class="text-[10px] text-gray-400 uppercase mb-1 font-bold">3 Nicho</div>
-                <div class="text-brand-orange leading-relaxed">#TransporteBolivia<br>#Camioneros<br>#Logistica</div>
-              </div>
-              <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
-                <div class="text-[10px] text-gray-400 uppercase mb-1 font-bold">3 Locales</div>
-                <div class="text-brand-orange leading-relaxed">#RutasBolivianas<br>#SantaCruzBolivia<br>#Carreteras</div>
-              </div>
-              <div class="bg-brand-card p-3 rounded-lg border border-brand-border">
-                <div class="text-[10px] text-gray-400 uppercase mb-1 font-bold">3 Solución</div>
-                <div class="text-brand-orange leading-relaxed">#MulaCargo<br>#Logtech<br>#Emprendedores</div>
-              </div>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              Fotografía cruda y de alto contraste de camiones pesados (Scanias, Volvos) en las rutas troncales de Bolivia (Santa Cruz a Cochabamba, La Paz o Yacuiba). Tratadas con gradientes oscuros de "Asphalt Night" y ruido monocromático del 3-5%. Gritty, real y cansado.
+            </p>
+            <div class="text-[11px] font-mono text-brand-orange pt-2 border-t border-brand-border">
+              Titulares estampados: "PLATA SEGURA", "CERO RODAJE VACÍO", "TU CAMIÓN, TUS REGLAS"
             </div>
           </div>
 
-          <div class="mt-4 pt-3 border-t border-brand-border flex items-center justify-between text-xs font-mono text-gray-400">
-            <span>Visual Hook Obligatorio:</span>
-            <span class="text-brand-orange font-bold">Aguayo Naranja + Pantalla App</span>
+          <!-- The Dashboard -->
+          <div class="bg-brand-card p-6 rounded-xl border border-brand-border space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+              <h3 class="text-lg font-bold text-white uppercase">El Tablero (UI & Telemetría)</h3>
+            </div>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              Mockups nítidos y densos en datos sobre fondos "Diesel Slate". Destacan balances positivos en "Profit Emerald", botones en "High-Vis Orange" y tablas numéricas exactas de la billetera digital y pujas. Texturas sutiles de "Aguayo Flare" aportan identidad regional.
+            </p>
+            <div class="text-[11px] font-mono text-emerald-400 pt-2 border-t border-brand-border">
+              Ritmo de Copy: Gancho de ruta + Dato exacto sin adjetivos + Comando imperativo
+            </div>
           </div>
+
         </div>
+      </div>
 
+      <!-- 3 Native Content Formats -->
+      <div>
+        <h3 class="text-xl font-bold text-white mb-4">Los 3 Formatos Nativos de Contenido</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Format 1 -->
+          <div class="bg-brand-surface border border-brand-border rounded-xl p-5 space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="text-[10px] font-mono text-brand-orange font-bold uppercase">Formato 1: Carrusel Split-Screen</div>
+              <h4 class="text-base font-bold text-white mt-1">Desmantelando el Flete de Hambre</h4>
+              <p class="text-xs text-gray-300 mt-2">
+                Pantalla dividida con cinta micro-prismática. Arriba: El pago opaco del broker tradicional. Abajo: La misma ruta en Mula Cargo con 3.5% transparente y mayor pago neto.
+              </p>
+            </div>
+            <div class="bg-brand-card p-3 rounded-lg border border-brand-border font-mono text-[11px] text-gray-300 italic">
+              "Están maleando el mercado. Nosotros defendemos el piso. 3.5% plano, sin peajes ocultos. Tú decides si arrancas."
+            </div>
+          </div>
+
+          <!-- Format 2 -->
+          <div class="bg-brand-surface border border-brand-border rounded-xl p-5 space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="text-[10px] font-mono text-blue-400 font-bold uppercase">Formato 2: Mapas Tácticos</div>
+              <h4 class="text-base font-bold text-white mt-1">Radar Route Intel</h4>
+              <p class="text-xs text-gray-300 mt-2">
+                Mapa en modo oscuro de la ruta troncal con crosshairs CAD y tipografía Geist Mono. Muestra estado de trancas/clima y el chip naranja con fletes de retorno disponibles en destino.
+              </p>
+            </div>
+            <div class="bg-brand-card p-3 rounded-lg border border-brand-border font-mono text-[11px] text-gray-300 italic">
+              "Ruta 4 despejada. 14 cargas pesadas esperando retorno en La Paz hoy. No vuelvas pateando oxígeno. Abre tu radar."
+            </div>
+          </div>
+
+          <!-- Format 3 -->
+          <div class="bg-brand-surface border border-brand-border rounded-xl p-5 space-y-3 flex flex-col justify-between">
+            <div>
+              <div class="text-[10px] font-mono text-emerald-400 font-bold uppercase">Formato 3: Prueba de Pago Real</div>
+              <h4 class="text-base font-bold text-white mt-1">Pruebas "Plata Segura"</h4>
+              <p class="text-xs text-gray-300 mt-2">
+                Foto de camión en parada de carretera + zoom a pantalla de celular mostrando la notificación verde de fondos Escrow liberados al instante de entregar.
+              </p>
+            </div>
+            <div class="bg-brand-card p-3 rounded-lg border border-brand-border font-mono text-[11px] text-gray-300 italic">
+              "Carga descargada. Plata en tu cuenta antes de que se enfríe el motor. Cero cuentos con el Escrow de MulaCargo."
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </section>
 
     <!-- ========================================================================= -->
-    <!-- TAB 3: CALCULADORA & ROI REFERIDOS -->
+    <!-- TAB 6: CALCULADORA & ROI REFERIDOS -->
     <!-- ========================================================================= -->
     <section id="pane-calculadora" class="space-y-8 hidden">
       
-      <!-- Calculator Main Box -->
       <div class="bg-brand-surface border border-brand-border rounded-2xl p-6 sm:p-8 glow-orange">
         <div class="max-w-3xl mb-6">
           <div class="inline-flex items-center gap-2 text-xs font-mono text-brand-orange bg-brand-orange/10 px-3 py-1 rounded-full border border-brand-orange/30 mb-3">
@@ -913,10 +1133,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          <!-- Controls (7 cols) -->
           <div class="lg:col-span-7 space-y-6">
-            
-            <!-- Slider 1: Referrals -->
             <div class="bg-brand-card p-4 rounded-xl border border-brand-border space-y-2">
               <div class="flex justify-between items-center">
                 <label for="calc-referrals" class="text-sm font-bold text-gray-200">
@@ -936,7 +1153,6 @@
               </div>
             </div>
 
-            <!-- Slider 2: Average Commission -->
             <div class="bg-brand-card p-4 rounded-xl border border-brand-border space-y-2">
               <div class="flex justify-between items-center">
                 <label for="calc-commission" class="text-sm font-bold text-gray-200">
@@ -955,7 +1171,6 @@
               </div>
             </div>
 
-            <!-- Fixed Rule Explanation -->
             <div class="p-4 bg-[#0A0A0C] rounded-xl border border-brand-border text-xs text-gray-400 space-y-1">
               <div class="flex items-center justify-between text-gray-300 font-bold">
                 <span>Costo Fijo por Referido Exitoso:</span>
@@ -963,10 +1178,8 @@
               </div>
               <p class="text-[11px] text-gray-400">*El bono se liquida <strong class="text-gray-200">únicamente cuando el invitado completa su primer flete real</strong>. Riesgo de fraude = 0%.</p>
             </div>
-
           </div>
 
-          <!-- Results Summary Card (5 cols) -->
           <div class="lg:col-span-5">
             <div class="bg-[#0A0A0C] border-2 border-brand-border rounded-2xl p-6 relative overflow-hidden shadow-2xl">
               <div class="badge-corner tl"></div><div class="badge-corner tr"></div>
@@ -1013,90 +1226,13 @@
         </div>
       </div>
 
-      <!-- Double-Sided Incentive Matrix -->
-      <div>
-        <h3 class="text-xl font-bold text-white mb-4">Esquema de Incentivos "Doble Cara"</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <!-- PYME Side -->
-          <div class="bg-brand-surface border border-brand-border rounded-xl p-6 relative">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-8 h-8 rounded bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-lg">
-                📦
-              </div>
-              <div>
-                <h4 class="text-lg font-bold text-white">Lado PYMES & Comerciantes</h4>
-                <p class="text-xs font-mono text-blue-400">Crédito en fletes para estimular recompra</p>
-              </div>
-            </div>
-
-            <ul class="space-y-3 text-xs text-gray-300">
-              <li class="bg-brand-card p-3 rounded-lg border border-brand-border flex items-start gap-2">
-                <span class="text-blue-400 font-bold">✓</span>
-                <div>
-                  <strong class="text-white">El que invita:</strong> Gana <span class="text-brand-orange font-bold">50 Bs en Crédito Mula</span> (solo canjeable en fletes futuros).
-                </div>
-              </li>
-              <li class="bg-brand-card p-3 rounded-lg border border-brand-border flex items-start gap-2">
-                <span class="text-blue-400 font-bold">✓</span>
-                <div>
-                  <strong class="text-white">El invitado:</strong> Obtiene <span class="text-brand-orange font-bold">50 Bs de descuento automático</span> en su primer envío.
-                </div>
-              </li>
-              <li class="bg-brand-card p-3 rounded-lg border border-brand-border flex items-start gap-2">
-                <span class="text-yellow-400 font-bold">★</span>
-                <div>
-                  <strong class="text-white">Gamificación:</strong> Al referir a 5 comerciantes activos, recibe un <span class="text-emerald-400 font-bold">bono extra de 200 Bs</span> en crédito logístico.
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Drivers Side -->
-          <div class="bg-brand-surface border border-brand-border rounded-xl p-6 relative">
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-8 h-8 rounded bg-orange-500/20 text-brand-orange flex items-center justify-center font-bold text-lg">
-                🚚
-              </div>
-              <div>
-                <h4 class="text-lg font-bold text-white">Lado Transportistas (Choferes)</h4>
-                <p class="text-xs font-mono text-brand-orange">Efectivo retirable para liquidez directa</p>
-              </div>
-            </div>
-
-            <ul class="space-y-3 text-xs text-gray-300">
-              <li class="bg-brand-card p-3 rounded-lg border border-brand-border flex items-start gap-2">
-                <span class="text-brand-orange font-bold">✓</span>
-                <div>
-                  <strong class="text-white">El que invita:</strong> Gana <span class="text-emerald-400 font-bold">50 Bs en Efectivo Directo</span> a su billetera digital (retirable a cuenta bancaria).
-                </div>
-              </li>
-              <li class="bg-brand-card p-3 rounded-lg border border-brand-border flex items-start gap-2">
-                <span class="text-brand-orange font-bold">✓</span>
-                <div>
-                  <strong class="text-white">El invitado:</strong> Obtiene <span class="text-emerald-400 font-bold">0% de comisión de app</span> en sus primeros 2 fletes completados.
-                </div>
-              </li>
-              <li class="bg-brand-card p-3 rounded-lg border border-brand-border flex items-start gap-2">
-                <span class="text-yellow-400 font-bold">★</span>
-                <div>
-                  <strong class="text-white">Gamificación:</strong> Al referir a 3 choferes verificados, desbloquea <span class="text-brand-orange font-bold">Prioridad en Pujas</span> (visualiza cargas 5 minutos antes).
-                </div>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-
     </section>
 
     <!-- ========================================================================= -->
-    <!-- TAB 4: PRESUPUESTO GTM ($5,000 USD) -->
+    <!-- TAB 7: PRESUPUESTO GTM ($5,000 USD) -->
     <!-- ========================================================================= -->
     <section id="pane-presupuesto" class="space-y-8 hidden">
       
-      <!-- Budget Header -->
       <div class="bg-brand-surface border border-brand-border rounded-xl p-6 sm:p-8">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-brand-border pb-6">
           <div>
@@ -1110,10 +1246,8 @@
           </div>
         </div>
 
-        <!-- 6 Budget Lines Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
           
-          <!-- Item 1 -->
           <div class="bg-brand-card p-4 rounded-xl border border-brand-border flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-center">
@@ -1129,7 +1263,6 @@
             </div>
           </div>
 
-          <!-- Item 2 -->
           <div class="bg-brand-card p-4 rounded-xl border border-brand-border flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-center">
@@ -1145,7 +1278,6 @@
             </div>
           </div>
 
-          <!-- Item 3 -->
           <div class="bg-brand-card p-4 rounded-xl border border-brand-border flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-center">
@@ -1161,7 +1293,6 @@
             </div>
           </div>
 
-          <!-- Item 4 -->
           <div class="bg-brand-card p-4 rounded-xl border border-brand-border flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-center">
@@ -1177,7 +1308,6 @@
             </div>
           </div>
 
-          <!-- Item 5 -->
           <div class="bg-brand-card p-4 rounded-xl border border-brand-border flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-center">
@@ -1193,11 +1323,10 @@
             </div>
           </div>
 
-          <!-- Item 6 -->
           <div class="bg-brand-card p-4 rounded-xl border border-brand-border flex flex-col justify-between">
             <div>
               <div class="flex justify-between items-center">
-                <span class="text-xs font-mono font-bold text-brand-orange">6. Fondo de Contingencia</span>
+                <span class="text-xs font-mono font-bold text-brand-orange">6. Fondo Contingencia</span>
                 <span class="text-xs font-mono font-bold text-white bg-brand-surface px-2 py-0.5 rounded border border-brand-border">$500 (10%)</span>
               </div>
               <p class="text-xs text-gray-300 mt-2 leading-relaxed">
@@ -1212,182 +1341,13 @@
         </div>
       </div>
 
-      <!-- KPIs Dashboard -->
-      <div class="bg-brand-surface border border-brand-border rounded-xl p-6">
-        <h3 class="text-xl font-bold text-white mb-4">KPIs de Rendimiento GTM a Monitorear</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          
-          <div class="bg-brand-card p-4 rounded-xl border border-brand-border text-center">
-            <div class="text-2xl font-black font-mono text-brand-orange">$0.30 - $0.45</div>
-            <div class="text-xs font-bold text-white mt-1">CPI Objetivo</div>
-            <p class="text-[11px] text-gray-400 mt-1">Costo por instalación en Santa Cruz a través de campañas de video.</p>
-          </div>
-
-          <div class="bg-brand-card p-4 rounded-xl border border-brand-border text-center">
-            <div class="text-2xl font-black font-mono text-emerald-400">&gt; 30%</div>
-            <div class="text-xs font-bold text-white mt-1">Hook Rate (3s)</div>
-            <p class="text-[11px] text-gray-400 mt-1">% de usuarios que ven más de 3 segundos en Reels y TikTok.</p>
-          </div>
-
-          <div class="bg-brand-card p-4 rounded-xl border border-brand-border text-center">
-            <div class="text-2xl font-black font-mono text-blue-400">&gt; 1.5%</div>
-            <div class="text-xs font-bold text-white mt-1">CTR a Tienda</div>
-            <p class="text-[11px] text-gray-400 mt-1">Click-Through Rate hacia Google Play y App Store.</p>
-          </div>
-
-          <div class="bg-brand-card p-4 rounded-xl border border-brand-border text-center">
-            <div class="text-2xl font-black font-mono text-purple-400">&gt; 65%</div>
-            <div class="text-xs font-bold text-white mt-1">Tasa de Onboarding</div>
-            <p class="text-[11px] text-gray-400 mt-1">Usuarios que completan registro y suben documentos en 24h.</p>
-          </div>
-
-        </div>
-      </div>
-
     </section>
 
     <!-- ========================================================================= -->
-    <!-- TAB 5: ROADMAP & CHECKLIST OPERATIVO -->
-    <!-- ========================================================================= -->
-    <section id="pane-roadmap" class="space-y-8 hidden">
-      
-      <!-- Roadmap Header -->
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-brand-surface border border-brand-border rounded-xl p-6">
-        <div>
-          <div class="text-xs font-mono text-brand-orange uppercase font-bold">EXECUTION ROADMAP // T-60 TO T+90</div>
-          <h2 class="text-2xl font-black text-white mt-1">Plan de Lanzamiento & Checklist Interactivo</h2>
-          <p class="text-xs text-gray-400 font-mono mt-1">Marca las tareas completadas. El estado se guarda automáticamente en tu navegador.</p>
-        </div>
-        
-        <!-- Progress Bar -->
-        <div class="bg-brand-card p-3.5 rounded-xl border border-brand-border min-w-[220px]">
-          <div class="flex justify-between text-xs font-mono mb-1.5">
-            <span class="text-gray-400">Progreso Total:</span>
-            <span id="checklist-progress-text" class="text-brand-orange font-bold">0%</span>
-          </div>
-          <div class="w-full h-2 bg-brand-surface rounded-full overflow-hidden">
-            <div id="checklist-progress-bar" class="h-full bg-brand-orange transition-all duration-300" style="width: 0%;"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Phase 1 -->
-      <div class="bg-brand-surface border border-brand-border rounded-xl p-6 space-y-4">
-        <div class="flex items-center justify-between border-b border-brand-border pb-3">
-          <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded bg-brand-orange/20 text-brand-orange font-mono font-bold text-xs flex items-center justify-center border border-brand-orange/40">1</span>
-            <div>
-              <h3 class="text-lg font-bold text-white">Fase 1: Pre-Lanzamiento (T-60 a T-14 días)</h3>
-              <p class="text-xs font-mono text-gray-400">Preparación de oferta inicial y activación de nodos de transporte</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="space-y-2.5">
-          <label class="flex items-start gap-3 p-3 bg-brand-card hover:bg-brand-card/70 rounded-lg border border-brand-border cursor-pointer transition-colors">
-            <input type="checkbox" id="task-1" onchange="toggleTask('task-1')" class="mt-1 rounded bg-brand-surface border-brand-border text-brand-orange focus:ring-brand-orange">
-            <div class="text-xs">
-              <div class="font-bold text-white">Onboarding de 50 transportistas pioneros en surtidores clave</div>
-              <p class="text-gray-400 mt-0.5">Visitas directas al 4to Anillo y Doble Vía La Guardia con entrega de stickers reflectivos.</p>
-            </div>
-          </label>
-
-          <label class="flex items-start gap-3 p-3 bg-brand-card hover:bg-brand-card/70 rounded-lg border border-brand-border cursor-pointer transition-colors">
-            <input type="checkbox" id="task-2" onchange="toggleTask('task-2')" class="mt-1 rounded bg-brand-surface border-brand-border text-brand-orange focus:ring-brand-orange">
-            <div class="text-xs">
-              <div class="font-bold text-white">Producción de los primeros 6 videos de Creator Studio</div>
-              <p class="text-gray-400 mt-0.5">Grabación de 3 guiones de transportistas y 3 guiones de PYMES con utilería oficial.</p>
-            </div>
-          </label>
-
-          <label class="flex items-start gap-3 p-3 bg-brand-card hover:bg-brand-card/70 rounded-lg border border-brand-border cursor-pointer transition-colors">
-            <input type="checkbox" id="task-3" onchange="toggleTask('task-3')" class="mt-1 rounded bg-brand-surface border-brand-border text-brand-orange focus:ring-brand-orange">
-            <div class="text-xs">
-              <div class="font-bold text-white">Configuración y testeo del Escrow Wallet y Botón SOS</div>
-              <p class="text-gray-400 mt-0.5">Prueba de retención de fondos y notificación de emergencia 24/7 en rutas cruceñas.</p>
-            </div>
-          </label>
-        </div>
-      </div>
-
-      <!-- Phase 2 -->
-      <div class="bg-brand-surface border border-brand-border rounded-xl p-6 space-y-4">
-        <div class="flex items-center justify-between border-b border-brand-border pb-3">
-          <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded bg-brand-orange/20 text-brand-orange font-mono font-bold text-xs flex items-center justify-center border border-brand-orange/40">2</span>
-            <div>
-              <h3 class="text-lg font-bold text-white">Fase 2: Lanzamiento & Hype (T-14 a T-0)</h3>
-              <p class="text-xs font-mono text-gray-400">Despliegue de campaña orgánica, envío de pitches de prensa y beta cerrada</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="space-y-2.5">
-          <label class="flex items-start gap-3 p-3 bg-brand-card hover:bg-brand-card/70 rounded-lg border border-brand-border cursor-pointer transition-colors">
-            <input type="checkbox" id="task-4" onchange="toggleTask('task-4')" class="mt-1 rounded bg-brand-surface border-brand-border text-brand-orange focus:ring-brand-orange">
-            <div class="text-xs">
-              <div class="font-bold text-white">Envío de Pitch de Prensa a periodistas tech y locales</div>
-              <p class="text-gray-400 mt-0.5">Contactar a redactores de El Deber y medios especializados con la exclusividad Logtech.</p>
-            </div>
-          </label>
-
-          <label class="flex items-start gap-3 p-3 bg-brand-card hover:bg-brand-card/70 rounded-lg border border-brand-border cursor-pointer transition-colors">
-            <input type="checkbox" id="task-5" onchange="toggleTask('task-5')" class="mt-1 rounded bg-brand-surface border-brand-border text-brand-orange focus:ring-brand-orange">
-            <div class="text-xs">
-              <div class="font-bold text-white">Publicación escalonada de videos según horarios estratégicos</div>
-              <p class="text-gray-400 mt-0.5">3 publicaciones diarias respetando los slots de 06:00, 12:30 y 19:30 con fórmula 3-3-3 de hashtags.</p>
-            </div>
-          </label>
-
-          <label class="flex items-start gap-3 p-3 bg-brand-card hover:bg-brand-card/70 rounded-lg border border-brand-border cursor-pointer transition-colors">
-            <input type="checkbox" id="task-6" onchange="toggleTask('task-6')" class="mt-1 rounded bg-brand-surface border-brand-border text-brand-orange focus:ring-brand-orange">
-            <div class="text-xs">
-              <div class="font-bold text-white">Activación del Programa de Referidos de Doble Cara</div>
-              <p class="text-gray-400 mt-0.5">Verificación de códigos de 50 Bs en crédito y efectivo para primeros 100 usuarios.</p>
-            </div>
-          </label>
-        </div>
-      </div>
-
-      <!-- Phase 3 -->
-      <div class="bg-brand-surface border border-brand-border rounded-xl p-6 space-y-4">
-        <div class="flex items-center justify-between border-b border-brand-border pb-3">
-          <div class="flex items-center gap-3">
-            <span class="w-7 h-7 rounded bg-brand-orange/20 text-brand-orange font-mono font-bold text-xs flex items-center justify-center border border-brand-orange/40">3</span>
-            <div>
-              <h3 class="text-lg font-bold text-white">Fase 3: Post-Lanzamiento & Escala (T-0 a T+30)</h3>
-              <p class="text-xs font-mono text-gray-400">Activaciones en vivo, optimización de pauta 80/20 y captación de flotas</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="space-y-2.5">
-          <label class="flex items-start gap-3 p-3 bg-brand-card hover:bg-brand-card/70 rounded-lg border border-brand-border cursor-pointer transition-colors">
-            <input type="checkbox" id="task-7" onchange="toggleTask('task-7')" class="mt-1 rounded bg-brand-surface border-brand-border text-brand-orange focus:ring-brand-orange">
-            <div class="text-xs">
-              <div class="font-bold text-white">Monitoreo de CPI y Hook Rate en Meta Ads</div>
-              <p class="text-gray-400 mt-0.5">Apagar creativos con Hook Rate menor al 25% y escalar los mejores ángulos antifraude.</p>
-            </div>
-          </label>
-
-          <label class="flex items-start gap-3 p-3 bg-brand-card hover:bg-brand-card/70 rounded-lg border border-brand-border cursor-pointer transition-colors">
-            <input type="checkbox" id="task-8" onchange="toggleTask('task-8')" class="mt-1 rounded bg-brand-surface border-brand-border text-brand-orange focus:ring-brand-orange">
-            <div class="text-xs">
-              <div class="font-bold text-white">Revisión de métricas de retención y camiones retornando con carga</div>
-              <p class="text-gray-400 mt-0.5">Comprobar el impacto del Hack del Retorno en los ingresos semanales de los transportistas.</p>
-            </div>
-          </label>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- TAB 6: PR PITCH & PRENSA -->
+    <!-- TAB 8: PRENSA & PR PITCH -->
     <!-- ========================================================================= -->
     <section id="pane-prensa" class="space-y-8 hidden">
       
-      <!-- PR Generator -->
       <div class="bg-brand-surface border border-brand-border rounded-xl p-6 sm:p-8">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-brand-border pb-6">
           <div>
@@ -1421,38 +1381,7 @@
           <div class="text-[10px] text-brand-orange uppercase font-bold mb-2 pb-2 border-b border-brand-border">
             Asunto: Exclusiva: Logtech cruceña ataca la informalidad y seguridad logística
           </div>
-          <div id="pitch-preview-body" class="space-y-3 font-sans text-sm text-gray-200">
-            <!-- Dynamic body filled by JS -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Official Press Release -->
-      <div class="bg-brand-surface border border-brand-border rounded-xl p-6 sm:p-8">
-        <div class="flex items-center justify-between border-b border-brand-border pb-4 mb-4">
-          <div>
-            <span class="text-xs font-mono text-emerald-400 uppercase font-bold">COMUNICADO OFICIAL PARA MEDIOS</span>
-            <h3 class="text-xl font-bold text-white mt-0.5">Mula Cargo lanza app para formalizar el transporte de carga en Bolivia</h3>
-          </div>
-          <button onclick="copyText('press-release-content')" class="text-xs font-mono text-brand-orange hover:text-orange-400 flex items-center gap-1">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-            Copiar Comunicado
-          </button>
-        </div>
-
-        <div id="press-release-content" class="text-sm text-gray-300 space-y-4 leading-relaxed bg-brand-card p-6 rounded-xl border border-brand-border">
-          <p class="font-bold text-white">
-            SANTA CRUZ DE LA SIERRA, BOLIVIA — 23 de septiembre de 2026.
-          </p>
-          <p>
-            Mula Cargo anunció hoy el lanzamiento oficial de su aplicación móvil, diseñada para conectar de manera directa a generadores de carga con transportistas independientes y dueños de flotas. La plataforma ya se encuentra disponible a nivel nacional, orientada a optimizar la cadena de suministro mediante la digitalización de los procesos logísticos y operativos.
-          </p>
-          <p>
-            Históricamente, el sector logístico local ha operado bajo un esquema de alta informalidad, lo que genera inseguridad en las rutas, riesgo constante de estafas en los pagos y una marcada ineficiencia que resulta en camiones que retornan vacíos a su punto de origen. Esta falta de estandarización frena el desarrollo de las pequeñas y medianas empresas (PYMES) y civiles que dependen de un flujo seguro de mercadería.
-          </p>
-          <p>
-            Mula Cargo responde a esta problemática implementando un <strong class="text-white">sistema de tarifas dinámicas y transparentes por pujas (bidding)</strong>, donde empresas y conductores negocian precios justos sin intermediarios ocultos. La aplicación integra una <strong class="text-brand-orange">billetera digital en garantía (escrow)</strong> que retiene y asegura los fondos hasta confirmar que la entrega se completó satisfactoriamente, mitigando el riesgo de fraudes. Asimismo, incorpora herramientas de seguridad avanzadas como monitoreo GPS en tiempo real y un <strong class="text-emerald-400">botón de auxilio SOS 24/7</strong> para proteger la integridad del transportista y su unidad en carretera.
-          </p>
+          <div id="pitch-preview-body" class="space-y-3 font-sans text-sm text-gray-200"></div>
         </div>
       </div>
 
@@ -1464,33 +1393,32 @@
   <footer class="bg-brand-surface border-t border-brand-border py-6 mt-12 text-center text-xs font-mono text-gray-500">
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
-        MULA CARGO LOGTECH © 2026 // PLAYBOOK ENGINE & GTM SUITE
+        MULA CARGO LOGTECH © 2026 // GTM COMMAND CENTER // SANTA CRUZ
       </div>
       <div class="flex items-center gap-4 text-gray-400">
+        <a href="/identidad-visual.html" class="hover:text-brand-orange">Identidad Visual</a>
+        <span>•</span>
         <a href="/index.html" class="hover:text-brand-orange">Portal</a>
         <span>•</span>
         <a href="/proposal.html" class="hover:text-brand-orange">Propuesta</a>
-        <span>•</span>
-        <a href="/simulator.html" class="hover:text-brand-orange">Simulador Fletes</a>
       </div>
     </div>
   </footer>
 
-  <!-- Interactive JavaScript Engine -->
+  <!-- Script Engine -->
   <script>
-    // Tab switching logic
     function switchTab(tabId) {
-      const tabs = ['posicionamiento', 'guiones', 'calculadora', 'presupuesto', 'roadmap', 'prensa'];
+      const tabs = ['posicionamiento', 'audiencia', 'valores', 'guiones', 'ig-grid', 'calculadora', 'presupuesto', 'prensa'];
       tabs.forEach(id => {
         const pane = document.getElementById(`pane-${id}`);
         const btn = document.getElementById(`tab-btn-${id}`);
         if (pane && btn) {
           if (id === tabId) {
             pane.classList.remove('hidden');
-            btn.className = 'tab-btn active px-3.5 py-2 rounded-lg text-xs font-mono font-medium border border-transparent transition-all flex items-center gap-2';
+            btn.className = 'tab-btn active px-3 py-2 rounded-lg text-xs font-mono font-medium border border-transparent transition-all flex items-center gap-1.5';
           } else {
             pane.classList.add('hidden');
-            btn.className = 'tab-btn px-3.5 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-2';
+            btn.className = 'tab-btn px-3 py-2 rounded-lg text-xs font-mono font-medium text-gray-400 hover:text-white hover:bg-brand-card border border-transparent transition-all flex items-center gap-1.5';
           }
         }
       });
@@ -1498,7 +1426,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Filter scripts
     function filterScripts(type) {
       const cards = document.querySelectorAll('.script-card');
       const btns = {
@@ -1518,9 +1445,7 @@
       });
 
       cards.forEach(card => {
-        if (type === 'all') {
-          card.classList.remove('hidden');
-        } else if (card.classList.contains(type)) {
+        if (type === 'all' || card.classList.contains(type)) {
           card.classList.remove('hidden');
         } else {
           card.classList.add('hidden');
@@ -1528,7 +1453,6 @@
       });
     }
 
-    // ROI Calculator
     function updateCalculator() {
       const referrals = parseInt(document.getElementById('calc-referrals').value, 10);
       const commission = parseInt(document.getElementById('calc-commission').value, 10);
@@ -1562,7 +1486,6 @@
       document.getElementById('calc-multiplier').innerText = `${multiplier}x`;
     }
 
-    // PR Pitch preview updater
     function updatePitchPreview() {
       const jName = document.getElementById('pitch-journalist').value || 'Mauricio';
       const media = document.getElementById('pitch-media').value || 'tu medio';
@@ -1570,15 +1493,15 @@
 
       const bodyHtml = `
         <p>Hola <strong>${jName}</strong>,</p>
-        <p>Leí tu reciente cobertura en <strong>${media}</strong> sobre el ecosistema empresarial de Santa Cruz y cómo concentra más del 54% de las startups de Bolivia.</p>
-        <p>Te escribo por el próximo lanzamiento de <strong>Mula Cargo</strong>, una Logtech nacida en Santa Cruz que elimina la informalidad y los riesgos de estafas en el transporte de carga integrando <strong>pujas dinámicas de fletes, billetera en escrow (garantía) y botón SOS</strong>.</p>
-        <p>El tema impacta de lleno a tu audiencia porque introduce tecnología financiera y de seguridad en un rubro tradicional, resolviendo la crisis de asaltos en ruta y fletes impagos:</p>
+        <p>Leí tu reciente cobertura en <strong>${media}</strong> sobre cómo Santa Cruz concentra más del 54% de las startups del país.</p>
+        <p>Te escribo por el próximo lanzamiento de <strong>Mula Cargo</strong>, una Logtech cruceña que elimina la informalidad y los riesgos de estafas integrando <strong>pujas dinámicas de fletes, billetera en escrow (garantía) y botón SOS</strong>.</p>
+        <p>El tema impacta a tu audiencia porque introduce fintech y seguridad en un rubro tradicional, resolviendo la crisis de asaltos y fletes impagos:</p>
         <ul class="list-disc pl-5 space-y-1 text-gray-300">
-          <li><strong>Transparencia:</strong> El sistema de pujas abiertas elimina intermediarios abusivos permitiendo negociar precios directos.</li>
-          <li><strong>Seguridad financiera:</strong> La billetera en escrow congela y asegura los fondos hasta confirmar la entrega física.</li>
-          <li><strong>Eficiencia de retorno:</strong> Permite a los choferes rentabilizar los viajes de vuelta evitando que regresen vacíos.</li>
+          <li><strong>Transparencia:</strong> Mercado abierto de pujas con comisión plana del 3.5%.</li>
+          <li><strong>Seguridad financiera:</strong> Escrow que congela los fondos hasta la entrega conforme.</li>
+          <li><strong>Eficiencia de retorno:</strong> Radar de Retorno para que ningún camión vuelva pateando oxígeno.</li>
         </ul>
-        <p>Queremos ofrecerte la <strong>primera entrevista exclusiva</strong> antes del lanzamiento público con datos inéditos sobre la ineficiencia logística en carreteras bolivianas.</p>
+        <p>Queremos ofrecerte la <strong>primera entrevista exclusiva</strong> antes del lanzamiento público con datos inéditos.</p>
         <p>¿Tendrías 10 minutos la próxima semana para una breve charla?</p>
         <p class="pt-2">Saludos cordiales,<br><strong>${spokesperson}</strong></p>
       `;
@@ -1595,113 +1518,53 @@
 
 Hola ${jName},
 
-Leí tu reciente cobertura en ${media} sobre el ecosistema empresarial de Santa Cruz y cómo concentra más del 54% de las startups de Bolivia.
+Leí tu reciente cobertura en ${media} sobre cómo Santa Cruz concentra más del 54% de las startups de Bolivia.
 
-Te escribo por el próximo lanzamiento de Mula Cargo, una Logtech nacida en Santa Cruz que elimina la informalidad y los riesgos de estafas en el transporte de carga integrando pujas dinámicas de fletes, billetera en escrow (garantía) y botón SOS.
+Te escribo por el próximo lanzamiento de Mula Cargo, una Logtech nacida en Santa Cruz que elimina la informalidad logística integrando pujas de fletes, billetera digital en escrow y un botón SOS.
 
-El tema impacta de lleno a tu audiencia porque introduce tecnología financiera y de seguridad en un rubro tradicional, resolviendo la crisis de asaltos en ruta y fletes impagos:
-* Transparencia: El sistema de pujas abiertas elimina intermediarios abusivos permitiendo negociar precios directos.
-* Seguridad financiera: La billetera en escrow congela y asegura los fondos hasta confirmar la entrega física.
-* Eficiencia de retorno: Permite a los choferes rentabilizar los viajes de vuelta evitando que regresen vacíos.
+Nuestra tecnología resuelve la informalidad logística así:
+* Transparencia: El sistema dinámico de pujas elimina intermediarios con una comisión plana del 3.5%.
+* Seguridad financiera: La billetera en escrow retiene y asegura los pagos, evitando el fraude.
+* Eficiencia de ruta: El Radar de Retorno elimina el rodaje vacío.
 
-Queremos ofrecerte la primera entrevista exclusiva antes del lanzamiento público con datos inéditos sobre la ineficiencia logística en carreteras bolivianas.
+Queremos ofrecerte la primera entrevista exclusiva antes del lanzamiento público.
 
-¿Tendrías 10 minutos la próxima semana para una breve charla?
+¿Tendrías 10 minutos la próxima semana?
 
 Saludos cordiales,
 ${spokesperson}`;
 
-      navigator.clipboard.writeText(text).then(() => showToast('Email de pitch copiado al portapapeles'));
+      navigator.clipboard.writeText(text).then(() => showToast('Email de pitch copiado'));
     }
 
-    // Hashtags copy
-    function copyHashtags() {
-      const hashtags = '#TransporteBolivia #Camioneros #Logistica #RutasBolivianas #SantaCruzBolivia #Carreteras #MulaCargo #Logtech #Emprendedores';
-      navigator.clipboard.writeText(hashtags).then(() => showToast('9 Hashtags copiados al portapapeles'));
+    function copyScript(id) {
+      const el = document.getElementById(id);
+      if (el) navigator.clipboard.writeText(el.innerText).then(() => showToast('Guión copiado'));
     }
 
-    // Script copy
-    function copyScript(scriptId) {
-      const el = document.getElementById(scriptId);
-      if (!el) return;
-      const text = el.innerText;
-      navigator.clipboard.writeText(text).then(() => showToast('Guión completo copiado'));
-    }
-
-    // General text copy
-    function copyText(elementId) {
-      const el = document.getElementById(elementId);
-      if (!el) return;
-      navigator.clipboard.writeText(el.innerText).then(() => showToast('Texto copiado al portapapeles'));
+    function copyText(id) {
+      const el = document.getElementById(id);
+      if (el) navigator.clipboard.writeText(el.innerText).then(() => showToast('Texto copiado'));
     }
 
     function copyTextDirect(str) {
-      navigator.clipboard.writeText(str).then(() => showToast('Copiado: ' + str));
+      navigator.clipboard.writeText(str).then(() => showToast('Copiado'));
     }
 
-    // Toast helper
     function showToast(msg) {
       const toast = document.getElementById('toast');
       const msgEl = document.getElementById('toast-msg');
       msgEl.innerText = msg;
       toast.classList.remove('hidden');
-      setTimeout(() => {
-        toast.classList.add('hidden');
-      }, 2500);
+      setTimeout(() => toast.classList.add('hidden'), 2200);
     }
 
-    // Checklist state with localStorage
-    const taskIds = ['task-1', 'task-2', 'task-3', 'task-4', 'task-5', 'task-6', 'task-7', 'task-8'];
-
-    function loadChecklist() {
-      let completed = 0;
-      taskIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          const val = localStorage.getItem(`mulacargo_task_${id}`);
-          if (val === 'true') {
-            el.checked = true;
-            completed++;
-          }
-        }
-      });
-      updateChecklistProgress(completed);
-    }
-
-    function toggleTask(id) {
-      const el = document.getElementById(id);
-      if (el) {
-        localStorage.setItem(`mulacargo_task_${id}`, el.checked ? 'true' : 'false');
-      }
-      let completed = 0;
-      taskIds.forEach(tId => {
-        const tEl = document.getElementById(tId);
-        if (tEl && tEl.checked) completed++;
-      });
-      updateChecklistProgress(completed);
-    }
-
-    function updateChecklistProgress(completed) {
-      const total = taskIds.length;
-      const pct = Math.round((completed / total) * 100);
-      const textEl = document.getElementById('checklist-progress-text');
-      const barEl = document.getElementById('checklist-progress-bar');
-      if (textEl && barEl) {
-        textEl.innerText = `${pct}% (${completed}/${total})`;
-        barEl.style.width = `${pct}%`;
-      }
-    }
-
-    // Initialize on load
     window.addEventListener('DOMContentLoaded', () => {
-      // Check hash
       const hash = window.location.hash.replace('#', '');
-      if (hash && ['posicionamiento', 'guiones', 'calculadora', 'presupuesto', 'roadmap', 'prensa'].includes(hash)) {
-        switchTab(hash);
-      }
+      const valid = ['posicionamiento', 'audiencia', 'valores', 'guiones', 'ig-grid', 'calculadora', 'presupuesto', 'prensa'];
+      if (hash && valid.includes(hash)) switchTab(hash);
       updateCalculator();
       updatePitchPreview();
-      loadChecklist();
     });
   </script>
 </body>

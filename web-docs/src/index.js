@@ -223,7 +223,11 @@ export default {
       url.pathname === "/branding-guide" ||
       url.pathname === "/branding-guide.html" ||
       url.pathname === "/playbook" ||
-      url.pathname === "/playbook.html";
+      url.pathname === "/playbook.html" ||
+      url.pathname === "/identidad-visual" ||
+      url.pathname === "/identidad-visual.html" ||
+      url.pathname === "/branding" ||
+      url.pathname === "/branding.html";
 
     if (isPublicRoute) {
       const response = await env.ASSETS.fetch(request);

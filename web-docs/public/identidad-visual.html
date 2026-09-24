@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MulaCargo — Identidad Visual & Design System Logtech</title>
+  
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700;800&family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#FF5500',
+              'orange-dark': '#E04B00',
+              'orange-light': '#FFF2EA',
+              emerald: '#00E599',
+              'emerald-dark': '#00B377',
+              dark: '#0A0A0C',
+              surface: '#12141A',
+              card: '#181C26',
+              border: '#242B38',
+              amber: '#F59E0B'
+            }
+          },
+          fontFamily: {
+            sans: ['League Spartan', 'sans-serif'],
+            display: ['League Spartan', 'sans-serif'],
+            mono: ['Geist Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --brand-orange: #FF5500;
+      --brand-surface: #12141A;
+      --brand-card: #181C26;
+      --brand-border: #242B38;
+    }
+    
+    body {
+      background-color: #0A0A0C;
+      color: #F3F4F6;
+      font-family: 'League Spartan', sans-serif;
+    }
+
+    .font-mono {
+      font-family: 'Geist Mono', monospace;
+      font-feature-settings: "tnum";
+    }
+
+    /* Asfalto Húmedo Texture Effect */
+    .asphalt-bg {
+      background-color: #0A0A0C;
+      background-image: radial-gradient(circle at 50% 0%, rgba(255, 85, 0, 0.15) 0%, transparent 60%),
+                        radial-gradient(circle at 100% 100%, rgba(0, 229, 153, 0.08) 0%, transparent 50%);
+    }
+
+    /* Micro-Prisma Reflective Tape Motif */
+    .reflective-tape {
+      background: repeating-linear-gradient(
+        -45deg,
+        #FF5500,
+        #FF5500 12px,
+        #0A0A0C 12px,
+        #0A0A0C 24px
+      );
+    }
+    
+    .reflective-tape-emerald {
+      background: repeating-linear-gradient(
+        -45deg,
+        #00E599,
+        #00E599 12px,
+        #0A0A0C 12px,
+        #0A0A0C 24px
+      );
+    }
+
+    .badge-corner {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border: 1px solid #FF5500;
+    }
+    .badge-corner.tl { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+    .badge-corner.tr { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
+    .badge-corner.bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
+    .badge-corner.br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+    .glow-orange {
+      box-shadow: 0 0 30px rgba(255, 85, 0, 0.25);
+    }
+
+    @keyframes slideDown {
+      from { transform: translate(-50%, -100%); opacity: 0; }
+      to { transform: translate(-50%, 0); opacity: 1; }
+    }
+    .toast-animate {
+      animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col asphalt-bg text-gray-100 antialiased selection:bg-orange-500 selection:text-white">
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 hidden bg-brand-surface border border-brand-orange text-white px-5 py-3 rounded-lg shadow-2xl flex items-center gap-3 toast-animate font-mono text-xs">
+    <svg class="w-4 h-4 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+    </svg>
+    <span id="toast-msg">Copiado al portapapeles</span>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-[#0A0A0C]/90 backdrop-blur-md border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <a href="/index.html" class="flex items-center gap-2 group">
+            <div class="w-9 h-9 rounded bg-gradient-to-br from-brand-orange to-orange-600 flex items-center justify-center font-extrabold text-white text-lg tracking-tight shadow-md group-hover:scale-105 transition-transform">
+              M
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-extrabold text-xl tracking-tight text-white uppercase">MULA<span class="text-brand-orange">CARGO</span></span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-orange/20 text-brand-orange border border-brand-orange/40 uppercase font-semibold">Design System // v2.0</span>
+              </div>
+              <p class="text-[10px] font-mono text-gray-400">LOGTECH HEAVY-DUTY // GUÍA DE IDENTIDAD VISUAL</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="/playbook.html" class="inline-flex items-center gap-1.5 text-xs font-mono text-brand-orange hover:text-orange-400 px-3 py-1.5 rounded border border-brand-orange/40 hover:bg-brand-orange/10 transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+            Playbook Engine GTM
+          </a>
+          <a href="/index.html" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono text-gray-400 hover:text-white px-3 py-1.5 rounded border border-brand-border transition-colors">
+            Portal
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+
+    <!-- Hero Title -->
+    <div class="relative bg-gradient-to-r from-brand-surface via-brand-card to-brand-surface border border-brand-border rounded-2xl p-8 sm:p-10 glow-orange overflow-hidden">
+      <div class="badge-corner tl"></div><div class="badge-corner tr"></div>
+      <div class="badge-corner bl"></div><div class="badge-corner br"></div>
+
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 text-xs font-mono text-brand-orange bg-brand-orange/10 px-3 py-1 rounded-full border border-brand-orange/30 mb-4">
+          <span class="w-2 h-2 rounded-full bg-brand-orange animate-ping"></span>
+          IDENTIDAD VISUAL OFICIAL
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase leading-none">
+          Cyber-Logística Industrial <br><span class="text-brand-orange">× Robustez Vial Andina</span>
+        </h1>
+        <p class="mt-4 text-base sm:text-lg text-gray-300 leading-relaxed font-normal">
+          MulaCargo rechaza la estética higienizada y delicada de las apps de delivery de comida. Está construida sobre la <strong class="text-white">utilidad de carretera, la arena del asfalto y la maquinaria pesada</strong>, fusionadas con la <strong class="text-emerald-400">precisión del escrow fintech</strong> y la <strong class="text-brand-orange">herencia textil del aguayo</strong>.
+        </p>
+      </div>
+
+      <!-- Quick Indicators -->
+      <div class="mt-8 pt-6 border-t border-brand-border/70 grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+        <div class="bg-[#0A0A0C]/70 p-3 rounded-lg border border-brand-border">
+          <span class="text-gray-400 block text-[10px] uppercase">Arquetipo</span>
+          <span class="text-white font-bold text-sm">Logtech Pesado</span>
+        </div>
+        <div class="bg-[#0A0A0C]/70 p-3 rounded-lg border border-brand-border">
+          <span class="text-gray-400 block text-[10px] uppercase">Color Primario</span>
+          <span class="text-brand-orange font-bold text-sm">#FF5500 (High-Vis)</span>
+        </div>
+        <div class="bg-[#0A0A0C]/70 p-3 rounded-lg border border-brand-border">
+          <span class="text-gray-400 block text-[10px] uppercase">Tipografía Display</span>
+          <span class="text-white font-bold text-sm">League Spartan 900</span>
+        </div>
+        <div class="bg-[#0A0A0C]/70 p-3 rounded-lg border border-brand-border">
+          <span class="text-gray-400 block text-[10px] uppercase">Telemetría / Data</span>
+          <span class="text-emerald-400 font-bold text-sm">Geist Mono (Tabular)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1: Color Palette Tokens -->
+    <section class="space-y-6">
+      <div class="border-b border-brand-border pb-3 flex items-center justify-between">
+        <div>
+          <span class="text-xs font-mono text-brand-orange uppercase font-bold">1. PALETA DE COLORES & TOKENS DE DISEÑO</span>
+          <h2 class="text-2xl font-black text-white mt-0.5">Tokens Cromáticos Oficiales</h2>
+        </div>
+        <span class="text-xs font-mono text-gray-400">Click en cualquier color para copiar HEX</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- High-Vis Freight Orange -->
+        <div onclick="copyHex('#FF5500')" class="group bg-brand-surface border border-brand-border hover:border-brand-orange rounded-xl overflow-hidden cursor-pointer transition-all hover:scale-[1.02] glow-orange">
+          <div class="h-28 bg-[#FF5500] p-4 flex flex-col justify-between">
+            <span class="text-xs font-mono font-bold text-black uppercase bg-white/90 px-2 py-0.5 rounded self-start">Primario // Core</span>
+            <div class="flex justify-between items-end">
+              <span class="font-mono text-xl font-black text-white">#FF5500</span>
+              <span class="text-xs font-mono text-white/90 group-hover:underline">Copiar</span>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-lg font-bold text-white">High-Vis Freight Orange</h3>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              <strong>Rol & Psicología:</strong> Chalecos de alta visibilidad, conos de seguridad en carretera, energía cinética, urgencia en pujas y llamados a la acción imperativos.
+            </p>
+          </div>
+        </div>
+
+        <!-- Asphalt Night -->
+        <div onclick="copyHex('#0A0A0C')" class="group bg-brand-surface border border-brand-border hover:border-gray-500 rounded-xl overflow-hidden cursor-pointer transition-all hover:scale-[1.02]">
+          <div class="h-28 bg-[#0A0A0C] border-b border-brand-border p-4 flex flex-col justify-between">
+            <span class="text-xs font-mono font-bold text-gray-300 uppercase bg-brand-card px-2 py-0.5 rounded self-start border border-brand-border">Superficie Base</span>
+            <div class="flex justify-between items-end">
+              <span class="font-mono text-xl font-black text-white">#0A0A0C / #12141A</span>
+              <span class="text-xs font-mono text-gray-400 group-hover:underline">Copiar</span>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-lg font-bold text-white">Asphalt Night (Noche Asfalto)</h3>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              <strong>Rol & Psicología:</strong> Asfalto recién pavimentado bajo la lluvia, chasis de camión pesado, durabilidad extrema y contraste OLED premium.
+            </p>
+          </div>
+        </div>
+
+        <!-- Diesel Slate / Carbon -->
+        <div onclick="copyHex('#181C26')" class="group bg-brand-surface border border-brand-border hover:border-gray-500 rounded-xl overflow-hidden cursor-pointer transition-all hover:scale-[1.02]">
+          <div class="h-28 bg-[#181C26] p-4 flex flex-col justify-between border-b border-brand-border">
+            <span class="text-xs font-mono font-bold text-gray-300 uppercase bg-[#0A0A0C] px-2 py-0.5 rounded self-start border border-brand-border">Estructura & Tarjetas</span>
+            <div class="flex justify-between items-end">
+              <span class="font-mono text-xl font-black text-white">#181C26 / #242B38</span>
+              <span class="text-xs font-mono text-gray-400 group-hover:underline">Copiar</span>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-lg font-bold text-white">Diesel Slate / Carbón</h3>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              <strong>Rol & Psicología:</strong> Acero estructural del motor, contenedores modulares, tarjetas de contenido y separadores técnicos.
+            </p>
+          </div>
+        </div>
+
+        <!-- Profit Emerald -->
+        <div onclick="copyHex('#00E599')" class="group bg-brand-surface border border-brand-border hover:border-emerald-500 rounded-xl overflow-hidden cursor-pointer transition-all hover:scale-[1.02]">
+          <div class="h-28 bg-[#00E599] p-4 flex flex-col justify-between">
+            <span class="text-xs font-mono font-bold text-black uppercase bg-black/20 px-2 py-0.5 rounded self-start">Fintech Escrow</span>
+            <div class="flex justify-between items-end">
+              <span class="font-mono text-xl font-black text-black">#00E599 / #10B981</span>
+              <span class="text-xs font-mono text-black group-hover:underline font-bold">Copiar</span>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-lg font-bold text-white">Profit Emerald (Verde Rentabilidad)</h3>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              <strong>Rol & Psicología:</strong> Fondos retenidos y asegurados en escrow, saldo a favor en billetera digital, ganancias netas y confirmación de entregas exitosas.
+            </p>
+          </div>
+        </div>
+
+        <!-- Warning Amber -->
+        <div onclick="copyHex('#F59E0B')" class="group bg-brand-surface border border-brand-border hover:border-amber-500 rounded-xl overflow-hidden cursor-pointer transition-all hover:scale-[1.02]">
+          <div class="h-28 bg-[#F59E0B] p-4 flex flex-col justify-between">
+            <span class="text-xs font-mono font-bold text-black uppercase bg-black/20 px-2 py-0.5 rounded self-start">Alerta Vial</span>
+            <div class="flex justify-between items-end">
+              <span class="font-mono text-xl font-black text-black">#F59E0B / #FFB800</span>
+              <span class="text-xs font-mono text-black group-hover:underline font-bold">Copiar</span>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-lg font-bold text-white">Warning Amber (Ámbar Advertencia)</h3>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              <strong>Rol & Psicología:</strong> Pujas urgentes por vencer, temporizadores de cuenta regresiva, cargas peligrosas/frágiles y alertas de bloqueo en ruta.
+            </p>
+          </div>
+        </div>
+
+        <!-- Aguayo Flare -->
+        <div onclick="copyHex('#E04B00')" class="group bg-brand-surface border border-brand-border hover:border-orange-600 rounded-xl overflow-hidden cursor-pointer transition-all hover:scale-[1.02]">
+          <div class="h-28 bg-gradient-to-r from-[#FF5500] via-[#E04B00] to-[#B33000] p-4 flex flex-col justify-between">
+            <span class="text-xs font-mono font-bold text-white uppercase bg-black/40 px-2 py-0.5 rounded self-start">Acento Cultural</span>
+            <div class="flex justify-between items-end">
+              <span class="font-mono text-xl font-black text-white">#E04B00 + Ocre</span>
+              <span class="text-xs font-mono text-white group-hover:underline">Copiar</span>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-lg font-bold text-white">Aguayo Flare (Acento Andino)</h3>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              <strong>Rol & Psicología:</strong> Patrones geométricos sutiles inspirados en el tejido tradicional del aguayo boliviano, fusionando herencia cultural y modernidad.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 2: Typography System -->
+    <section class="bg-brand-surface border border-brand-border rounded-2xl p-6 sm:p-8 space-y-6">
+      <div class="border-b border-brand-border pb-3">
+        <span class="text-xs font-mono text-brand-orange uppercase font-bold">2. TIPOGRAFÍA & JERARQUÍA TÉCNICA</span>
+        <h2 class="text-2xl font-black text-white mt-0.5">Sistema Tipográfico Industrial</h2>
+      </div>
+
+      <div class="space-y-6">
+        
+        <!-- Display Heading -->
+        <div class="bg-brand-card p-6 rounded-xl border border-brand-border">
+          <div class="flex justify-between items-center text-xs font-mono text-gray-400 mb-2">
+            <span>DISPLAY & TITULARES // PESO 900 ULTRA-BOLD</span>
+            <span class="text-brand-orange">League Spartan / Cabinet Grotesk</span>
+          </div>
+          <div class="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase leading-none">
+            MULA CARGO: CARGA PESADA, RETORNO LLENO
+          </div>
+          <p class="text-xs text-gray-400 font-mono mt-3">
+            Uso: Titulares H1-H3, declaraciones de marca, cifras de impacto y botones de acción principal.
+          </p>
+        </div>
+
+        <!-- Telemetry & Mono Data -->
+        <div class="bg-brand-card p-6 rounded-xl border border-brand-border">
+          <div class="flex justify-between items-center text-xs font-mono text-gray-400 mb-2">
+            <span>TELEMETRÍA, BALANCES & METADATOS // TABULAR NUMERALS</span>
+            <span class="text-emerald-400">Geist Mono / JetBrains Mono</span>
+          </div>
+          <div class="text-xl sm:text-2xl font-mono text-emerald-400 font-bold tracking-tight">
+            ESCROW_LOCKED: 4,500.00 BOB // GPS: -17.7833, -63.1821 // PESO: 18.5 TON
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 text-xs font-mono text-gray-300">
+            <div class="bg-[#0A0A0C] p-2.5 rounded border border-brand-border">FLETE: #MC-9482</div>
+            <div class="bg-[#0A0A0C] p-2.5 rounded border border-brand-border">COMISIÓN: 3.5% FIJO</div>
+            <div class="bg-[#0A0A0C] p-2.5 rounded border border-brand-border">STATUS: FONDOS SEGUROS</div>
+            <div class="bg-[#0A0A0C] p-2.5 rounded border border-brand-border">ETA: 04:30 HRS</div>
+          </div>
+        </div>
+
+        <!-- Body Text -->
+        <div class="bg-brand-card p-6 rounded-xl border border-brand-border">
+          <div class="flex justify-between items-center text-xs font-mono text-gray-400 mb-2">
+            <span>CUERPO DE TEXTO & LECTURA CONTINUA // PESOS 400 - 600</span>
+            <span class="text-gray-300">League Spartan / Inter / Plus Jakarta</span>
+          </div>
+          <p class="text-sm sm:text-base text-gray-300 leading-relaxed font-normal">
+            Los transportistas independientes bolivianos arriesgan su capital y seguridad diariamente. MulaCargo les otorga el poder de negociar tarifas justas en tiempo real, garantizando que cada kilómetro recorrido genere rentabilidad y que ningún camión vuelva pateando oxígeno a su ciudad base.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 3: Textures, Materials & Motifs -->
+    <section class="space-y-6">
+      <div class="border-b border-brand-border pb-3">
+        <span class="text-xs font-mono text-brand-orange uppercase font-bold">3. TEXTURAS, MATERIALES & ATMÓSFERA</span>
+        <h2 class="text-2xl font-black text-white mt-0.5">Materia Prima & Acabados Visuales</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Texture 1: Micro-Prism -->
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="h-8 rounded-lg reflective-tape mb-4 border border-brand-orange/50"></div>
+            <h3 class="text-lg font-bold text-white">Bandas Micro-Prismáticas Reflectivas</h3>
+            <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+              Inspiradas en las cintas 3M retro-reflectivas homologadas para remolques y camiones pesados en ruta. Utilizadas como divisores y bordes activos de estado.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border text-[11px] font-mono text-brand-orange">
+            Patrón: Rayado industrial 45°
+          </div>
+        </div>
+
+        <!-- Texture 2: CAD Crosshairs -->
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 relative flex flex-col justify-between">
+          <div class="badge-corner tl"></div><div class="badge-corner tr"></div>
+          <div class="badge-corner bl"></div><div class="badge-corner br"></div>
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono text-brand-orange mb-3">
+              <span>[ + ] CORNER_LOCK</span>
+              <span>TELEMATICS</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Esquineros Mecánicos & Crosshairs</h3>
+            <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+              Esquinas técnicas tipo HUD/CAD que enmarcan tarjetas de alta criticidad: estado del Escrow, botón SOS y especificaciones de cubicaje.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border text-[11px] font-mono text-gray-400">
+            Elemento: .badge-corner con micro-bordes
+          </div>
+        </div>
+
+        <!-- Texture 3: Ratchet Straps -->
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="h-8 rounded-lg bg-gradient-to-r from-brand-orange via-orange-600 to-brand-orange mb-4 border border-orange-400 flex items-center justify-center font-mono font-bold text-xs text-black">
+              === CORREAJE DE CARGA PESADA ===
+            </div>
+            <h3 class="text-lg font-bold text-white">Cinchas & Correas Ratchet</h3>
+            <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+              Texturas basadas en las correas de amarre de alta tensión en poliéster naranja. Comunican sujeción inamovible de la carga y firmeza en los pagos.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-brand-border text-[11px] font-mono text-brand-orange">
+            Concepto: Firmeza e inmovilización
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 4: Mascot & AI Generation Prompts -->
+    <section class="bg-brand-surface border border-brand-border rounded-2xl p-6 sm:p-8 space-y-6">
+      <div class="border-b border-brand-border pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div>
+          <span class="text-xs font-mono text-brand-orange uppercase font-bold">4. MASCOTA & PROMPTS DE GENERACIÓN (AI ASSETS)</span>
+          <h2 class="text-2xl font-black text-white mt-0.5">La Mula Heavy-Duty (Mascota Oficial)</h2>
+        </div>
+        <span class="text-xs font-mono text-gray-400">Prompts en inglés para Midjourney v6 / Flux.1</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Prompt 1: Master Logo / App Icon -->
+        <div class="bg-brand-card p-5 rounded-xl border border-brand-border space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-brand-orange uppercase">Prompt 1.1: Logo Maestro & App Icon</span>
+            <button onclick="copyPrompt('prompt-1')" class="text-xs font-mono text-brand-orange hover:underline">Copiar Prompt</button>
+          </div>
+          <div id="prompt-1" class="bg-[#0A0A0C] p-3.5 rounded-lg border border-brand-border font-mono text-xs text-gray-300 leading-relaxed">
+App icon design for "MulaCargo", featuring a modern stylized geometric mule head profile, powerful jawline, sleek aerodynamic ears, wearing high-tech logistics goggles with an amber glow. Minimalist 3D isometric vector emblem, industrial safety orange (#FF5500) and deep asphalt slate (#0F1115) palette, subtle metallic sheen, smooth rounded square app icon background with highway yellow accent border, ultra clean, premium brand mark, 8k, vector style, Behance award winner --v 6.0 --ar 1:1 --no realistic donkey eyes, no cartoonish goofy face
+          </div>
+          <div class="text-[11px] font-mono text-gray-400">
+            Regla de oro: Jamás caricaturesca o tonta; siempre fuerte, inteligente y tecnificada.
+          </div>
+        </div>
+
+        <!-- Prompt 2: Full Character Mascot -->
+        <div class="bg-brand-card p-5 rounded-xl border border-brand-border space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono font-bold text-brand-orange uppercase">Prompt 1.2: Personaje Completo de Mascota</span>
+            <button onclick="copyPrompt('prompt-2')" class="text-xs font-mono text-brand-orange hover:underline">Copiar Prompt</button>
+          </div>
+          <div id="prompt-2" class="bg-[#0A0A0C] p-3.5 rounded-lg border border-brand-border font-mono text-xs text-gray-300 leading-relaxed">
+Full-body character design of the MulaCargo mascot, a strong cyber-mechanic futuristic mule standing confidently beside a heavy-duty pickup truck and cargo container, wearing a safety high-vis utility vest with cargo straps and digital GPS smartwatch on wrist. Industrial highway background at golden hour, bold stance, friendly yet tough, dependable, modern 3D Pixar meets industrial logistics render, soft ambient occlusion, Octane Render, clean studio lighting --v 6.0 --ar 16:9
+          </div>
+          <div class="text-[11px] font-mono text-gray-400">
+            Uso: Pantallas de bienvenida (onboarding), banners de campaña y material impreso en ferias.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 5: Interactive UI Component Laboratory -->
+    <section class="space-y-6">
+      <div class="border-b border-brand-border pb-3">
+        <span class="text-xs font-mono text-brand-orange uppercase font-bold">5. LABORATORIO DE COMPONENTES UI REALES</span>
+        <h2 class="text-2xl font-black text-white mt-0.5">Componentes Interactivos en Vivo</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Component 1: Escrow Padlock Badge -->
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-mono text-gray-400 uppercase mb-3 font-bold">Indicador de Fondos Escrow</div>
+            <div class="p-4 bg-emerald-950/40 border-2 border-emerald-500 rounded-xl flex items-center gap-3.5 glow-emerald">
+              <div class="w-10 h-10 rounded-full bg-emerald-500 text-black flex items-center justify-center font-bold text-xl">
+                🔒
+              </div>
+              <div>
+                <div class="text-xs font-mono text-emerald-400 font-bold uppercase">PLATA SEGURA // ESCROW ACTIVO</div>
+                <div class="text-lg font-black text-white">4,200 BOB Bloqueados</div>
+              </div>
+            </div>
+            <p class="text-xs text-gray-400 mt-3">
+              Visible en cada flete asignado. El chofer no enciende el motor hasta que este badge se torne verde.
+            </p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-brand-border text-[11px] font-mono text-emerald-400">
+            Regla: Cero trabajo al crédito
+          </div>
+        </div>
+
+        <!-- Component 2: Fat-Finger Emergency Action -->
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-mono text-gray-400 uppercase mb-3 font-bold">Botón de Gran Superficie (Fat-Finger)</div>
+            <button class="w-full py-4 bg-brand-orange hover:bg-orange-600 text-white font-black text-base uppercase tracking-wider rounded-xl shadow-lg shadow-brand-orange/40 active:scale-95 transition-all flex items-center justify-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              ACEPTAR PUJA (3,800 BOB)
+            </button>
+            <p class="text-xs text-gray-400 mt-3">
+              Diseñado con altura mínima de 56px para pulsarse con una mano mientras el vehículo vibra en ruta.
+            </p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-brand-border text-[11px] font-mono text-brand-orange">
+            Accesibilidad: Touch Target &gt; 52px
+          </div>
+        </div>
+
+        <!-- Component 3: Defending the Floor Alert -->
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-mono text-gray-400 uppercase mb-3 font-bold">Freno Anti-Flete de Hambre</div>
+            <div class="p-3.5 bg-red-950/40 border border-red-500 rounded-lg text-xs space-y-1">
+              <div class="font-bold text-red-400 flex items-center gap-1.5 font-mono">
+                <span>⛔</span> TARIFA POR DEBAJO DEL PISO
+              </div>
+              <p class="text-gray-300 text-[11px] leading-relaxed">
+                Tu oferta de 800 BOB no cubre el combustible mínimo en la ruta SCZ-CBB. El piso algorítmico es 1,450 BOB.
+              </p>
+            </div>
+            <p class="text-xs text-gray-400 mt-3">
+              MulaCargo defiende el margen del chofer bloqueando ofertas abusivas que arruinen el mercado.
+            </p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-brand-border text-[11px] font-mono text-red-400">
+            Misión: Cero fletes de hambre
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brand-surface border-t border-brand-border py-8 text-center text-xs font-mono text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        MULA CARGO BRAND IDENTITY SYSTEM © 2026 // SANTA CRUZ DE LA SIERRA, BOLIVIA
+      </div>
+      <div class="flex items-center gap-4 text-gray-400">
+        <a href="/playbook.html" class="hover:text-brand-orange">Playbook GTM</a>
+        <span>•</span>
+        <a href="/index.html" class="hover:text-brand-orange">Portal</a>
+        <span>•</span>
+        <a href="/simulator.html" class="hover:text-brand-orange">Simulador</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function copyHex(hex) {
+      navigator.clipboard.writeText(hex).then(() => showToast(`HEX ${hex} copiado`));
+    }
+
+    function copyPrompt(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => showToast('Prompt copiado al portapapeles'));
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toast-msg');
+      msgEl.innerText = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 2200);
+    }
+  </script>
+</body>
+</html>
