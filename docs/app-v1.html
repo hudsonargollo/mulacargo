@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MulaCargo — Carga Pesada, Retorno Lleno | App de Fletes en Bolivia</title>
+  <title>MulaCargo | Carga Pesada, Retorno Lleno | App de Fletes en Bolivia</title>
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
@@ -643,6 +643,8 @@
   }
 </style>
 
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -678,7 +680,7 @@
       <div class="hero-brand-mark">
         <img src="./mulacargo.webp" alt="MulaCargo">
       </div>
-      <div class="badge-hero">⚡ EL MARKETPLACE DE CARGA PESADA DE BOLIVIA</div>
+      <div class="badge-hero"><i data-lucide="zap" class="w-4 h-4 inline-block"></i> EL MARKETPLACE DE CARGA PESADA DE BOLIVIA</div>
       <h1 class="hero-title">Carga Pesada, <span>Retorno Lleno.</span><br>El Flete que Nunca Vuelve Vacío.</h1>
       <p class="hero-lead">
         Conectamos empresas, industrias y agropecuarias con transportistas verificados en toda Bolivia. Subastas transparentes en tiempo real, <strong>Radar de Retorno</strong> para duplicar la rentabilidad del viaje y <strong>comisión fija del 3%</strong>.
@@ -686,10 +688,10 @@
 
       <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
         <a href="./simulator.html" class="btn-primary" style="padding: 0.9rem 2rem; font-size: 1rem;">
-          ⚡ Simular Ganancia & Retorno
+          <i data-lucide="zap" class="w-4 h-4 inline-block"></i> Simular Ganancia & Retorno
         </a>
         <a href="./conductor.html" class="btn-secondary" style="padding: 0.9rem 2rem; font-size: 1rem;">
-          🚛 Registrar mi Camión / Flota
+          <i data-lucide="truck" class="w-6 h-6 inline-block"></i> Registrar mi Camión / Flota
         </a>
       </div>
 
@@ -725,8 +727,8 @@
 
       <div class="tabs-wrapper">
         <div class="tab-pills">
-          <button class="tab-btn active" id="btnTabShipper" onclick="switchTab('shipper')">🏢 Para Empresas & Dadores de Carga</button>
-          <button class="tab-btn" id="btnTabDriver" onclick="switchTab('driver')">🚛 Para Transportistas & Flotas</button>
+          <button class="tab-btn active" id="btnTabShipper" onclick="switchTab('shipper')"><i data-lucide="building" class="w-6 h-6 inline-block"></i> Para Empresas & Dadores de Carga</button>
+          <button class="tab-btn" id="btnTabDriver" onclick="switchTab('driver')"><i data-lucide="truck" class="w-6 h-6 inline-block"></i> Para Transportistas & Flotas</button>
         </div>
       </div>
 
@@ -734,15 +736,15 @@
       <div class="tab-content-grid" id="shipperContent">
         <div class="feature-list">
           <div class="feature-card">
-            <h4>🤖 Estimador IA de Carga & Cubicaje</h4>
+            <h4><i data-lucide="bot" class="w-6 h-6 inline-block"></i> Estimador IA de Carga & Cubicaje</h4>
             <p>Sube una foto o describe tu carga (pallets, cajas, maquinaria, granos). El sistema calcula el volumen útil y asigna la categoría de vehículo óptima.</p>
           </div>
           <div class="feature-card">
-            <h4>⚡ Subastas en Vivo con Choferes Verificados</h4>
+            <h4><i data-lucide="zap" class="w-4 h-4 inline-block"></i> Subastas en Vivo con Choferes Verificados</h4>
             <p>Recibe ofertas competitivas en tiempo real de transportistas con vehículos calificados. Negocia directo y adjudica en minutos.</p>
           </div>
           <div class="feature-card">
-            <h4>📲 Pagos Directos con QR Bolivia Simple</h4>
+            <h4><i data-lucide="smartphone" class="w-6 h-6 inline-block"></i> Pagos Directos con QR Bolivia Simple</h4>
             <p>Paga al instante mediante QR interbancario desde cualquier banco (BNB, BCP, Banco Unión, Mercantil Santa Cruz, Bisa, Ganadero).</p>
           </div>
         </div>
@@ -761,10 +763,10 @@
               </div>
               <div style="text-align: right;">
                 <div style="font-family: var(--font-mono); font-size: 1.25rem; font-weight: 800; color: var(--mint);">Bs. 1,250</div>
-                <span style="background: var(--mint-glow); color: var(--mint); font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⚡ CORREDOR DISPONIBLE</span>
+                <span style="background: var(--mint-glow); color: var(--mint); font-size: 0.65rem; font-weight: 800; padding: 2px 6px; border-radius: 4px;"><i data-lucide="zap" class="w-4 h-4 inline-block"></i> CORREDOR DISPONIBLE</span>
               </div>
             </div>
-            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">🚛 Camión 3/4 (5T) • Placa 4821-EFT • Llega en 25 min</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;"><i data-lucide="truck" class="w-6 h-6 inline-block"></i> Camión 3/4 (5T) • Placa 4821-EFT • Llega en 25 min</div>
           </div>
 
           <div class="mockup-card-inner" style="opacity: 0.7;">
@@ -775,7 +777,7 @@
               </div>
               <div style="font-family: var(--font-mono); font-size: 1.25rem; font-weight: 800; color: #FFFFFF;">Bs. 1,380</div>
             </div>
-            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">🚐 Furgón Sprinter • Placa 3190-KLX</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;"><i data-lucide="bus" class="w-6 h-6 inline-block"></i> Furgón Sprinter • Placa 3190-KLX</div>
           </div>
         </div>
       </div>
@@ -784,15 +786,15 @@
       <div class="tab-content-grid" id="driverContent" style="display: none;">
         <div class="feature-list">
           <div class="feature-card">
-            <h4>📍 Radar de Retorno (Pre-Trip Planning)</h4>
+            <h4><i data-lucide="map-pin" class="w-4 h-4 inline-block"></i> Radar de Retorno (Pre-Trip Planning)</h4>
             <p>Programa tu ruta de regreso antes de salir del garaje. Asegura flete remunerado en ambos sentidos y transforma el viaje de vuelta en pura ganancia.</p>
           </div>
           <div class="feature-card">
-            <h4>💰 96.5% de Ingreso Neto Directo</h4>
+            <h4><i data-lucide="dollar-sign" class="w-4 h-4 inline-block"></i> 96.5% de Ingreso Neto Directo</h4>
             <p>Cobro instantáneo mediante QR directo a tu cuenta bancaria. Sin comisiones abusivas de intermediarios tradicionales.</p>
           </div>
           <div class="feature-card">
-            <h4>📉 Solo 3% de Tarifa de Plataforma</h4>
+            <h4><i data-lucide="trending-down" class="w-6 h-6 inline-block"></i> Solo 3% de Tarifa de Plataforma</h4>
             <p>La tarifa más baja y transparente de Bolivia, pensada para potenciar al transportista independiente y a las flotas locales.</p>
           </div>
         </div>
@@ -826,7 +828,7 @@
 
       <div class="fleet-grid">
         <div class="fleet-card">
-          <div class="fleet-icon">🛻</div>
+          <div class="fleet-icon"><i data-lucide="truck" class="w-6 h-6 inline-block"></i></div>
           <div class="fleet-name">Utilitario / Pickup</div>
           <div class="fleet-sub">HILUX • STRADA • SAVEIRO</div>
           <div class="fleet-spec-row"><span>Capacidad Peso:</span> <span>Hasta 700 kg</span></div>
@@ -835,7 +837,7 @@
         </div>
 
         <div class="fleet-card">
-          <div class="fleet-icon">🚐</div>
+          <div class="fleet-icon"><i data-lucide="bus" class="w-6 h-6 inline-block"></i></div>
           <div class="fleet-name">Furgón / VUC</div>
           <div class="fleet-sub">SPRINTER • FIORINO • DAILY</div>
           <div class="fleet-spec-row"><span>Capacidad Peso:</span> <span>Hasta 1,800 kg</span></div>
@@ -844,7 +846,7 @@
         </div>
 
         <div class="fleet-card" style="border-color: rgba(255, 85, 0, 0.4);">
-          <div class="fleet-icon">🚛</div>
+          <div class="fleet-icon"><i data-lucide="truck" class="w-6 h-6 inline-block"></i></div>
           <div class="fleet-name">Camión 3/4 & Toco</div>
           <div class="fleet-sub">ACCELO • DELIVERY • CARGO</div>
           <div class="fleet-spec-row"><span>Capacidad Peso:</span> <span>Hasta 5,000 kg</span></div>
@@ -853,7 +855,7 @@
         </div>
 
         <div class="fleet-card">
-          <div class="fleet-icon">🚚</div>
+          <div class="fleet-icon"><i data-lucide="truck" class="w-6 h-6 inline-block"></i></div>
           <div class="fleet-name">Heavy Hauler / Carreta</div>
           <div class="fleet-sub">TRACTOCAMIONES • SEMIRREMOLQUES</div>
           <div class="fleet-spec-row"><span>Capacidad Peso:</span> <span>Hasta 25,000 kg</span></div>
@@ -869,7 +871,7 @@
     <div class="container">
       <div class="payments-board">
         <div>
-          <div class="badge-pill-mint">⚡ PAGOS DIRECTOS SIMPLE QR</div>
+          <div class="badge-pill-mint"><i data-lucide="zap" class="w-4 h-4 inline-block"></i> PAGOS DIRECTOS SIMPLE QR</div>
           <h2 style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem;">
             Cobros Inmediatos, Transparentes y Sin Fricción
           </h2>
@@ -930,10 +932,10 @@
 
         <div class="cta-buttons">
           <a href="https://wa.me/59170000000?text=Hola%20MulaCargo,%20quiero%20descargar%20la%20app%20y%20cotizar%20un%20flete." target="_blank" class="btn-primary btn-large">
-            📱 Solicitar Acceso a la App
+            <i data-lucide="smartphone" class="w-4 h-4 inline-block"></i> Solicitar Acceso a la App
           </a>
           <a href="./conductor.html" class="btn-secondary btn-large">
-            🚛 Registrarme como Transportista
+            <i data-lucide="truck" class="w-6 h-6 inline-block"></i> Registrarme como Transportista
           </a>
         </div>
       </div>
@@ -979,6 +981,9 @@
         driverContent.style.display = 'grid';
       }
     }
+  </script>
+  <script>
+    lucide.createIcons();
   </script>
 </body>
 </html>

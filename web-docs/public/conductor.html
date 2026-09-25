@@ -1,453 +1,435 @@
 <!DOCTYPE html>
-<html lang="es">
+<html class="scroll-smooth" lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Únete como Transportista — MulaCargo</title>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Portal de Transportistas & Flotas | MulaCargo Bolivia</title>
+  
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-  <meta name="description" content="Regístrate como conductor o transportista en MulaCargo. Duplica tus ingresos con el Radar de Retorno, cobra directo por QR y paga solo 3% de comisión.">
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700;800&family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700;800&family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#FF5500',
+              'orange-dark': '#E04B00',
+              'orange-glow': 'rgba(255, 85, 0, 0.2)',
+              mint: '#00E599',
+              'mint-dark': '#00B377',
+              'mint-glow': 'rgba(0, 229, 153, 0.15)',
+              gold: '#D4AF37',
+              dark: '#0A0A0C',
+              surface: '#111216',
+              card: '#16181F',
+              'card-hover': '#1C202B',
+              line: 'rgba(224, 230, 237, 0.1)'
+            }
+          },
+          fontFamily: {
+            sans: ['"League Spartan"', 'sans-serif'],
+            display: ['"League Spartan"', 'sans-serif'],
+            mono: ['"Geist Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
     :root {
-      --bg: #0A0A0C;
-      --surface: #12141A;
-      --card: #181C26;
-      --border: rgba(255, 255, 255, 0.08);
+      --k: #0A0A0C;
+      --k-surface: #111216;
+      --k-card: #16181F;
+      --k-card-hover: #1C202B;
       --orange: #FF5500;
-      --orange-glow: rgba(255, 85, 0, 0.15);
+      --orange-glow: rgba(255, 85, 0, 0.2);
       --mint: #00E599;
+      --mint-glow: rgba(0, 229, 153, 0.15);
       --gold: #D4AF37;
-      --text: #F8FAFC;
-      --muted: #8C929D;
+      --w1: #FFFFFF;
+      --w2: #E0E6ED;
+      --g1: #8C929D;
+      --line: rgba(224, 230, 237, 0.1);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; }
     body {
-      background: var(--bg);
-      color: var(--text);
+      background-color: var(--k);
+      color: var(--w1);
       font-family: 'League Spartan', sans-serif;
-      min-height: 100vh;
-      padding: 2rem 1rem;
-      position: relative;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    body::before {
-      content: "";
+    ::selection { background: var(--orange); color: #000; }
+
+    /* Tactical Corner Marks */
+    .cnr {
       position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 900px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(255, 85, 0, 0.12) 0%, transparent 70%);
+      width: 6px;
+      height: 6px;
+      border: 1px solid var(--orange);
       pointer-events: none;
     }
+    .cnr.tl { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+    .cnr.tr { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
+    .cnr.bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
+    .cnr.br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
 
-    .hero-bg-layer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 600px;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero-bg-layer img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
-      opacity: 0.50;
-      filter: contrast(1.1);
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
-      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
+    .cnr-gold { border-color: var(--gold); }
+    .cnr-mint { border-color: var(--mint); }
+
+    /* Precision Grid Background */
+    .bg-grid-pattern {
+      background-image: 
+        linear-gradient(to right, rgba(224, 230, 237, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(224, 230, 237, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
     }
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
+    /* Floating Pillbar */
+    .pillbar {
       position: relative;
-      z-index: 1;
-    }
-
-    .nav-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      margin-bottom: 1.5rem;
-      transition: color 0.2s;
-    }
-    .nav-back:hover { color: var(--orange); }
-
-    .brand-logo-img {
-      height: 180px;
-      width: auto;
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--orange-glow);
-      border: 1px solid rgba(255, 85, 0, 0.35);
-      color: var(--orange);
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1.25rem;
-    }
-
-    h1 {
-      font-family: 'League Spartan', sans-serif;
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-    h1 span { color: var(--orange); }
-
-    .lead {
-      color: var(--muted);
-      font-size: 1.15rem;
-      line-height: 1.6;
-      max-width: 700px;
-      margin-bottom: 2.5rem;
-    }
-
-    .grid-benefits {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .benefit-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.75rem;
-      transition: border-color 0.2s;
-    }
-    .benefit-card:hover {
-      border-color: var(--orange);
-    }
-
-    .benefit-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .benefit-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #FFFFFF;
-      margin-bottom: 0.5rem;
-    }
-
-    .benefit-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* Calculator Section */
-    .calculator-box {
-      background: var(--surface);
-      border: 1px solid rgba(0, 229, 153, 0.3);
-      border-radius: 16px;
-      padding: 2.25rem;
-      margin-bottom: 3.0rem;
-      position: relative;
-    }
-
-    .calc-title {
-      font-family: 'League Spartan', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #FFFFFF;
-      margin-bottom: 0.5rem;
-    }
-
-    .calc-sub {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .vehicle-pills {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .v-pill {
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .v-pill.active {
-      background: var(--orange);
-      border-color: var(--orange);
-      color: #FFFFFF;
-    }
-
-    .calc-result-box {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 1.5rem;
-      display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
+      gap: 16px;
+      height: 52px;
+      width: min(1200px, 100%);
+      padding: 0 16px;
+      background: rgba(17, 18, 22, 0.85);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+      backdrop-filter: blur(20px) saturate(140%);
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
     }
 
-    .earnings-number {
-      font-family: 'Geist Mono', monospace;
-      font-size: 2.4rem;
-      font-weight: 800;
-      color: var(--mint);
+    /* Tactical HUD Card */
+    .hud-card {
+      background: var(--k-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+    .hud-card:hover {
+      border-color: rgba(255, 85, 0, 0.35);
+      background: var(--k-card-hover);
     }
 
-    .earnings-label {
-      font-size: 0.8rem;
-      color: var(--gold);
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 0.05em;
+    /* Pulse animation */
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.96); }
+    }
+    .live-dot {
+      animation: pulse-subtle 2s infinite ease-in-out;
     }
 
-    /* Form Card */
-    .cta-card {
-      background: linear-gradient(135deg, rgba(255, 85, 0, 0.12) 0%, rgba(18, 20, 26, 1) 100%);
-      border: 1px solid rgba(255, 85, 0, 0.4);
-      border-radius: 16px;
-      padding: 2.5rem;
-      text-align: center;
-    }
-
-    .cta-title {
-      font-family: 'League Spartan', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 0.75rem;
-    }
-
-    .cta-desc {
-      color: var(--muted);
-      font-size: 1rem;
-      max-width: 580px;
-      margin: 0 auto 1.75rem;
-    }
-
-    .btn-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: #25D366;
-      color: #0A0A0C;
-      font-weight: 800;
-      font-size: 1.05rem;
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn-whatsapp:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 4rem;
-      color: #64748B;
-      font-size: 0.85rem;
-    }
+    /* Clean custom scroll */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0A0A0C; }
+    ::-webkit-scrollbar-thumb { background: #262933; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #FF5500; }
   </style>
-
-<style>
-  /* MulaCargo x Código Internacional Architectural Design System */
-  .eyebrow {
-    font-family: 'Geist Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-size: 0.68rem;
-    font-weight: 600;
-    color: #FF5500;
-  }
-  .data {
-    font-family: 'Geist Mono', monospace;
-    font-feature-settings: "tnum";
-  }
-  .whisper {
-    font-family: 'League Spartan', serif;
-    font-style: italic;
-    color: #00E599;
-  }
-  .cta-bar {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    width: 100%;
-    padding: 1.15rem 2rem;
-    background: #FF5500;
-    color: #FFFFFF;
-    border: 1px solid #FF5500;
-    font-family: 'Geist Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 0.78rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    border-radius: 4px;
-  }
-  .cta-bar:hover {
-    background: #E04B00;
-    border-color: #E04B00;
-  }
-  .cta-bar--foil {
-    background: #00E599;
-    color: #0A0A0C;
-    border-color: #00E599;
-    font-weight: 800;
-  }
-  .cta-bar--foil:hover {
-    background: #00B377;
-    border-color: #00B377;
-  }
-  .arch-card {
-    background: #12141A;
-    border: 1px solid rgba(255, 85, 0, 0.2);
-    border-radius: 4px;
-    padding: 2.5rem;
-    position: relative;
-  }
-  .arch-card:hover {
-    border-color: rgba(255, 85, 0, 0.5);
-  }
-</style>
-
 </head>
-<body>
 
-  <div class="hero-bg-layer">
-    <img src="./bck-hero.webp" alt="MulaCargo Fleet">
-  </div>
+<body class="bg-[#0A0A0C] text-[#FFFFFF] min-h-screen relative bg-grid-pattern">
 
-  <div class="container">
-    <a href="./app.html" class="nav-back">← Volver a MulaCargo</a>
+  <!-- Ambient Lighting -->
+  <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] height-[450px] bg-radial-gradient pointer-events-none z-0" 
+       style="background: radial-gradient(ellipse at center, rgba(255, 85, 0, 0.12) 0%, rgba(10, 10, 12, 0) 70%); height: 450px;"></div>
 
-    <div style="margin-bottom: 0.5rem;">
-      <img src="./mulacargo.webp" alt="MulaCargo" class="brand-logo-img filter drop-shadow-[0_20px_45px_rgba(255,85,0,0.65)] transform hover:scale-105 transition-transform">
-    </div>
+  <!-- FIXED FLOATING NAVBAR -->
+  <header class="fixed top-3 left-0 right-0 z-50 flex justify-center px-4" id="main-nav">
+    <div class="pillbar">
+      <div class="cnr tl cnr-gold"></div><div class="cnr tr cnr-gold"></div>
+      <div class="cnr bl cnr-gold"></div><div class="cnr br cnr-gold"></div>
 
-    <div class="hero-badge">🚜 Registro de Transportistas & Flotas</div>
-    <h1>Duplica tus ingresos y <span>nunca más viajes en vacío</span></h1>
-    <p class="lead">MulaCargo te conecta con empresas y productores en toda Bolivia. Aprovecha nuestro <strong>Radar de Retorno</strong> para asegurar flete remunerado tanto de ida como de vuelta con solo <strong>3% de comisión</strong>.</p>
-
-    <div class="grid-benefits">
-      <div class="benefit-card">
-        <div class="benefit-icon">⚡</div>
-        <div class="benefit-title">Radar de Retorno Pre-Viaje</div>
-        <div class="benefit-desc">Programa tu viaje de vuelta antes de salir de tu base. Llega a tu destino sabiendo que ya tienes flete completo y acordado para regresar.</div>
-      </div>
-
-      <div class="benefit-card">
-        <div class="benefit-icon">📲</div>
-        <div class="benefit-title">Cobro Directo por Pago por Código QR</div>
-        <div class="benefit-desc">Transferencias interbancarias directas a tu cuenta nacional (BNB, BCP, Banco Unión, BMSC, Bisa, Ganadero) sin intermediarios lentos.</div>
-      </div>
-
-      <div class="benefit-card">
-        <div class="benefit-icon">📉</div>
-        <div class="benefit-title">Solo 3% de Comisión Fija</div>
-        <div class="benefit-desc">La tarifa más baja y justa del mercado logístico en Bolivia. Conservas el 96.5% neto de cada flete que realizas.</div>
-      </div>
-    </div>
-
-    <!-- Simulator Box -->
-    <div class="calculator-box">
-      <div class="calc-title">Calcula tu Potencial de Ganancia Mensual</div>
-      <p class="calc-sub">Selecciona tu tipo de vehículo para estimar tus ingresos mensuales aprovechando fletes de ida y vuelta:</p>
-
-      <div class="vehicle-pills">
-        <button class="v-pill active" onclick="selectVehicle('pickup', this)">🛻 Utilitario / Pickup</button>
-        <button class="v-pill" onclick="selectVehicle('van', this)">🚐 Furgón / VUC</button>
-        <button class="v-pill" onclick="selectVehicle('truck', this)">🚛 Camión 3/4 & Toco</button>
-        <button class="v-pill" onclick="selectVehicle('heavy', this)">🚚 Heavy Hauler / Carreta</button>
-      </div>
-
-      <div class="calc-result-box">
-        <div>
-          <div class="earnings-label">Ingreso Neto Mensual Estimado (Ida y Vuelta)</div>
-          <div class="earnings-number" id="calcEarnings">Bs. 9,650 / mes</div>
-          <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">Basado en 4 viajes redondos completos en corredores troncales</div>
-        </div>
-        <div>
-          <div class="earnings-label">Comisión MulaCargo (3%)</div>
-          <div style="font-family: 'Geist Mono', monospace; font-size: 1.2rem; color: var(--orange); font-weight: 700;" id="calcFee">-Bs. 350.00</div>
-          <div style="font-size: 0.75rem; color: var(--mint); margin-top: 2px;">96.5% neto directo a tu cuenta</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Call to Action Card -->
-    <div class="cta-card">
-      <div class="cta-title">¿Listo para comenzar a rodar con MulaCargo?</div>
-      <p class="cta-desc">Completa tu pre-registro en menos de 2 minutos vía WhatsApp con nuestro equipo de operaciones en Santa Cruz.</p>
-      
-      <a href="https://wa.me/59170000000?text=Hola%20MulaCargo,%20quiero%20registrar%20mi%20veh%C3%ADculo%20de%20carga%20y%20activar%20el%20Radar%20de%20Retorno." target="_blank" class="btn-whatsapp">
-        <span>💬 Pre-Registrarme por WhatsApp</span>
+      <!-- Brand horizontal logo -->
+      <a href="./index.html" class="flex items-center gap-3 group">
+        <img src="./mulacargo-logo-horizontal-clean.webp" alt="MulaCargo" class="h-7 w-auto object-contain transition-transform group-hover:scale-105">
       </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-mono tracking-wider uppercase text-[#8C929D]">
+        <a href="./index.html" class="hover:text-[#FF5500] transition-colors">Inicio</a>
+        <a href="./index.html#corredores" class="hover:text-[#FF5500] transition-colors">Corredores</a>
+        <a href="./index.html#radar" class="hover:text-[#FF5500] transition-colors">Radar de Retorno</a>
+        <a href="./simulator.html" class="hover:text-[#00E599] transition-colors flex items-center gap-1.5">
+          <i data-lucide="calculator" class="w-3.5 h-3.5 text-[#00E599]"></i>
+          Simulador
+        </a>
+        <a href="./playbook.html" class="hover:text-[#FF5500] transition-colors">GTM Playbook</a>
+        <a href="./proposal-rene-quiroz.html" class="hover:text-[#D4AF37] transition-colors">Propuesta</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/59170000000?text=Hola%20MulaCargo,%20quiero%20registrar%20mi%20cami%C3%B3n%20o%20flota." target="_blank" 
+           class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FF5500] hover:bg-[#E04B00] text-white font-mono text-xs uppercase tracking-wider font-bold rounded transition-all shadow-[0_0_15px_rgba(255,85,0,0.3)]">
+          <i data-lucide="truck" class="w-3.5 h-3.5"></i>
+          <span>Registrar mi Unidad</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN DRIVER PORTAL HERO -->
+  <main class="relative pt-24 pb-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+    
+    <!-- Hero Block -->
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#16181F] border border-[#FF5500]/30 rounded text-[#FF5500] font-mono text-[11px] uppercase tracking-widest mb-3">
+        <i data-lucide="tractor" class="w-3.5 h-3.5"></i>
+        PORTAL DE TRANSPORTISTAS & FLOTAS DE BOLIVIA
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display text-white tracking-tight leading-tight">
+        Duplica tus Ingresos y <span class="text-[#00E599]">Nunca Más Regreses Vacío</span>
+      </h1>
+      <p class="text-[#8C929D] text-base sm:text-lg mt-3 max-w-2xl mx-auto font-sans leading-relaxed">
+        Conéctate directo con empresas y productores agroindustriales. Activa el <strong>Radar de Retorno</strong> para pre-asegurar tu viaje de vuelta con solo <strong>3.5% de comisión fija</strong>.
+      </p>
     </div>
 
-    <footer>
-      <p>© 2026 MulaCargo • ClubeMkt Platform Engineering • Santa Cruz de la Sierra, Bolivia</p>
-    </footer>
-  </div>
+    <!-- Core Driver Pillars -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      
+      <div class="hud-card p-6 border-[#00E599]/30">
+        <div class="cnr tl cnr-mint"></div><div class="cnr tr cnr-mint"></div>
+        <div class="w-10 h-10 rounded bg-[#00E599]/10 border border-[#00E599]/30 flex items-center justify-center text-[#00E599] mb-4">
+          <i data-lucide="radar" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-lg font-bold font-display text-white mb-2">Radar de Retorno Pre-Viaje</h3>
+        <p class="text-xs text-[#8C929D] leading-relaxed">
+          Programa tu carga de regreso antes de salir del garaje. Llega a tu destino sabiendo que ya tienes flete acordado para volver facturando.
+        </p>
+      </div>
 
+      <div class="hud-card p-6 border-[#FF5500]/30">
+        <div class="cnr tl"></div><div class="cnr tr"></div>
+        <div class="w-10 h-10 rounded bg-[#FF5500]/10 border border-[#FF5500]/30 flex items-center justify-center text-[#FF5500] mb-4">
+          <i data-lucide="qr-code" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-lg font-bold font-display text-white mb-2">Cobro Instantáneo QR Simple</h3>
+        <p class="text-xs text-[#8C929D] leading-relaxed">
+          Transferencias interbancarias directas a tu cuenta nacional (BNB, BCP, Banco Unión, BMSC, Bisa, Ganadero) sin cheques demorados.
+        </p>
+      </div>
+
+      <div class="hud-card p-6 border-[#D4AF37]/30">
+        <div class="cnr tl cnr-gold"></div><div class="cnr tr cnr-gold"></div>
+        <div class="w-10 h-10 rounded bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] mb-4">
+          <i data-lucide="percent" class="w-5 h-5"></i>
+        </div>
+        <h3 class="text-lg font-bold font-display text-white mb-2">Tarifa Plana del 3.5%</h3>
+        <p class="text-xs text-[#8C929D] leading-relaxed">
+          La tarifa más transparente del mercado logístico. Conservas el 96.5% neto directo de cada flete que ejecutas en la plataforma.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Interactive Driver Monthly Earnings Calculator -->
+    <div class="hud-card p-8 sm:p-10 border-[#00E599]/40 bg-[#16181F] mb-16 shadow-2xl relative">
+      <div class="cnr tl cnr-mint"></div><div class="cnr tr cnr-mint"></div>
+      <div class="cnr bl cnr-mint"></div><div class="cnr br cnr-mint"></div>
+
+      <div class="max-w-2xl mb-6">
+        <span class="font-mono text-xs text-[#00E599] font-bold uppercase tracking-wider">CALCULADORA DE INGRESOS MENSUALES</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-white mt-1">
+          Estima tus Ganancias con Retornos Asegurados
+        </h2>
+        <p class="text-xs sm:text-sm text-[#8C929D] mt-1">
+          Selecciona tu categoría de vehículo para proyectar el ingreso neto mensual estimado (basado en 4 viajes redondos completos):
+        </p>
+      </div>
+
+      <!-- Vehicle Pills Switcher -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+        <button id="vbtn-pickup" onclick="setVehicleTab('pickup')" 
+                class="v-tab-btn py-3 px-4 rounded-lg font-mono text-xs font-bold uppercase tracking-wider transition-all bg-[#FF5500] text-white text-center shadow-lg">
+          Utilitario / Pickup
+        </button>
+        <button id="vbtn-van" onclick="setVehicleTab('van')" 
+                class="v-tab-btn py-3 px-4 rounded-lg font-mono text-xs font-bold uppercase tracking-wider transition-all bg-[#0A0A0C] border border-[#E0E6ED]/10 text-[#8C929D] hover:text-white text-center">
+          Furgón / VUC
+        </button>
+        <button id="vbtn-truck" onclick="setVehicleTab('truck')" 
+                class="v-tab-btn py-3 px-4 rounded-lg font-mono text-xs font-bold uppercase tracking-wider transition-all bg-[#0A0A0C] border border-[#E0E6ED]/10 text-[#8C929D] hover:text-white text-center">
+          Camión 3/4 & Toco
+        </button>
+        <button id="vbtn-heavy" onclick="setVehicleTab('heavy')" 
+                class="v-tab-btn py-3 px-4 rounded-lg font-mono text-xs font-bold uppercase tracking-wider transition-all bg-[#0A0A0C] border border-[#E0E6ED]/10 text-[#8C929D] hover:text-white text-center">
+          Heavy Hauler
+        </button>
+      </div>
+
+      <!-- Result Display Card -->
+      <div class="p-6 rounded-xl bg-[#0A0A0C] border border-[#00E599]/30 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div>
+          <div class="font-mono text-xs text-[#D4AF37] font-bold uppercase tracking-wider">
+            Ingreso Neto Mensual Estimado (Ida + Vuelta)
+          </div>
+          <div id="calcMonthlyEarnings" class="font-mono text-4xl sm:text-5xl font-black text-[#00E599] mt-1 mb-0.5">
+            Bs. 9,650 / mes
+          </div>
+          <div class="text-xs text-[#8C929D] font-mono">
+            4 viajes redondos completos monetizados al 100%
+          </div>
+        </div>
+
+        <div class="text-left md:text-right border-t md:border-t-0 md:border-l border-[#E0E6ED]/10 pt-4 md:pt-0 md:pl-8">
+          <div class="font-mono text-xs text-[#8C929D] uppercase">Tarifa MulaCargo (3.5%)</div>
+          <div id="calcMonthlyFee" class="font-mono text-2xl font-bold text-[#FF5500] my-0.5">-Bs. 350.00</div>
+          <span class="inline-flex items-center gap-1 text-[11px] font-mono text-[#00E599]">
+            <i data-lucide="check" class="w-3 h-3"></i>
+            96.5% neto directo a tu cuenta bancaria
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Onboarding Step-by-Step Guide -->
+    <div class="mb-16">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="font-mono text-xs text-[#FF5500] font-bold uppercase tracking-wider">PROCESO DE HOMOLOGACIÓN</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-white mt-1">
+          Requisitos Simples para Comenzar a Rodar
+        </h2>
+        <p class="text-xs sm:text-sm text-[#8C929D] mt-1">
+          Validamos cada unidad y chofer para proteger la carga y garantizar la seguridad de ambas partes.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        
+        <div class="hud-card p-5">
+          <div class="font-mono text-xs text-[#FF5500] font-bold mb-2">PASO 01</div>
+          <div class="font-display font-bold text-white text-base mb-1">RUAT & Placas</div>
+          <p class="text-xs text-[#8C929D] leading-relaxed">
+            Fotografía de radicatoria y registro único del automotor boliviano vigente.
+          </p>
+        </div>
+
+        <div class="hud-card p-5">
+          <div class="font-mono text-xs text-[#FF5500] font-bold mb-2">PASO 02</div>
+          <div class="font-display font-bold text-white text-base mb-1">SOAT Nacional</div>
+          <p class="text-xs text-[#8C929D] leading-relaxed">
+            Seguro obligatorio de accidentes de tránsito en vigencia para toda la república.
+          </p>
+        </div>
+
+        <div class="hud-card p-5">
+          <div class="font-mono text-xs text-[#FF5500] font-bold mb-2">PASO 03</div>
+          <div class="font-display font-bold text-white text-base mb-1">Licencia Profesional</div>
+          <p class="text-xs text-[#8C929D] leading-relaxed">
+            Categoría B, C o Profesional según el tipo de tonelaje y carrocería registrada.
+          </p>
+        </div>
+
+        <div class="hud-card p-5 border-[#00E599]/30">
+          <div class="font-mono text-xs text-[#00E599] font-bold mb-2">PASO 04</div>
+          <div class="font-display font-bold text-white text-base mb-1">Activación Inmediata</div>
+          <p class="text-xs text-[#8C929D] leading-relaxed">
+            Aprobación en menos de 24 horas y acceso directo a la subasta y Radar de Retorno.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Onboarding CTA Box -->
+    <div class="hud-card p-8 sm:p-10 border-[#FF5500]/40 text-center relative overflow-hidden bg-gradient-to-b from-[#16181F] to-[#0A0A0C]">
+      <div class="cnr tl"></div><div class="cnr tr"></div>
+      <div class="cnr bl"></div><div class="cnr br"></div>
+
+      <div class="w-14 h-14 rounded-full bg-[#FF5500]/10 border border-[#FF5500]/30 flex items-center justify-center text-[#FF5500] mx-auto mb-4">
+        <i data-lucide="send" class="w-7 h-7"></i>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-black font-display text-white mb-2">
+        Pre-Regístrate Hoy Mismo en Menos de 2 Minutos
+      </h2>
+      <p class="text-xs sm:text-sm text-[#8C929D] max-w-xl mx-auto mb-8 font-sans">
+        Envía los datos de tu camión directamente por WhatsApp a nuestro equipo de operaciones en Santa Cruz para habilitar tu cuenta en el sistema.
+      </p>
+
+      <a href="https://wa.me/59170000000?text=Hola%20MulaCargo,%20quiero%20registrar%20mi%20cami%C3%B3n%20y%20activar%20el%20Radar%20de%20Retorno." target="_blank"
+         class="inline-flex items-center gap-3 px-8 py-4 bg-[#25D366] hover:bg-[#20BA5A] text-[#0A0A0C] font-mono text-xs uppercase tracking-widest font-black rounded-lg transition-all shadow-[0_0_30px_rgba(37,211,102,0.3)] hover:scale-105">
+        <i data-lucide="message-circle" class="w-5 h-5"></i>
+        <span>Pre-Registrarme vía WhatsApp</span>
+      </a>
+
+      <div class="mt-4 text-[11px] font-mono text-[#8C929D]">
+        Atención disponible 24/7 • Respaldado por MulaCargo Bolivia
+      </div>
+    </div>
+
+  </main>
+
+  <!-- EXECUTIVE FOOTER -->
+  <footer class="border-t border-[#E0E6ED]/10 bg-[#0A0A0C] py-10 relative z-10 text-xs font-mono text-[#8C929D]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img src="./mulacargo-logo-horizontal-clean.webp" alt="MulaCargo" class="h-5 w-auto">
+        <span>© 2026 MulaCargo SRL</span>
+      </div>
+      <div class="flex items-center gap-6 text-[11px]">
+        <a href="./index.html" class="hover:text-white">Inicio</a>
+        <a href="./simulator.html" class="hover:text-white">Simulador</a>
+        <a href="./playbook.html" class="hover:text-white">GTM Playbook</a>
+        <a href="./proposal-rene-quiroz.html" class="hover:text-white">Propuesta</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- VEHICLE SELECTION SCRIPT -->
   <script>
-    const data = {
+    const vehicleData = {
       pickup: { earnings: 'Bs. 9,650 / mes', fee: '-Bs. 350.00' },
       van: { earnings: 'Bs. 16,400 / mes', fee: '-Bs. 595.00' },
       truck: { earnings: 'Bs. 33,000 / mes', fee: '-Bs. 1,197.00' },
-      heavy: { earnings: 'Bs. 64,000+ / mes', fee: '-Bs. 2,320.00' },
+      heavy: { earnings: 'Bs. 64,000+ / mes', fee: '-Bs. 2,320.00' }
     };
 
-    function selectVehicle(type, el) {
-      document.querySelectorAll('.v-pill').forEach(btn => btn.classList.remove('active'));
-      el.classList.add('active');
-      document.getElementById('calcEarnings').innerText = data[type].earnings;
-      document.getElementById('calcFee').innerText = data[type].fee;
+    function setVehicleTab(type) {
+      document.querySelectorAll('.v-tab-btn').forEach(btn => {
+        btn.className = 'v-tab-btn py-3 px-4 rounded-lg font-mono text-xs font-bold uppercase tracking-wider transition-all bg-[#0A0A0C] border border-[#E0E6ED]/10 text-[#8C929D] hover:text-white text-center';
+      });
+
+      const activeBtn = document.getElementById(`vbtn-${type}`);
+      if (activeBtn) {
+        activeBtn.className = 'v-tab-btn py-3 px-4 rounded-lg font-mono text-xs font-bold uppercase tracking-wider transition-all bg-[#FF5500] text-white text-center shadow-lg';
+      }
+
+      document.getElementById('calcMonthlyEarnings').innerText = vehicleData[type].earnings;
+      document.getElementById('calcMonthlyFee').innerText = vehicleData[type].fee;
+      lucide.createIcons();
     }
   </script>
+
+  <!-- Initialize Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+
 </body>
 </html>

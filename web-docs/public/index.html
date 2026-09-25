@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html class="scroll-smooth" lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MulaCargo — Plataforma Tecnológica de Fletes y Logística Pesada en Bolivia</title>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>MulaCargo | Marketplace de Fletes Pesados & Radar de Retorno en Bolivia</title>
+  
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700;800&family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<!-- Tailwind CSS v3 with Plugins -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700;800&family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
     tailwind.config = {
       theme: {
         extend: {
@@ -23,466 +26,743 @@
             brand: {
               orange: '#FF5500',
               'orange-dark': '#E04B00',
-              'orange-light': '#FFF2EA',
-              emerald: '#00E599',
-              'emerald-dark': '#00B377',
+              'orange-glow': 'rgba(255, 85, 0, 0.2)',
+              mint: '#00E599',
+              'mint-dark': '#00B377',
+              'mint-glow': 'rgba(0, 229, 153, 0.15)',
+              gold: '#D4AF37',
               dark: '#0A0A0C',
-              surface: '#12141A',
-              slate: '#181C26'
+              surface: '#111216',
+              card: '#16181F',
+              'card-hover': '#1C202B',
+              line: 'rgba(224, 230, 237, 0.1)'
             }
           },
           fontFamily: {
-            sans: ['League Spartan', 'sans-serif'],
-            display: ['League Spartan', 'sans-serif'],
-            mono: ['Geist Mono', 'monospace']
+            sans: ['"League Spartan"', 'sans-serif'],
+            display: ['"League Spartan"', 'sans-serif'],
+            mono: ['"Geist Mono"', 'monospace']
           }
         }
       }
     }
   </script>
-<style data-purpose="custom-layout">
-    .hero-glow {
-      background: radial-gradient(circle at 50% 30%, rgba(255, 85, 0, 0.22) 0%, rgba(10, 10, 12, 0) 70%);
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --k: #0A0A0C;
+      --k-surface: #111216;
+      --k-card: #16181F;
+      --k-card-hover: #1C202B;
+      --orange: #FF5500;
+      --orange-glow: rgba(255, 85, 0, 0.2);
+      --mint: #00E599;
+      --mint-glow: rgba(0, 229, 153, 0.15);
+      --gold: #D4AF37;
+      --w1: #FFFFFF;
+      --w2: #E0E6ED;
+      --g1: #8C929D;
+      --line: rgba(224, 230, 237, 0.1);
     }
-    .custom-scroll::-webkit-scrollbar {
-      height: 6px;
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      background-color: var(--k);
+      color: var(--w1);
+      font-family: 'League Spartan', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--orange); color: #000; }
+
+    /* Tactical Corner Marks */
+    .cnr {
+      position: absolute;
       width: 6px;
+      height: 6px;
+      border: 1px solid var(--orange);
+      pointer-events: none;
     }
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background: #CBD5E1;
-      border-radius: 9999px;
+    .cnr.tl { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+    .cnr.tr { top: -1px; right: -1px; border-left: 0; border-bottom: 0; }
+    .cnr.bl { bottom: -1px; left: -1px; border-right: 0; border-top: 0; }
+    .cnr.br { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+    .cnr-gold { border-color: var(--gold); }
+    .cnr-mint { border-color: var(--mint); }
+
+    /* Precision Grid Background */
+    .bg-grid-pattern {
+      background-image: 
+        linear-gradient(to right, rgba(224, 230, 237, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(224, 230, 237, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
     }
+
+    /* Ambient Glows */
+    .hero-radial-glow {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 450px;
+      background: radial-gradient(ellipse at center, rgba(255, 85, 0, 0.14) 0%, rgba(10, 10, 12, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Floating Pillbar */
+    .pillbar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 52px;
+      width: min(1200px, 100%);
+      padding: 0 16px;
+      background: rgba(17, 18, 22, 0.85);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+      backdrop-filter: blur(20px) saturate(140%);
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Tactical HUD Card */
+    .hud-card {
+      background: var(--k-card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+    .hud-card:hover {
+      border-color: rgba(255, 85, 0, 0.35);
+      background: var(--k-card-hover);
+    }
+
+    /* Pulse animation */
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.96); }
+    }
+    .live-dot {
+      animation: pulse-subtle 2s infinite ease-in-out;
+    }
+
+    /* Clean custom scroll */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0A0A0C; }
+    ::-webkit-scrollbar-thumb { background: #262933; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #FF5500; }
   </style>
-
-<style>
-  /* MulaCargo x Código Internacional Architectural Design System */
-  .eyebrow {
-    font-family: 'Geist Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-size: 0.68rem;
-    font-weight: 600;
-    color: #FF5500;
-  }
-  .data {
-    font-family: 'Geist Mono', monospace;
-    font-feature-settings: "tnum";
-  }
-  .whisper {
-    font-family: 'League Spartan', serif;
-    font-style: italic;
-    color: #00E599;
-  }
-  .cta-bar {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    width: 100%;
-    padding: 1.15rem 2rem;
-    background: #FF5500;
-    color: #FFFFFF;
-    border: 1px solid #FF5500;
-    font-family: 'Geist Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 0.78rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    border-radius: 4px;
-  }
-  .cta-bar:hover {
-    background: #E04B00;
-    border-color: #E04B00;
-  }
-  .cta-bar--foil {
-    background: #00E599;
-    color: #0A0A0C;
-    border-color: #00E599;
-    font-weight: 800;
-  }
-  .cta-bar--foil:hover {
-    background: #00B377;
-    border-color: #00B377;
-  }
-  .arch-card {
-    background: #12141A;
-    border: 1px solid rgba(255, 85, 0, 0.2);
-    border-radius: 4px;
-    padding: 2.5rem;
-    position: relative;
-  }
-  .arch-card:hover {
-    border-color: rgba(255, 85, 0, 0.5);
-  }
-</style>
-
 </head>
-<body class="bg-[#F8FAFC] text-slate-800 antialiased font-sans">
-<!-- BEGIN: HeroSection -->
-<section class="relative bg-brand-dark text-white pt-12 pb-28 overflow-hidden hero-glow" id="inicio">
-  <!-- Background Image with clean dimming scrim overlay -->
-  <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-    <img src="./bck-hero.webp" alt="MulaCargo Fleet" class="w-full h-full object-cover object-[center_35%] opacity-55 filter contrast-105">
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0F1117]/70 via-[#0F1117]/50 to-[#0F1117]"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-[#0F1117]/80 via-transparent to-[#0F1117]/80"></div>
-  </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+<body class="bg-[#0A0A0C] text-[#FFFFFF] min-h-screen relative bg-grid-pattern">
 
-<div class="flex justify-center mb-8">
-  <img src="./mulacargo.webp" alt="MulaCargo" class="h-32 sm:h-48 w-auto object-contain filter drop-shadow-[0_15px_30px_rgba(255,85,0,0.45)] transform hover:scale-105 transition-transform duration-300">
-</div>
+  <!-- Ambient Lighting -->
+  <div class="hero-radial-glow"></div>
 
-<h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-display max-w-4xl mx-auto leading-tight sm:leading-tight">
-        Mueve tu Carga con <span class="text-brand-orange underline decoration-brand-orange/40 decoration-wavy decoration-2">Seguridad</span>, Transporta con Confianza
-      </h1>
+  <!-- FIXED FLOATING NAVBAR -->
+  <header class="fixed top-3 left-0 right-0 z-50 flex justify-center px-4" id="main-nav">
+    <div class="pillbar">
+      <div class="cnr tl cnr-gold"></div><div class="cnr tr cnr-gold"></div>
+      <div class="cnr bl cnr-gold"></div><div class="cnr br cnr-gold"></div>
 
-<p class="mt-6 text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
-        La plataforma tecnológica de fletes y logística pesada de Bolivia. Optimizamos rutas interdepartamentales con cubicaje por IA, radar anti-viajes vacíos y pagos blindados por <span class="text-brand-emerald font-semibold">Pago Directo por QR Bancario</span>.
-      </p>
+      <!-- Brand horizontal logo -->
+      <a href="./index.html" class="flex items-center gap-3 group">
+        <img src="./mulacargo-logo-horizontal-clean.webp" alt="MulaCargo" class="h-7 w-auto object-contain transition-transform group-hover:scale-105">
+      </a>
 
-<div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
-  <a class="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-gradient-to-r from-brand-orange to-[#FF6B1A] hover:from-brand-orange-dark hover:to-brand-orange text-white font-bold text-sm sm:text-base tracking-wide uppercase whitespace-nowrap shadow-[0_10px_24px_rgba(255,85,0,0.35),inset_0_1px_1px_rgba(255,255,255,0.35)] border border-white/20 flex items-center justify-center gap-2.5 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0.5 cursor-pointer" href="./simulator.html">
-    <span class="whitespace-nowrap">App Generador de Carga</span>
-    <svg class="w-4 h-4 text-white/90 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-  </a>
-  <a class="w-full sm:w-auto min-h-[48px] sm:min-h-[52px] px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl bg-[#141822] hover:bg-[#1B212F] text-brand-emerald border-2 border-brand-emerald/50 hover:border-brand-emerald font-bold text-sm sm:text-base tracking-wide uppercase whitespace-nowrap shadow-[0_10px_24px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.08)] flex items-center justify-center gap-2.5 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0.5 cursor-pointer" href="./conductor.html">
-    <span class="relative flex h-2.5 w-2.5 shrink-0">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-emerald opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-emerald"></span>
-    </span>
-    <span class="whitespace-nowrap">App Conductor / Propietario</span>
-  </a>
-</div>
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-6 text-xs font-mono tracking-wider uppercase text-[#8C929D]">
+        <a href="#corredores" class="hover:text-[#FF5500] transition-colors">Corredores</a>
+        <a href="#radar" class="hover:text-[#FF5500] transition-colors">Radar de Retorno</a>
+        <a href="#flota" class="hover:text-[#FF5500] transition-colors">Flota</a>
+        <a href="./simulator.html" class="hover:text-[#00E599] transition-colors flex items-center gap-1.5">
+          <i data-lucide="calculator" class="w-3.5 h-3.5 text-[#00E599]"></i>
+          Simulador
+        </a>
+        <a href="./conductor.html" class="hover:text-[#FF5500] transition-colors">Transportistas</a>
+        <a href="./playbook.html" class="hover:text-[#FF5500] transition-colors">GTM Playbook</a>
+        <a href="./proposal-rene-quiroz.html" class="hover:text-[#D4AF37] transition-colors">Propuesta</a>
+      </nav>
 
-<!-- Mobile UI Centerpiece Mockup -->
-<div class="mt-14 max-w-4xl mx-auto relative px-2">
-<div class="relative mx-auto rounded-3xl bg-slate-900 border-4 border-slate-700 p-4 sm:p-6 shadow-2xl shadow-black/80 max-w-lg">
-<div class="flex items-center justify-between pb-4 border-b border-slate-800 text-left">
-<div>
-<p class="text-xs text-slate-400">Bienvenido de nuevo</p>
-<h4 class="text-sm font-bold text-white flex items-center gap-1.5">
-                Don Hilarión Mamani (Chofer Verificado)
-                <span class="bg-brand-emerald/20 text-brand-emerald text-[10px] px-1.5 py-0.5 rounded font-bold">VIP 5★</span>
-</h4>
-</div>
-<div class="text-right">
-<span class="text-[10px] bg-brand-orange/20 text-brand-orange px-2 py-1 rounded-full font-bold">GPS Activo</span>
-</div>
-</div>
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/59170000000?text=Hola%20MulaCargo,%20necesito%20cotizar%20un%20flete%20pesado." target="_blank" 
+           class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FF5500] hover:bg-[#E04B00] text-white font-mono text-xs uppercase tracking-wider font-bold rounded transition-all shadow-[0_0_15px_rgba(255,85,0,0.3)]">
+          <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+          <span>Cotizar Flete</span>
+        </a>
+      </div>
+    </div>
+  </header>
 
-<div class="mt-4 p-4 rounded-xl bg-slate-800/90 border border-slate-700 text-left">
-<div class="flex items-start justify-between">
-<div>
-<span class="text-[10px] uppercase tracking-wide font-extrabold text-brand-emerald">Oferta Directa Confirmada</span>
-<h5 class="text-base font-bold text-white mt-0.5">SCZ (Parque Industrial) ➔ LPB (El Alto)</h5>
-<p class="text-xs text-slate-400 mt-1">Carga: 28 Toneladas Granel Soja Limpia · Carretera El Sillar</p>
-</div>
-<div class="text-right">
-<span class="text-xl font-extrabold text-brand-orange">Bs. 9,400</span>
-<p class="text-[10px] text-brand-emerald font-semibold">Pago Directo Pago por Código QR</p>
-</div>
-</div>
-<div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-300">
-<span class="flex items-center gap-1">📍 Santa Cruz (KM 0)</span>
-<div class="h-1.5 flex-1 mx-3 bg-slate-700 rounded-full overflow-hidden">
-<div class="bg-brand-orange h-full w-2/3"></div>
-</div>
-<span class="flex items-center gap-1">🏁 El Alto (Almacén Central)</span>
-</div>
-</div>
-
-<div class="grid grid-cols-3 gap-2 mt-4 text-center">
-<div class="p-2.5 rounded-lg bg-slate-800/50 border border-slate-700">
-<p class="text-xs text-slate-400">Tranca actual</p>
-<p class="text-sm font-bold text-white">Yapacaní OK</p>
-</div>
-<div class="p-2.5 rounded-lg bg-slate-800/50 border border-slate-700">
-<p class="text-xs text-slate-400">Cubicaje IA</p>
-<p class="text-sm font-bold text-brand-emerald">94% Óptimo</p>
-</div>
-<div class="p-2.5 rounded-lg bg-slate-800/50 border border-slate-700">
-<p class="text-xs text-slate-400">Retorno Asegurado</p>
-<p class="text-sm font-bold text-brand-orange">LPB ➔ SCZ</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- END: HeroSection -->
-
-<!-- BEGIN: MetricCounterStrip -->
-<section class="py-14 bg-white border-b border-slate-200" data-purpose="metric-strip">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
-<div>
-<span class="text-brand-orange font-bold text-xs uppercase tracking-wider">Métricas Reales en Carreteras</span>
-<h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display mt-1">
-            Impulsando el Transporte Terrestre Boliviano 🇧🇴
-          </h2>
-</div>
-<p class="mt-3 md:mt-0 text-sm text-slate-500 max-w-md">
-          Conectamos a las mayores empresas agroindustriales y comerciales con miles de transportistas sindicalizados e independientes en todo el país.
-        </p>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-<div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 text-center hover:shadow-md transition-shadow">
-<div class="w-12 h-12 mx-auto rounded-full bg-emerald-100 flex items-center justify-center text-brand-emerald mb-4 font-bold text-lg">✓</div>
-<h3 class="text-sm font-semibold text-slate-700">Fletes Completados</h3>
-<p class="text-xs text-slate-500 mt-1">Santa Cruz, Montero, Cochabamba, La Paz y Oruro</p>
-<div class="mt-4 text-3xl font-extrabold text-brand-emerald font-display">+18,500</div>
-</div>
-<div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 text-center hover:shadow-md transition-shadow">
-<div class="w-12 h-12 mx-auto rounded-full bg-orange-100 flex items-center justify-center text-brand-orange mb-4 font-bold text-lg">🏢</div>
-<h3 class="text-sm font-semibold text-slate-700">Empresas &amp; Productores</h3>
-<p class="text-xs text-slate-500 mt-1">Agro, retail, importadores y faenas mineras</p>
-<div class="mt-4 text-3xl font-extrabold text-brand-orange font-display">+2,400</div>
-</div>
-<div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 text-center hover:shadow-md transition-shadow">
-<div class="w-12 h-12 mx-auto rounded-full bg-orange-100 flex items-center justify-center text-brand-orange mb-4 font-bold text-lg">🚛</div>
-<h3 class="text-sm font-semibold text-slate-700">Choferes &amp; Carretas</h3>
-<p class="text-xs text-slate-500 mt-1">Con verificación legal RUAT, SOAT &amp; FELCC</p>
-<div class="mt-4 text-3xl font-extrabold text-brand-orange font-display">+4,800</div>
-</div>
-<div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 text-center hover:shadow-md transition-shadow">
-<div class="w-12 h-12 mx-auto rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-4 font-bold text-lg">⚡</div>
-<h3 class="text-sm font-semibold text-slate-700">Entregas Conformes T+0</h3>
-<p class="text-xs text-slate-500 mt-1">Desembolso directo vía Pago por Código QR</p>
-<div class="mt-4 text-3xl font-extrabold text-blue-600 font-display">99.8%</div>
-</div>
-</div>
-</div>
-</section>
-<!-- END: MetricCounterStrip -->
-
-<!-- BEGIN: CoreFeaturesGrid -->
-<section class="py-20 bg-slate-50" data-purpose="features-grid" id="por-que-mulacargo">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-<div>
-<span class="text-brand-orange font-bold text-xs uppercase tracking-wider">Ventaja Tecnológica</span>
-<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display mt-1">
-            Por Qué MulaCargo es tu Mejor Opción de Carga 🇧🇴
-          </h2>
-</div>
-<p class="mt-3 md:mt-0 text-slate-500 text-sm max-w-md">
-          Infraestructura digital diseñada para resolver la geografía boliviana: trancas, cordilleras, clima y pagos sin demoras burocráticas.
-        </p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-<div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all">
-<div class="text-2xl mb-4">📍</div>
-<h3 class="text-lg font-bold text-slate-900">Rastreo Satelital &amp; Alertas de Cordillera</h3>
-<p class="text-sm text-slate-600 mt-2 leading-relaxed">
-            Telemetría en vivo con actualización cada 30 segundos. Alertas automáticas ante trancaderas en El Sillar, vientos cruzados en la Cumbre o cierres de trancas provinciales.
-          </p>
-</div>
-<div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all" id="flota">
-<div class="text-2xl mb-4">🚛</div>
-<h3 class="text-lg font-bold text-slate-900">Taxonomía de Flota Homologada</h3>
-<p class="text-sm text-slate-600 mt-2 leading-relaxed">
-            Desde Pickups (1.2T) y Furgones VUC (3.0T) para distribución urbana en Santa Cruz, hasta Camiones 3/4, Tocos (10T) y Semirremolques Graneleros (30T+).
-          </p>
-</div>
-<div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all" id="radar">
-<div class="text-2xl mb-4">⚡</div>
-<h3 class="text-lg font-bold text-slate-900">Radar de Retorno (Backhaul Engine)</h3>
-<p class="text-sm text-slate-600 mt-2 leading-relaxed">
-            Elimina los viajes vacíos. Si llevas carga de Santa Cruz a La Paz, el algoritmo te pre-asigna carga de retorno desde El Alto o Cochabamba para duplicar tus ingresos.
-          </p>
-</div>
-<div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all" id="estimador">
-<div class="text-2xl mb-4">🤖</div>
-<h3 class="text-lg font-bold text-slate-900">AI Vision Cargo Estimator</h3>
-<p class="text-sm text-slate-600 mt-2 leading-relaxed">
-            Sube fotos de tus pallets o bultos. Nuestra inteligencia artificial calcula al instante el volumen cúbico (m³), peso estimado y recomienda el camión exacto para no pagar de más.
-          </p>
-</div>
-<div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all" id="pagos-qr">
-<div class="text-2xl mb-4">📲</div>
-<h3 class="text-lg font-bold text-slate-900">Pagos Directos Pago Directo por QR Bancario</h3>
-<p class="text-sm text-slate-600 mt-2 leading-relaxed">
-            Cero incertidumbre con cheques o cobranzas demoradas. Pagos y cobros instantáneos (T+0) mediante Pago por Código QR interbancario de Bolivia directo a tu cuenta bancaria.
-          </p>
-</div>
-<div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all">
-<div class="text-2xl mb-4">🧾</div>
-<h3 class="text-lg font-bold text-slate-900">Facturación Computarizada SIAT</h3>
-<p class="text-sm text-slate-600 mt-2 leading-relaxed">
-            Emisión de factura con crédito fiscal válido ante el SIN boliviano, junto con la Hoja de Ruta, Manifiesto de Carga y Carta de Porte homologada en cada servicio.
-          </p>
-</div>
-</div>
-</div>
-</section>
-<!-- END: CoreFeaturesGrid -->
-
-<!-- BEGIN: InteractiveRateSimulator -->
-<section class="py-20 bg-white" data-purpose="simulator-section" id="simulador">
-<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="text-center max-w-2xl mx-auto mb-12">
-<span class="text-brand-orange font-bold text-xs uppercase tracking-wider">Simulador en Vivo</span>
-<h2 class="text-3xl font-extrabold text-slate-900 font-display mt-1">
-          Calcula tu Tarifa y Rentabilidad por Viaje Redondo 🇧🇴
-        </h2>
-<p class="text-sm text-slate-600 mt-2">
-          Estima los costos de referencia por tonelada y el beneficio de completar tus retornos con carga en los corredores bolivianos.
-        </p>
-</div>
-<div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-lg">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div>
-<label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2" for="sim-route">Corredor Troncal</label>
-<select class="w-full rounded-xl border-slate-300 focus:border-brand-orange focus:ring-brand-orange text-sm font-semibold text-slate-800 bg-white" id="sim-route">
-<option value="scz-cbb">Santa Cruz ➔ Cochabamba (480 km)</option>
-<option selected="" value="scz-lpb">Santa Cruz ➔ La Paz / El Alto (850 km)</option>
-<option value="cbb-scz">Cochabamba ➔ Santa Cruz (480 km)</option>
-<option value="lpb-scz">La Paz / El Alto ➔ Santa Cruz (850 km)</option>
-<option value="scz-yacuiba">Santa Cruz ➔ Yacuiba / Frontera (550 km)</option>
-</select>
-</div>
-<div>
-<label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2" for="sim-vehicle">Tipo de Unidad</label>
-<select class="w-full rounded-xl border-slate-300 focus:border-brand-orange focus:ring-brand-orange text-sm font-semibold text-slate-800 bg-white" id="sim-vehicle">
-<option value="pickup">Camioneta / Pickup (1.2 Ton)</option>
-<option value="furgon">Furgón VUC Urbano (3.0 Ton)</option>
-<option value="toco">Camión 3/4 o Toco (10 Ton)</option>
-<option selected="" value="trailer">Semirremolque / Carretera (28-30 Ton)</option>
-</select>
-</div>
-<div>
-<div class="flex justify-between items-center mb-2">
-<label class="text-xs font-bold uppercase tracking-wider text-slate-700" for="sim-weight">Toneladas a Cargar</label>
-<span class="text-xs font-bold text-brand-orange" id="weight-val">25 Ton</span>
-</div>
-<input class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-orange mt-2" id="sim-weight" max="32" min="1" type="range" value="25"/>
-</div>
-</div>
-<div class="mt-8 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6 bg-white p-6 rounded-2xl border border-slate-100">
-<div>
-<span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Ganancia Neta Estimada (Ida + Vuelta)</span>
-<div class="flex items-baseline gap-2 mt-1">
-<span class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display" id="price-output">Bs. 16,450</span>
-<span class="text-xs text-slate-500 font-medium">Neto Transportista</span>
-</div>
-<p class="text-xs text-brand-emerald font-semibold mt-1 flex items-center gap-1">
-<span>✓ Incluye seguro de carga en tránsito y monitoreo GPS 24/7</span>
-</p>
-</div>
-<div class="bg-brand-orange-light p-4 rounded-xl border border-brand-orange/20 text-center md:text-right">
-<span class="text-xs font-bold text-brand-orange uppercase">Comisión Plataforma (3%)</span>
-<p class="text-xl font-extrabold text-brand-orange-dark font-display" id="savings-output">-Bs. 575.00</p>
-<span class="text-[11px] text-slate-600">97% neto directo a tu cuenta</span>
-</div>
-</div>
-<div class="mt-6 text-center">
-<a class="inline-flex items-center justify-center px-8 py-3 rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white font-bold text-sm shadow-md transition-all" href="./conductor.html">
-            Registrar mi Camión y Activar Radar
-          </a>
-</div>
-</div>
-</div>
-</section>
-<!-- END: InteractiveRateSimulator -->
-
-<!-- Footer -->
-<footer class="bg-brand-dark text-white pt-16 pb-12 border-t border-slate-800" data-purpose="footer-section" id="choferes">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
-<div class="lg:col-span-2">
-<img alt="MulaCargo Logo Oficial" class="h-24 sm:h-32 w-auto object-contain mb-4 filter drop-shadow-[0_15px_35px_rgba(255,85,0,0.5)]" src="./mulacargo.webp"/>
-<p class="text-xs text-slate-400 leading-relaxed max-w-sm">
-            MulaCargo OS es la infraestructura de software logístico para el transporte de carga pesada en Bolivia. Operamos en Santa Cruz de la Sierra con alcance a los principales corredores del país.
-          </p>
-<div class="mt-4 flex items-center space-x-2 text-xs text-slate-300">
-<span class="font-bold text-brand-orange">Santa Cruz Hub:</span>
-<span>Av. San Martín, Equipetrol Norte</span>
-</div>
-</div>
-<div>
-<h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Ecosistema</h4>
-<ul class="space-y-2 text-xs text-slate-400">
-<li><a class="hover:text-brand-orange transition-colors" href="./app.html">Landing Oficial</a></li>
-<li><a class="hover:text-brand-orange transition-colors" href="./conductor.html">Portal Choferes</a></li>
-<li><a class="hover:text-brand-orange transition-colors" href="./simulator.html">Simulador de Fletes</a></li>
-<li><a class="hover:text-brand-orange text-brand-orange font-semibold transition-colors" href="./playbook.html">🎯 Playbook GTM 2026</a></li>
-<li><a class="hover:text-brand-orange transition-colors" href="./proposal-rene-quiroz.html">Propuesta Comercial</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Marco Legal</h4>
-<ul class="space-y-2 text-xs text-slate-400">
-<li><a class="hover:text-brand-orange transition-colors" href="./proposal-rene-quiroz.html">Propuesta René Quiroz</a></li>
-<li><a class="hover:text-brand-orange transition-colors" href="./branding-guide.html">Manual de Marca</a></li>
-<li><a class="hover:text-brand-orange transition-colors" href="#">Facturación SIAT / SIN</a></li>
-<li><a class="hover:text-brand-orange transition-colors" href="#">Carta de Porte Homologada</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Soporte Operativo</h4>
-<p class="text-xs text-slate-400 mb-3">Atención 24/7 en carretera ante emergencias y trancas provinciales.</p>
-<a href="https://wa.me/59170000000" target="_blank" class="inline-block bg-[#25D366] text-[#0A0A0C] font-bold text-xs px-4 py-2.5 rounded-lg">💬 WhatsApp de Operaciones</a>
-</div>
-</div>
-<div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-<div>
-          © 2026 MulaCargo Bolivia SRL. Todos los derechos reservados. Desarrollado con tecnología boliviana para la troncal nacional.
+  <!-- HERO SECTION (Asymmetric Precision Layout) -->
+  <section class="relative pt-24 pb-16 md:pt-28 md:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      
+      <!-- Left Column: Value Proposition -->
+      <div class="lg:col-span-7 flex flex-col items-start">
+        
+        <!-- Eyebrow Tag -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#16181F] border border-[#FF5500]/30 rounded text-[#FF5500] font-mono text-[11px] uppercase tracking-widest mb-4">
+          <span class="w-2 h-2 rounded-full bg-[#FF5500] live-dot"></span>
+          MARKETPLACE DE FLETES PESADOS BOLIVIA
         </div>
-<div class="flex space-x-6 text-slate-400">
-<a class="hover:text-brand-orange transition-colors" href="#">Términos y Privacidad</a>
-<a class="hover:text-brand-orange transition-colors" href="#">API Docs</a>
-<a class="hover:text-brand-orange transition-colors" href="#">Soporte 24/7</a>
-</div>
-</div>
-</div>
-</footer>
 
-<script data-purpose="simulator-engine">
-    const routeSelect = document.getElementById('sim-route');
-    const vehicleSelect = document.getElementById('sim-vehicle');
-    const weightInput = document.getElementById('sim-weight');
-    const weightValDisplay = document.getElementById('weight-val');
-    const priceOutput = document.getElementById('price-output');
-    const savingsOutput = document.getElementById('savings-output');
+        <!-- Headline (Max 2 lines desktop) -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight text-white leading-[1.05] mb-5">
+          Carga Pesada, <span class="text-[#00E599]">Retorno Lleno.</span><br>
+          <span class="text-[#FF5500]">El Flete que Nunca Vuelve Vacío.</span>
+        </h1>
 
-    const routeBase = {
-      'scz-cbb': { base: 4500, perTon: 160 },
-      'scz-lpb': { base: 7000, perTon: 220 },
-      'cbb-scz': { base: 4200, perTon: 150 },
-      'lpb-scz': { base: 6500, perTon: 200 },
-      'scz-yacuiba': { base: 5200, perTon: 180 }
-    };
+        <!-- Subtext (Max 20 words) -->
+        <p class="text-base sm:text-lg text-[#8C929D] font-normal leading-relaxed max-w-2xl mb-8 font-sans">
+          Conectamos empresas y productores con transportistas en subasta viva. Optimiza tu retorno con Radar de Retorno y comisión fija del 3.5%.
+        </p>
 
-    function recalculateRates() {
-      const selectedRoute = routeSelect.value;
-      const tons = parseInt(weightInput.value, 10);
-      weightValDisplay.textContent = tons + ' Ton';
+        <!-- CTA Action Group -->
+        <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+          <a href="./simulator.html" class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#FF5500] hover:bg-[#E04B00] text-white font-mono text-xs uppercase tracking-widest font-extrabold rounded transition-all shadow-[0_4px_25px_rgba(255,85,0,0.35)] hover:scale-[1.02] active:scale-[0.98]">
+            <i data-lucide="zap" class="w-4 h-4"></i>
+            Simular Ganancia & Retorno
+          </a>
+          <a href="./conductor.html" class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#16181F] hover:bg-[#1C202B] text-white border border-[#E0E6ED]/20 hover:border-[#FF5500]/50 font-mono text-xs uppercase tracking-widest font-semibold rounded transition-all">
+            <i data-lucide="truck" class="w-4 h-4 text-[#8C929D]"></i>
+            Registrar Camión / Flota
+          </a>
+        </div>
 
-      const config = routeBase[selectedRoute] || routeBase['scz-lpb'];
-      let calculatedPrice = (config.base + (tons * config.perTon)) * 2; // Round trip double
+        <!-- Quick Trust Indicators -->
+        <div class="mt-8 pt-6 border-t border-[#E0E6ED]/10 grid grid-cols-3 gap-6 w-full max-w-lg">
+          <div>
+            <div class="font-mono text-xl sm:text-2xl font-bold text-white">3.5%</div>
+            <div class="font-mono text-[10px] text-[#8C929D] uppercase tracking-wider">Tarifa Plataforma</div>
+          </div>
+          <div>
+            <div class="font-mono text-xl sm:text-2xl font-bold text-[#00E599]">T+0</div>
+            <div class="font-mono text-[10px] text-[#8C929D] uppercase tracking-wider">Pago QR Directo</div>
+          </div>
+          <div>
+            <div class="font-mono text-xl sm:text-2xl font-bold text-white">100%</div>
+            <div class="font-mono text-[10px] text-[#8C929D] uppercase tracking-wider">Chofer Verificado</div>
+          </div>
+        </div>
 
-      if (vehicleSelect.value === 'pickup') {
-        calculatedPrice = Math.min(calculatedPrice * 0.35, 4500);
-      } else if (vehicleSelect.value === 'furgon') {
-        calculatedPrice = Math.min(calculatedPrice * 0.55, 7800);
-      } else if (vehicleSelect.value === 'toco') {
-        calculatedPrice = Math.min(calculatedPrice * 0.8, 13000);
+      </div>
+
+      <!-- Right Column: Live Freight HUD / Radar Widget -->
+      <div class="lg:col-span-5">
+        <div class="hud-card p-5 sm:p-6 shadow-2xl relative overflow-hidden border border-[#FF5500]/30">
+          <div class="cnr tl"></div><div class="cnr tr"></div>
+          <div class="cnr bl"></div><div class="cnr br"></div>
+
+          <!-- HUD Header -->
+          <div class="flex items-center justify-between pb-4 border-b border-[#E0E6ED]/10">
+            <div class="flex items-center gap-2.5">
+              <div class="w-2.5 h-2.5 rounded-full bg-[#00E599] live-dot"></div>
+              <span class="font-mono text-xs font-bold uppercase tracking-wider text-white">Radar de Retorno Activo</span>
+            </div>
+            <span class="font-mono text-[11px] text-[#00E599] bg-[#00E599]/10 px-2 py-0.5 rounded border border-[#00E599]/20 font-semibold">SUBASTA EN VIVO</span>
+          </div>
+
+          <!-- Active Corridor Overview -->
+          <div class="my-4 p-4 rounded bg-[#0A0A0C] border border-[#E0E6ED]/10">
+            <div class="flex items-center justify-between text-xs font-mono text-[#8C929D] mb-1">
+              <span>CORREDOR TRONCAL 01</span>
+              <span class="text-white font-bold">850 KM</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="font-display font-bold text-base text-white">Santa Cruz (KM 0)</div>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-[#FF5500]"></i>
+              <div class="font-display font-bold text-base text-white">El Alto (KM 850)</div>
+            </div>
+
+            <!-- Route Visual Tracker -->
+            <div class="mt-3 relative">
+              <div class="h-1.5 w-full bg-[#16181F] rounded-full overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-[#FF5500] to-[#00E599] w-3/4"></div>
+              </div>
+              <div class="flex justify-between text-[9px] font-mono text-[#8C929D] mt-1.5">
+                <span>SCZ Parque Ind.</span>
+                <span class="text-[#FF5500]">El Sillar (En Ruta)</span>
+                <span>Almacén Central LPB</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Matched Backhaul Card (The Core Magic) -->
+          <div class="p-3.5 rounded bg-[#111216] border border-[#00E599]/30 mb-4">
+            <div class="flex items-start justify-between">
+              <div>
+                <span class="font-mono text-[10px] text-[#00E599] font-bold uppercase tracking-wider flex items-center gap-1">
+                  <i data-lucide="check-circle" class="w-3 h-3"></i>
+                  Carga de Retorno Pre-Asignada
+                </span>
+                <div class="font-display font-bold text-sm text-white mt-0.5">El Alto ➔ Santa Cruz (Granel / 26T)</div>
+                <div class="text-xs text-[#8C929D] mt-0.5">Carga lista para retorno inmediato</div>
+              </div>
+              <div class="text-right">
+                <div class="font-mono font-black text-base text-[#00E599]">Bs. 6,800</div>
+                <div class="font-mono text-[9px] text-[#8C929D] uppercase">100% Monetizado</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Driver Verification Snapshot -->
+          <div class="flex items-center justify-between pt-3 border-t border-[#E0E6ED]/10 text-xs font-mono">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded bg-[#1C202B] flex items-center justify-center font-bold text-white border border-[#E0E6ED]/20">
+                HM
+              </div>
+              <div>
+                <div class="text-white font-bold leading-tight">Hilarión Mamani</div>
+                <div class="text-[10px] text-[#8C929D]">Tractocamión Volvo FH (Placa 4821-EFT)</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-[#00E599] font-bold text-[11px]">Calificación 4.9/5</span>
+              <div class="text-[9px] text-[#8C929D]">RUAT + SOAT Verificados</div>
+            </div>
+          </div>
+
+          <!-- Quick Action inside Widget -->
+          <div class="mt-4">
+            <a href="./simulator.html" class="w-full py-2.5 bg-[#00E599] hover:bg-[#00B377] text-[#0A0A0C] font-mono text-xs uppercase tracking-wider font-extrabold rounded flex items-center justify-center gap-2 transition-all">
+              <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+              Calcular Liquidación de Flete
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NATIONAL CORRIDOR TELEMETRY STRIP -->
+  <section class="border-y border-[#E0E6ED]/10 bg-[#111216]/60 py-6 relative z-10" id="corredores">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        
+        <div class="p-3">
+          <div class="font-mono text-2xl sm:text-3xl font-extrabold text-[#00E599]">+18,500</div>
+          <div class="text-xs text-[#8C929D] font-mono uppercase tracking-wider mt-1">Fletes Troncales Completados</div>
+        </div>
+
+        <div class="p-3">
+          <div class="font-mono text-2xl sm:text-3xl font-extrabold text-[#FF5500]">+2,400</div>
+          <div class="text-xs text-[#8C929D] font-mono uppercase tracking-wider mt-1">Empresas & Dadores de Carga</div>
+        </div>
+
+        <div class="p-3">
+          <div class="font-mono text-2xl sm:text-3xl font-extrabold text-white">+4,800</div>
+          <div class="text-xs text-[#8C929D] font-mono uppercase tracking-wider mt-1">Camiones & Flotas Verificados</div>
+        </div>
+
+        <div class="p-3">
+          <div class="font-mono text-2xl sm:text-3xl font-extrabold text-[#D4AF37]">99.8%</div>
+          <div class="text-xs text-[#8C929D] font-mono uppercase tracking-wider mt-1">Desembolsos QR T+0 Conformes</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RADAR DE RETORNO SECTION (The Core Differentiator) -->
+  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" id="radar">
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#16181F] border border-[#00E599]/30 rounded text-[#00E599] font-mono text-[11px] uppercase tracking-widest mb-3">
+        <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+        ALGORITMO DE OPTIMIZACIÓN LOGÍSTICA
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display text-white tracking-tight">
+        Radar de Retorno: Duplica la Rentabilidad de Cada Viaje
+      </h2>
+      <p class="text-[#8C929D] text-base sm:text-lg mt-3 font-sans max-w-2xl mx-auto">
+        El gran problema del transporte en Bolivia es volver vacío y quemar combustible sin ganancia. MulaCargo pre-empareja tu regreso antes de salir del garaje.
+      </p>
+    </div>
+
+    <!-- Comparison Grid: Empty vs Backhaul -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+      
+      <!-- Card A: Traditional Logistics (Empty Return) -->
+      <div class="hud-card p-6 sm:p-8 border-red-500/20 bg-[#16181F]/40 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-xs text-red-400 font-bold uppercase tracking-wider">Modelo Tradicional Intermediado</span>
+            <span class="px-2 py-0.5 rounded bg-red-500/10 text-red-400 border border-red-500/20 font-mono text-[10px]">RETORNO EN VACÍO</span>
+          </div>
+          
+          <h3 class="text-2xl font-bold font-display text-white mb-3">Ida Cobrada, Vuelta a Pérdida</h3>
+          <p class="text-sm text-[#8C929D] mb-6 leading-relaxed">
+            Haces un flete de Santa Cruz a La Paz cobrando Bs. 8,500. Al no tener carga de retorno, recorres 850 km vacíos gastando Bs. 3,200 en combustible y viáticos.
+          </p>
+
+          <div class="space-y-3 font-mono text-xs">
+            <div class="flex justify-between py-2 border-b border-[#E0E6ED]/5">
+              <span class="text-[#8C929D]">Ingreso Flete Ida (850 km):</span>
+              <span class="text-white font-bold">Bs. 8,500.00</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-[#E0E6ED]/5">
+              <span class="text-[#8C929D]">Ingreso Retorno (850 km vacío):</span>
+              <span class="text-red-400 font-bold">Bs. 0.00</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-[#E0E6ED]/5">
+              <span class="text-[#8C929D]">Comisión Intermediario (15%):</span>
+              <span class="text-red-400 font-bold">-Bs. 1,275.00</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-[#E0E6ED]/5">
+              <span class="text-[#8C929D]">Gasto Combustible Ida + Vuelta:</span>
+              <span class="text-red-400 font-bold">-Bs. 4,500.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-[#E0E6ED]/10 flex items-center justify-between">
+          <span class="font-mono text-xs uppercase text-[#8C929D]">Ganancia Neta Real:</span>
+          <span class="font-mono text-xl font-bold text-red-400">Bs. 2,725.00</span>
+        </div>
+      </div>
+
+      <!-- Card B: MulaCargo Model (Radar de Retorno) -->
+      <div class="hud-card p-6 sm:p-8 border-[#00E599]/40 bg-[#16181F] flex flex-col justify-between shadow-[0_0_30px_rgba(0,229,153,0.1)]">
+        <div class="cnr tl cnr-mint"></div><div class="cnr tr cnr-mint"></div>
+        <div class="cnr bl cnr-mint"></div><div class="cnr br cnr-mint"></div>
+
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-xs text-[#00E599] font-bold uppercase tracking-wider">MulaCargo Marketplace</span>
+            <span class="px-2 py-0.5 rounded bg-[#00E599]/10 text-[#00E599] border border-[#00E599]/20 font-mono text-[10px]">RADAR 2X GANANCIA</span>
+          </div>
+
+          <h3 class="text-2xl font-bold font-display text-white mb-3">100% de la Ruta Monetizada</h3>
+          <p class="text-sm text-[#8C929D] mb-6 leading-relaxed">
+            Llevas flete de ida a La Paz y el sistema pre-asigna tu carga de regreso a Santa Cruz. Solo pagas 3.5% de tarifa y cobras al instante por QR Simple.
+          </p>
+
+          <div class="space-y-3 font-mono text-xs">
+            <div class="flex justify-between py-2 border-b border-[#E0E6ED]/5">
+              <span class="text-[#8C929D]">Ingreso Flete Ida (850 km):</span>
+              <span class="text-white font-bold">Bs. 8,500.00</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-[#E0E6ED]/5">
+              <span class="text-[#8C929D]">Ingreso Retorno Pre-Asignado:</span>
+              <span class="text-[#00E599] font-bold">+Bs. 6,800.00</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-[#E0E6ED]/5">
+              <span class="text-[#8C929D]">Tarifa MulaCargo (Solo 3.5%):</span>
+              <span class="text-[#00E599] font-bold">-Bs. 535.50</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-[#E0E6ED]/5">
+              <span class="text-[#8C929D]">Gasto Combustible Ida + Vuelta:</span>
+              <span class="text-[#8C929D] font-bold">-Bs. 4,500.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-[#00E599]/20 flex items-center justify-between">
+          <div>
+            <span class="font-mono text-xs uppercase text-[#8C929D]">Ganancia Neta con Radar:</span>
+            <div class="text-[10px] text-[#00E599] font-mono">+274% más ganancia</div>
+          </div>
+          <span class="font-mono text-2xl font-black text-[#00E599]">Bs. 10,264.50</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DUAL PLATFORM CAPABILITIES (Shipper vs Driver Tabs) -->
+  <section class="py-20 border-t border-[#E0E6ED]/10 bg-[#111216]/40 relative z-10" id="funcionalidades">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white tracking-tight">
+          Diseñado para Quien Envía y para Quien Maneja
+        </h2>
+        <p class="text-[#8C929D] text-sm sm:text-base mt-2">
+          Selecciona tu perfil para conocer la tecnología aplicada a tu operación logística.
+        </p>
+
+        <!-- Segmented Tab Switch -->
+        <div class="inline-flex p-1 bg-[#16181F] border border-[#E0E6ED]/10 rounded-lg mt-6">
+          <button id="tabBtnShipper" onclick="switchProfileTab('shipper')" 
+                  class="px-5 py-2 rounded font-mono text-xs uppercase tracking-wider font-bold transition-all bg-[#FF5500] text-white shadow-md">
+            Para Empresas & Dadores de Carga
+          </button>
+          <button id="tabBtnDriver" onclick="switchProfileTab('driver')" 
+                  class="px-5 py-2 rounded font-mono text-xs uppercase tracking-wider font-bold transition-all text-[#8C929D] hover:text-white">
+            Para Transportistas & Flotas
+          </button>
+        </div>
+      </div>
+
+      <!-- Shipper Tab Content -->
+      <div id="shipperTabContent" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="hud-card p-6">
+          <div class="w-10 h-10 rounded bg-[#FF5500]/10 border border-[#FF5500]/30 flex items-center justify-center text-[#FF5500] mb-4">
+            <i data-lucide="scan-eye" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold font-display text-white mb-2">Estimador IA de Cubicaje</h3>
+          <p class="text-xs text-[#8C929D] leading-relaxed">
+            Sube fotos de tus pallets, bultos o maquinaria. El motor estima el volumen m³, peso aproximado y recomienda la categoría de vehículo óptima.
+          </p>
+        </div>
+
+        <div class="hud-card p-6">
+          <div class="w-10 h-10 rounded bg-[#FF5500]/10 border border-[#FF5500]/30 flex items-center justify-center text-[#FF5500] mb-4">
+            <i data-lucide="gavel" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold font-display text-white mb-2">Subasta Abierta en Tiempo Real</h3>
+          <p class="text-xs text-[#8C929D] leading-relaxed">
+            Publica tu flete y recibe ofertas directas de transportistas verificados en minutos. Compara precios, reputación y tiempo estimado de llegada.
+          </p>
+        </div>
+
+        <div class="hud-card p-6">
+          <div class="w-10 h-10 rounded bg-[#FF5500]/10 border border-[#FF5500]/30 flex items-center justify-center text-[#FF5500] mb-4">
+            <i data-lucide="map-pinned" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold font-display text-white mb-2">Telemetría & Facturación SIAT</h3>
+          <p class="text-xs text-[#8C929D] leading-relaxed">
+            Rastreo satelital punto a punto de la carga, alertas de trancas en cordillera y emisión automática de factura con crédito fiscal y Carta de Porte.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Driver Tab Content (Hidden by default) -->
+      <div id="driverTabContent" class="grid grid-cols-1 md:grid-cols-3 gap-6 hidden">
+        
+        <div class="hud-card p-6">
+          <div class="w-10 h-10 rounded bg-[#00E599]/10 border border-[#00E599]/30 flex items-center justify-center text-[#00E599] mb-4">
+            <i data-lucide="radar" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold font-display text-white mb-2">Pre-Trip Retorno Planning</h3>
+          <p class="text-xs text-[#8C929D] leading-relaxed">
+            El sistema busca carga en tu destino mientras viajas de ida. Cuando descargas tu camión, ya tienes el flete de retorno acordado para volver facturando.
+          </p>
+        </div>
+
+        <div class="hud-card p-6">
+          <div class="w-10 h-10 rounded bg-[#00E599]/10 border border-[#00E599]/30 flex items-center justify-center text-[#00E599] mb-4">
+            <i data-lucide="percent" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold font-display text-white mb-2">Tarifa Fija de 3.5%</h3>
+          <p class="text-xs text-[#8C929D] leading-relaxed">
+            Sin intermediarios que se quedan con el 15% o 20% de tu esfuerzo. En MulaCargo conservas el 96.5% neto del valor acordado en cada viaje.
+          </p>
+        </div>
+
+        <div class="hud-card p-6">
+          <div class="w-10 h-10 rounded bg-[#00E599]/10 border border-[#00E599]/30 flex items-center justify-center text-[#00E599] mb-4">
+            <i data-lucide="qr-code" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-lg font-bold font-display text-white mb-2">Desembolso Inmediato QR Simple</h3>
+          <p class="text-xs text-[#8C929D] leading-relaxed">
+            Cobro directo e instantáneo a tu cuenta de cualquier banco boliviano (BNB, BCP, Banco Unión, BMSC, Bisa, Ganadero) tras la entrega conforme.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FLEET TAXONOMY SECTION -->
+  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" id="flota">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#16181F] border border-[#FF5500]/30 rounded text-[#FF5500] font-mono text-[11px] uppercase tracking-widest mb-3">
+        <i data-lucide="truck" class="w-3.5 h-3.5"></i>
+        TAXONOMÍA DE CARGA HOMOLOGADA
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-white tracking-tight">
+        Flota Verificada para Cada Escala de Carga
+      </h2>
+      <p class="text-[#8C929D] text-sm sm:text-base mt-2">
+        Desde distribución urbana rápida hasta tractocamiones de gran tonelaje en corredores interdepartamentales.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Type 1: Utilitario -->
+      <div class="hud-card p-5">
+        <div class="font-mono text-xs text-[#FF5500] font-bold mb-1">CATEGORÍA 01</div>
+        <h4 class="text-lg font-bold font-display text-white">Utilitario / Pickup</h4>
+        <div class="text-[11px] font-mono text-[#8C929D] mb-4">Hilux • Strada • Saveiro</div>
+        <div class="space-y-2 border-t border-[#E0E6ED]/10 pt-3 text-xs font-mono">
+          <div class="flex justify-between"><span class="text-[#8C929D]">Capacidad:</span> <span class="text-white font-bold">Hasta 700 kg</span></div>
+          <div class="flex justify-between"><span class="text-[#8C929D]">Volumen:</span> <span class="text-white font-bold">2.5 m³</span></div>
+          <div class="flex justify-between"><span class="text-[#8C929D]">Radio de Acción:</span> <span class="text-[#00E599] font-bold">Urbano / Interurbano</span></div>
+        </div>
+      </div>
+
+      <!-- Type 2: Furgón VUC -->
+      <div class="hud-card p-5">
+        <div class="font-mono text-xs text-[#FF5500] font-bold mb-1">CATEGORÍA 02</div>
+        <h4 class="text-lg font-bold font-display text-white">Furgón / VUC</h4>
+        <div class="text-[11px] font-mono text-[#8C929D] mb-4">Sprinter • Fiorino • Daily</div>
+        <div class="space-y-2 border-t border-[#E0E6ED]/10 pt-3 text-xs font-mono">
+          <div class="flex justify-between"><span class="text-[#8C929D]">Capacidad:</span> <span class="text-white font-bold">Hasta 1,800 kg</span></div>
+          <div class="flex justify-between"><span class="text-[#8C929D]">Volumen:</span> <span class="text-white font-bold">12.0 m³</span></div>
+          <div class="flex justify-between"><span class="text-[#8C929D]">Radio de Acción:</span> <span class="text-[#00E599] font-bold">Santa Cruz / Montero</span></div>
+        </div>
+      </div>
+
+      <!-- Type 3: Camión 3/4 & Toco -->
+      <div class="hud-card p-5 border-[#FF5500]/40">
+        <div class="cnr tl"></div><div class="cnr tr"></div>
+        <div class="font-mono text-xs text-[#FF5500] font-bold mb-1">CATEGORÍA 03</div>
+        <h4 class="text-lg font-bold font-display text-white">Camión 3/4 & Toco</h4>
+        <div class="text-[11px] font-mono text-[#8C929D] mb-4">Accelo • Delivery • Cargo</div>
+        <div class="space-y-2 border-t border-[#E0E6ED]/10 pt-3 text-xs font-mono">
+          <div class="flex justify-between"><span class="text-[#8C929D]">Capacidad:</span> <span class="text-white font-bold">Hasta 5,000 kg</span></div>
+          <div class="flex justify-between"><span class="text-[#8C929D]">Volumen:</span> <span class="text-white font-bold">25.0 m³</span></div>
+          <div class="flex justify-between"><span class="text-[#8C929D]">Radio de Acción:</span> <span class="text-[#00E599] font-bold">Troncal Regional</span></div>
+        </div>
+      </div>
+
+      <!-- Type 4: Heavy Hauler -->
+      <div class="hud-card p-5">
+        <div class="font-mono text-xs text-[#FF5500] font-bold mb-1">CATEGORÍA 04</div>
+        <h4 class="text-lg font-bold font-display text-white">Heavy Hauler / Carreta</h4>
+        <div class="text-[11px] font-mono text-[#8C929D] mb-4">Volvo FH • Scania • Actros</div>
+        <div class="space-y-2 border-t border-[#E0E6ED]/10 pt-3 text-xs font-mono">
+          <div class="flex justify-between"><span class="text-[#8C929D]">Capacidad:</span> <span class="text-white font-bold">Hasta 28,000 kg</span></div>
+          <div class="flex justify-between"><span class="text-[#8C929D]">Volumen:</span> <span class="text-white font-bold">60.0 m³</span></div>
+          <div class="flex justify-between"><span class="text-[#8C929D]">Radio de Acción:</span> <span class="text-[#00E599] font-bold">Corredor Nacional</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIVE SIMULATOR CALLOUT (Interactive Yield Engine) -->
+  <section class="py-16 border-t border-[#E0E6ED]/10 bg-gradient-to-b from-[#111216] to-[#0A0A0C] relative z-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="hud-card p-8 sm:p-10 border-[#00E599]/30 relative">
+        <div class="cnr tl cnr-mint"></div><div class="cnr tr cnr-mint"></div>
+        <div class="cnr bl cnr-mint"></div><div class="cnr br cnr-mint"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div class="md:col-span-8">
+            <span class="font-mono text-xs text-[#00E599] font-bold uppercase tracking-wider">HERRAMIENTA FINANCIERA EN VIVO</span>
+            <h3 class="text-2xl sm:text-3xl font-bold font-display text-white mt-1 mb-2">
+              ¿Cuánto Puedes Ganar en Tu Próximo Corredor?
+            </h3>
+            <p class="text-sm text-[#8C929D] leading-relaxed">
+              Calcula tarifas referenciales por tonelada, kilometraje real y el beneficio económico de activar el Radar de Retorno en nuestro simulador completo.
+            </p>
+          </div>
+          <div class="md:col-span-4 flex justify-start md:justify-end">
+            <a href="./simulator.html" class="px-6 py-3.5 bg-[#00E599] hover:bg-[#00B377] text-[#0A0A0C] font-mono text-xs uppercase tracking-widest font-black rounded transition-all shadow-[0_0_25px_rgba(0,229,153,0.3)]">
+              Abrir Simulador Completo ➔
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE FOOTER -->
+  <footer class="border-t border-[#E0E6ED]/10 bg-[#0A0A0C] py-12 relative z-10 text-xs font-mono text-[#8C929D]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        
+        <!-- Brand Summary -->
+        <div class="md:col-span-1">
+          <img src="./mulacargo-logo-horizontal-clean.webp" alt="MulaCargo" class="h-6 w-auto mb-3">
+          <p class="text-[11px] text-[#8C929D] leading-relaxed">
+            Marketplace de fletes pesados y optimización de retornos logísticos en Bolivia.
+          </p>
+        </div>
+
+        <!-- Links: Plataforma -->
+        <div>
+          <div class="text-white font-bold uppercase tracking-wider mb-3">Plataforma</div>
+          <ul class="space-y-2 text-[11px]">
+            <li><a href="./index.html" class="hover:text-[#FF5500]">Inicio</a></li>
+            <li><a href="./simulator.html" class="hover:text-[#00E599]">Simulador de Fletes</a></li>
+            <li><a href="./conductor.html" class="hover:text-[#FF5500]">Portal Transportistas</a></li>
+            <li><a href="./identidad-visual.html" class="hover:text-[#FF5500]">Identidad Visual</a></li>
+          </ul>
+        </div>
+
+        <!-- Links: Documentación Ejecutiva -->
+        <div>
+          <div class="text-white font-bold uppercase tracking-wider mb-3">Estrategia GTM</div>
+          <ul class="space-y-2 text-[11px]">
+            <li><a href="./playbook.html" class="hover:text-[#FF5500]">Playbook GTM 2026</a></li>
+            <li><a href="./proposal-rene-quiroz.html" class="hover:text-[#D4AF37]">Propuesta Comercial</a></li>
+            <li><a href="./manifesto.html" class="hover:text-[#FF5500]">Manifiesto</a></li>
+          </ul>
+        </div>
+
+        <!-- Links: Operaciones -->
+        <div>
+          <div class="text-white font-bold uppercase tracking-wider mb-3">Operaciones & Soporte</div>
+          <p class="text-[11px] text-[#8C929D] mb-3">Atención 24/7 en carretera para trancas y despacho de fletes.</p>
+          <a href="https://wa.me/59170000000" target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#16181F] border border-[#25D366]/40 hover:border-[#25D366] text-[#25D366] rounded font-mono text-[11px]">
+            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+            WhatsApp Operaciones
+          </a>
+        </div>
+
+      </div>
+
+      <div class="pt-6 border-t border-[#E0E6ED]/5 flex flex-col sm:flex-row items-center justify-between text-[10px] text-[#8C929D] gap-4">
+        <div>MulaCargo SRL. Santa Cruz de la Sierra, Bolivia.</div>
+        <div class="flex items-center gap-4">
+          <span>Tarifa Fija 3.5%</span>
+          <span>•</span>
+          <span>Desembolsos QR Simple</span>
+          <span>•</span>
+          <span>Facturación SIAT</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Profile Switcher JS -->
+  <script>
+    function switchProfileTab(tab) {
+      const btnShipper = document.getElementById('tabBtnShipper');
+      const btnDriver = document.getElementById('tabBtnDriver');
+      const contentShipper = document.getElementById('shipperTabContent');
+      const contentDriver = document.getElementById('driverTabContent');
+
+      if (tab === 'shipper') {
+        btnShipper.className = 'px-5 py-2 rounded font-mono text-xs uppercase tracking-wider font-bold transition-all bg-[#FF5500] text-white shadow-md';
+        btnDriver.className = 'px-5 py-2 rounded font-mono text-xs uppercase tracking-wider font-bold transition-all text-[#8C929D] hover:text-white';
+        contentShipper.classList.remove('hidden');
+        contentDriver.classList.add('hidden');
+      } else {
+        btnDriver.className = 'px-5 py-2 rounded font-mono text-xs uppercase tracking-wider font-bold transition-all bg-[#00E599] text-[#0A0A0C] shadow-md';
+        btnShipper.className = 'px-5 py-2 rounded font-mono text-xs uppercase tracking-wider font-bold transition-all text-[#8C929D] hover:text-white';
+        contentDriver.classList.remove('hidden');
+        contentShipper.classList.add('hidden');
       }
-
-      const platformFee = Math.round(calculatedPrice * 0.030);
-
-      priceOutput.textContent = 'Bs. ' + Math.round(calculatedPrice).toLocaleString('es-BO');
-      savingsOutput.textContent = '-Bs. ' + platformFee.toLocaleString('es-BO');
+      lucide.createIcons();
     }
-
-    routeSelect.addEventListener('change', recalculateRates);
-    vehicleSelect.addEventListener('change', recalculateRates);
-    weightInput.addEventListener('input', recalculateRates);
-
-    recalculateRates();
   </script>
+
+  <!-- Initialize Lucide Icons -->
+  <script>
+    lucide.createIcons();
+  </script>
+
 </body>
 </html>
